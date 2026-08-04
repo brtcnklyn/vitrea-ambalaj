@@ -9,7 +9,7 @@
   var U  = window.VITREA_USES || [];
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var WA_TEL = '905000000000';                       // WhatsApp numarası (düzenleyin)
+  var WA_TEL = '905348433188';                       // WhatsApp numarası
   var MAIL   = 'info@vitrea.com.tr';                 // teklif e-postası (düzenleyin)
 
   /* ---------------- ticker ---------------- */

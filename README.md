@@ -57,23 +57,24 @@ Kaynak: `data/products.json`. Panelde her değişiklikte bu dosya yazılır ve
 Bu yedek sayesinde site sunucu kapalıyken de (dosyayı doğrudan açarak veya statik
 hosting'e atarak) çalışır — yalnızca yönetim paneli sunucu ister.
 
-## Değiştirmeniz gerekenler
+## İletişim bilgileri
 
-Aşağıdakiler yer tutucu:
+Telefon / WhatsApp **+90 534 843 31 88** olarak ayarlı. Geçtiği yerler:
 
-**1. İletişim bilgileri** — `assets/js/main.js` başında:
+| Bilgi | Dosya |
+|---|---|
+| WhatsApp (buton bağlantısı) | `assets/js/main.js` → `WA_TEL` |
+| Teklif e-postası | `assets/js/main.js` → `MAIL` |
+| Telefon ve e-posta (iletişim bölümü + footer) | `index.html` |
 
-```js
-var WA_TEL = '905000000000';        // WhatsApp numaranız (başında 90, boşluksuz)
-var MAIL   = 'info@vitrea.com.tr';  // teklif e-postanız
-```
+**Hâlâ yer tutucu:** e-posta `info@vitrea.com.tr`. Gerçek adresinizle değiştirin —
+`main.js` içindeki `MAIL` değişkeni ve `index.html` içinde geçtiği iki yer.
 
-**2. Aynı bilgiler `index.html` içinde de geçiyor** (iletişim bölümü + footer):
-`info@vitrea.com.tr` ve `+90 (000) 000 00 00` ifadelerini arayıp değiştirin.
+## Diğer değiştirebilecekleriniz
 
-**3. Admin şifresi** — `data/config.json`.
+**Admin şifresi** — `data/config.json`.
 
-**4. Marka adı** — "VITREA" uydurma bir isimdir. Değiştirecekseniz `index.html`
+**Marka adı** — "VITREA" uydurma bir isimdir. Değiştirecekseniz `index.html`
 içindeki geçtiği yerleri ve ürün kodlarındaki `VT-` önekini güncelleyin.
 
 ## Dosyalar
