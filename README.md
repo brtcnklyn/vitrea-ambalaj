@@ -1,8 +1,27 @@
 # VITREA — Sütlü Tatlı Ambalajları
 
+**Canlı site: https://brtcnklyn.github.io/vitrea-ambalaj/**
+
 Ürün tanıtım sitesi + yönetim paneli. Node.js dışında hiçbir kurulum gerekmez.
 
-## Çalıştırma
+## Yayın (GitHub Pages)
+
+Yayındaki site `main` dalının kökünden servis edilir. Değişikliği yayına almak için:
+
+```bash
+cd C:\Users\user\vitrea
+git add -A
+git commit -m "urun guncellemesi"
+git push
+```
+
+Push'tan ~1 dakika sonra site güncellenir.
+
+> Yönetim paneli yayındaki adreste **çalışmaz** — sunucu ister. Panelde yaptığınız
+> değişiklikler `data/products.json` ve `assets/js/products.js` dosyalarına yazılır;
+> yayına almak için yukarıdaki üç komutu çalıştırmanız yeterli.
+
+## Çalıştırma (kendi bilgisayarınızda)
 
 ```bash
 node C:\Users\user\vitrea\server.js
