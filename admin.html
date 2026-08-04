@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VITREA — Yönetim Paneli</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/admin.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230C0C0E'/><text x='16' y='23' font-size='20' font-family='serif' fill='%23C0703C' text-anchor='middle'>V</text></svg>">
+</head>
+<body>
+
+<!-- ============ GİRİŞ ============ -->
+<div class="gate" id="gate">
+  <form class="gate__box" id="loginForm">
+    <span class="gate__mark"></span>
+    <h1>VITREA <i>yönetim</i></h1>
+    <p>Ürünleri eklemek, düzenlemek ve yayından kaldırmak için giriş yapın.</p>
+    <label class="f">
+      <span>Şifre</span>
+      <input type="password" id="pw" autocomplete="current-password" required>
+    </label>
+    <button class="btn btn--full" type="submit">Giriş yap</button>
+    <p class="gate__err" id="loginErr"></p>
+  </form>
+</div>
+
+<!-- ============ PANEL ============ -->
+<div class="app" id="app" hidden>
+
+  <header class="top">
+    <div class="top__brand">
+      <span class="mark"></span>
+      <b>VITREA</b><i>yönetim paneli</i>
+    </div>
+    <div class="top__stats">
+      <span><b id="stTotal">0</b> ürün</span>
+      <span class="ok"><b id="stOn">0</b> aktif</span>
+      <span class="off"><b id="stOff">0</b> pasif</span>
+    </div>
+    <div class="top__act">
+      <a class="lnk" href="/" target="_blank" rel="noopener">Siteyi gör ↗</a>
+      <button class="btn btn--sm" id="btnNew">+ Yeni ürün</button>
+      <button class="btn btn--ghost btn--sm" id="btnOut">Çıkış</button>
+    </div>
+  </header>
+
+  <div class="bar">
+    <input class="search" id="q" type="search" placeholder="Ürün adı veya kod ara…" autocomplete="off">
+    <div class="segs" id="fCat">
+      <button class="seg is-on" data-val="all">Tümü</button>
+      <button class="seg" data-val="kase">Kase</button>
+      <button class="seg" data-val="bardak">Bardak</button>
+      <button class="seg" data-val="kare">Kare</button>
+      <button class="seg" data-val="dikdortgen">Dikdörtgen</button>
+      <button class="seg" data-val="ozel">Özel</button>
+    </div>
+    <div class="segs" id="fState">
+      <button class="seg is-on" data-val="all">Hepsi</button>
+      <button class="seg" data-val="on">Aktif</button>
+      <button class="seg" data-val="off">Pasif</button>
+    </div>
+  </div>
+
+  <div class="list" id="list"></div>
+  <p class="empty" id="empty" hidden>Bu filtreye uyan ürün yok.</p>
+
+  <footer class="foot">
+    Değişiklikler <code>data/products.json</code> dosyasına anında yazılır ve site
+    <code>assets/js/products.js</code> yedeğiyle birlikte güncellenir.
+  </footer>
+</div>
+
+<!-- ============ DÜZENLEME ============ -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal__bg" data-x></div>
+  <form class="modal__box" id="editForm">
+    <header class="modal__top">
+      <h2 id="mTitle">Ürün düzenle</h2>
+      <button type="button" class="x" data-x aria-label="Kapat">&times;</button>
+    </header>
+
+    <div class="modal__body">
+      <input type="hidden" id="fId">
+
+      <div class="grid2">
+        <label class="f"><span>Ürün adı *</span><input id="fName" required placeholder="ör. SFERA"></label>
+        <label class="f"><span>Ürün kodu *</span><input id="fCode" required placeholder="ör. VT-S22"></label>
+      </div>
+
+      <div class="grid3">
+        <label class="f"><span>Hacim (cc) *</span><input id="fVol" type="number" min="0" required></label>
+        <label class="f"><span>Ölçü (mm) *</span><input id="fDim" required placeholder="95 × 75"></label>
+        <label class="f"><span>Kategori</span>
+          <select id="fCatSel">
+            <option value="kase">Kase</option>
+            <option value="bardak">Bardak &amp; Kadeh</option>
+            <option value="kare">Kare Form</option>
+            <option value="dikdortgen">Dikdörtgen</option>
+            <option value="ozel">Özel Form</option>
+          </select></label>
+      </div>
+
+      <div class="grid2">
+        <label class="f"><span>Koli içi adet</span><input id="fBox" type="number" min="0"></label>
+        <label class="f"><span>Koli ölçüsü (mm)</span><input id="fBoxDim" placeholder="500 × 500 × 600"></label>
+      </div>
+
+      <label class="f"><span>Rozet (kart üzerinde görünür)</span><input id="fTag" placeholder="ör. Bombeli kapak"></label>
+      <label class="f"><span>Açıklama</span><textarea id="fNote" rows="3" placeholder="Bir iki cümlelik anlatım."></textarea></label>
+
+      <!-- görseller -->
+      <div class="grid2">
+        <div class="f">
+          <span>Ürün görseli</span>
+          <div class="pick">
+            <select id="fImg"></select>
+            <label class="up">Yükle<input type="file" id="upImg" accept="image/png,image/jpeg,image/webp" hidden></label>
+          </div>
+          <div class="prev" id="pvImg"></div>
+        </div>
+        <div class="f">
+          <span>Sahne fotoğrafı (kart üzerine gelince)</span>
+          <div class="pick">
+            <select id="fScene"></select>
+            <label class="up">Yükle<input type="file" id="upScene" accept="image/png,image/jpeg,image/webp" hidden></label>
+          </div>
+          <div class="prev prev--wide" id="pvScene"></div>
+        </div>
+      </div>
+
+      <!-- kapak -->
+      <label class="chk"><input type="checkbox" id="fHasLid"><span>Ayrı kapak var</span></label>
+      <div class="lidbox" id="lidBox" hidden>
+        <div class="grid2">
+          <label class="f"><span>Kapak ölçüsü (mm)</span><input id="fLidDim" placeholder="95 × 35"></label>
+          <label class="f"><span>Kapak materyali</span><input id="fLidMat" placeholder="PET"></label>
+        </div>
+        <div class="grid2">
+          <label class="f"><span>Kapak koli adedi</span><input id="fLidBox" type="number" min="0"></label>
+          <label class="f"><span>Kapak koli ölçüsü</span><input id="fLidBoxDim" placeholder="580 × 490 × 20"></label>
+        </div>
+      </div>
+
+      <label class="chk"><input type="checkbox" id="fActive" checked><span>Sitede yayında (aktif)</span></label>
+    </div>
+
+    <footer class="modal__foot">
+      <p class="err" id="mErr"></p>
+      <div>
+        <button type="button" class="btn btn--ghost" data-x>Vazgeç</button>
+        <button type="submit" class="btn">Kaydet</button>
+      </div>
+    </footer>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

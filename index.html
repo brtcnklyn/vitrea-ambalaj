@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VITREA — Sütlü Tatlı Ambalajları</title>
+<meta name="description" content="Sütlü tatlılar için kristal berraklığında PS gövde ve PET kapak ambalajları. Sütlaç, kazandibi, supangle, trileçe, magnolia ve profiterol için 36 model.">
+<meta name="theme-color" content="#0C0C0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230C0C0E'/><text x='16' y='23' font-size='20' font-family='serif' fill='%23E8E3DA' text-anchor='middle'>V</text></svg>">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a href="#top" class="brand" aria-label="VITREA ana sayfa">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__txt">VITREA</span>
+    </a>
+    <nav class="nav__links" aria-label="Ana menü">
+      <a href="#koleksiyon">Koleksiyon</a>
+      <a href="#malzeme">Malzeme</a>
+      <a href="#kullanim">Kullanım</a>
+      <a href="#surec">Süreç</a>
+      <a href="#sss">S.S.S.</a>
+    </nav>
+    <div class="nav__right">
+      <a href="#iletisim" class="btn btn--sm">Teklif Al</a>
+      <button class="burger" id="burger" aria-label="Menüyü aç" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__in">
+    <a href="#koleksiyon"><i>01</i> Koleksiyon</a>
+    <a href="#malzeme"><i>02</i> Malzeme</a>
+    <a href="#kullanim"><i>03</i> Kullanım</a>
+    <a href="#surec"><i>04</i> Süreç</a>
+    <a href="#sss"><i>05</i> S.S.S.</a>
+    <a href="#iletisim"><i>06</i> İletişim</a>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero__media">
+    <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
+           poster="assets/video/vitrea-hero.jpg">
+      <source src="assets/video/vitrea-hero-720.mp4" type="video/mp4">
+    </video>
+    <div class="hero__veil"></div>
+  </div>
+
+  <div class="hero__in">
+    <p class="eyebrow reveal">Sütlü tatlı ambalajları</p>
+    <h1 class="hero__title">
+      <span class="ln"><span>Tatlınız görülmeden</span></span>
+      <span class="ln"><span>önce <em>ambalajı</em></span></span>
+      <span class="ln"><span>konuşur.</span></span>
+    </h1>
+    <p class="hero__lead reveal">Kristal berraklığında PS gövde, tam oturan PET kapak.
+      Sütlaç, kazandibi, supangle ve trileçenin vitrinde hak ettiği sunum.</p>
+    <div class="hero__cta reveal">
+      <a href="#koleksiyon" class="btn">Koleksiyonu keşfet</a>
+      <a href="#iletisim" class="btn btn--ghost">Numune iste</a>
+    </div>
+  </div>
+
+  <div class="hero__foot">
+    <div class="hero__scroll"><span></span>Kaydır</div>
+    <ul class="hero__stats">
+      <li><b data-count="36" id="stModel">0</b><span>model</span></li>
+      <li><b data-count="60" id="stMin">0</b><span id="stMax">–1130 cc</span></li>
+      <li><b data-count="48">0</b><span>saatte sevk</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__row" id="ticker"></div>
+</div>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="manifesto section--paper" id="hakkimizda">
+  <div class="wrap">
+    <p class="eyebrow reveal"><i>01</i> Yaklaşım</p>
+    <h2 class="big words">Bir tatlı, tezgâhta önce gözle tadılır. Biz o ilk saniyeyi <em>berraklaştırıyoruz.</em></h2>
+    <div class="mani__grid">
+      <article class="mani__col reveal">
+        <span class="num">01</span>
+        <h3>Optik berraklık</h3>
+        <p>Yüksek şeffaflıkta polistiren gövde; kremanın rengini, sosun parlaklığını, katmanın çizgisini olduğu gibi geçirir. Buğulanmayan yüzey dokusu.</p>
+      </article>
+      <article class="mani__col reveal">
+        <span class="num">02</span>
+        <h3>Tam kapanma</h3>
+        <p>Gövde ile kapak arasında ölçü toleransı milimetrenin altında. Taşımada dökülmeyen, açıldığında tak diye ayrılan bir kilit hissi.</p>
+      </article>
+      <article class="mani__col reveal">
+        <span class="num">03</span>
+        <h3>Vitrinde düzen</h3>
+        <p>İstiflenebilir formlar, standart koli ölçüleri. Dolapta hizalı bir vitrin, depoda öngörülebilir bir hacim.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KRİSTAL ETKİ ============ -->
+<section class="split">
+  <div class="split__media">
+    <img src="assets/img/sahne/armonia.jpg" alt="Kristal kaselerde katmanlı sütlü tatlı sunumu" loading="lazy">
+  </div>
+  <div class="split__text">
+    <p class="eyebrow reveal"><i>02</i> Kristal etki</p>
+    <h2 class="mid reveal">Ürünü saklamaz, sunar.</h2>
+    <p class="reveal">Ambalaj bir kutu değil, ürünün ilk vitrinidir. VITREA formları tatlının silüetini
+      bozmadan taşır: kenarlar keskin, yüzey pürüzsüz, ışık geçişi net.</p>
+    <ul class="ticks">
+      <li class="reveal">Gıdaya uygun, kokusuz ve tatsız hammadde</li>
+      <li class="reveal">Buzdolabı sıcaklıklarında kırılganlaşmayan gövde</li>
+      <li class="reveal">Etiket ve banderol için düz, temiz yüzeyler</li>
+      <li class="reveal">%100 geri dönüştürülebilir tek malzeme yapısı</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ KOLEKSİYON ============ -->
+<section class="section--paper coll" id="koleksiyon">
+  <div class="wrap">
+    <header class="coll__head">
+      <div>
+        <p class="eyebrow reveal"><i>03</i> Koleksiyon</p>
+        <h2 class="mid reveal"><span id="collCount">36</span> form, tek bir dil.</h2>
+      </div>
+      <p class="coll__note reveal">Tüm ölçüler mm; hacimler cc. Koli içi adetler standart sevkiyat
+        birimidir. Özel adet ve karma koli talepleriniz için bize yazın.</p>
+    </header>
+
+    <div class="filters" id="filters">
+      <div class="filters__row" data-group="cat">
+        <button class="chip is-on" data-val="all">Tümü</button>
+        <button class="chip" data-val="kase">Kase</button>
+        <button class="chip" data-val="bardak">Bardak &amp; Kadeh</button>
+        <button class="chip" data-val="kare">Kare Form</button>
+        <button class="chip" data-val="dikdortgen">Dikdörtgen</button>
+        <button class="chip" data-val="ozel">Özel Form</button>
+      </div>
+      <div class="filters__row filters__row--alt" data-group="vol">
+        <button class="chip is-on" data-val="all">Tüm hacimler</button>
+        <button class="chip" data-val="s">0–200 cc</button>
+        <button class="chip" data-val="m">200–300 cc</button>
+        <button class="chip" data-val="l">300 cc +</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <p class="grid__empty" id="gridEmpty" hidden>Bu filtrede ürün yok. Filtreyi genişletin.</p>
+  </div>
+</section>
+
+<!-- ============ MALZEME ============ -->
+<section class="tech" id="malzeme">
+  <div class="wrap tech__in">
+    <div class="tech__text">
+      <p class="eyebrow reveal"><i>04</i> Malzeme &amp; yapı</p>
+      <h2 class="mid reveal">İki parça, tek geometri.</h2>
+      <p class="reveal">Gövde yüksek şeffaflıkta PS, kapak esnek ve şeffaf PET. İki malzeme
+        birbirini tamamlayacak toleransta üretilir: kapak baskıyla oturur, çekmeyle açılır.</p>
+      <dl class="specs">
+        <div class="reveal"><dt>Gövde</dt><dd>PS — kristal polistiren, gıdaya uygun</dd></div>
+        <div class="reveal"><dt>Kapak</dt><dd>PET — şeffaf, esnek, düz veya bombeli</dd></div>
+        <div class="reveal"><dt>Renk</dt><dd>Şeffaf (standart) · talebe göre renkli kapak</dd></div>
+        <div class="reveal"><dt>Sıcaklık</dt><dd>−18 °C / +60 °C arası kullanım</dd></div>
+        <div class="reveal"><dt>Geri dönüşüm</dt><dd>Tek malzemeli, ayrıştırılabilir</dd></div>
+      </dl>
+    </div>
+
+    <figure class="tech__fig" aria-hidden="true">
+      <svg viewBox="0 0 420 420" class="diagram" id="diagram">
+        <defs>
+          <linearGradient id="gl" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
+          </linearGradient>
+        </defs>
+        <g class="dg dg--lid">
+          <path d="M110 150 h200 l-14 -34 a10 10 0 0 0 -9 -6 h-154 a10 10 0 0 0 -9 6 z"
+                fill="url(#gl)" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+        </g>
+        <g class="dg dg--body">
+          <path d="M118 168 h184 l-24 150 a14 14 0 0 1 -14 12 h-108 a14 14 0 0 1 -14 -12 z"
+                fill="url(#gl)" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+          <path d="M132 250 h156" stroke="rgba(255,255,255,.22)" stroke-width="1" stroke-dasharray="3 5"/>
+        </g>
+        <g class="dg dg--fill">
+          <path d="M136 258 h148 l-18 60 a14 14 0 0 1 -14 12 h-84 a14 14 0 0 1 -14 -12 z"
+                fill="rgba(192,112,60,.5)"/>
+        </g>
+        <g class="dg--lines" stroke="rgba(255,255,255,.28)" stroke-width="1">
+          <line x1="330" y1="132" x2="372" y2="132"/><line x1="330" y1="240" x2="372" y2="240"/>
+          <line x1="372" y1="132" x2="372" y2="240"/>
+        </g>
+        <text x="380" y="190" fill="rgba(255,255,255,.5)" font-size="13" font-family="Inter Tight, sans-serif">H</text>
+        <g class="dg--lines" stroke="rgba(255,255,255,.28)" stroke-width="1">
+          <line x1="118" y1="356" x2="302" y2="356"/>
+          <line x1="118" y1="348" x2="118" y2="364"/><line x1="302" y1="348" x2="302" y2="364"/>
+        </g>
+        <text x="203" y="380" fill="rgba(255,255,255,.5)" font-size="13" text-anchor="middle" font-family="Inter Tight, sans-serif">Ø</text>
+      </svg>
+      <figcaption>Gövde + kapak kesiti</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ KULLANIM ============ -->
+<section class="use" id="kullanim">
+  <div class="wrap use__head">
+    <p class="eyebrow reveal"><i>05</i> Kullanım alanları</p>
+    <h2 class="mid reveal">Hangi tatlı, hangi form?</h2>
+  </div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<!-- ============ FİLM ============ -->
+<section class="film">
+  <div class="wrap">
+    <p class="eyebrow reveal"><i>06</i> Marka filmi</p>
+    <h2 class="mid reveal">Tezgâhtan vitrine.</h2>
+  </div>
+  <figure class="film__box reveal">
+    <video id="filmVideo" muted loop playsinline preload="none"
+           poster="assets/video/vitrea-film.jpg">
+      <source src="assets/video/vitrea-hero.mp4" type="video/mp4">
+    </video>
+    <button class="film__btn" id="filmBtn" aria-label="Filmi oynat"><span></span></button>
+  </figure>
+</section>
+
+<!-- ============ SÜREÇ ============ -->
+<section class="section--paper steps" id="surec">
+  <div class="wrap">
+    <p class="eyebrow reveal"><i>07</i> Süreç</p>
+    <h2 class="mid reveal">Üç adımda raf.</h2>
+    <ol class="steps__list">
+      <li class="reveal"><span>01</span><h3>Numune</h3>
+        <p>Ürününüzün hacmini ve sunum biçimini söyleyin; uygun 2–3 formu ücretsiz numune olarak gönderelim.</p></li>
+      <li class="reveal"><span>02</span><h3>Teklif</h3>
+        <p>Koli adedi ve yıllık tahmini tüketiminize göre kademeli fiyat. Sabit fiyat garantili dönem opsiyonu.</p></li>
+      <li class="reveal"><span>03</span><h3>Sevkiyat</h3>
+        <p>Stoklu ürünlerde 48 saat içinde çıkış. İstanbul içi kendi aracımızla, yurt içi anlaşmalı kargo ile.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ SSS ============ -->
+<section class="faq" id="sss">
+  <div class="wrap faq__in">
+    <div class="faq__side">
+      <p class="eyebrow reveal"><i>08</i> Sık sorulanlar</p>
+      <h2 class="mid reveal">Merak edilenler.</h2>
+    </div>
+    <div class="acc" id="acc">
+      <details class="reveal"><summary>Minimum sipariş adediniz nedir?</summary>
+        <p>Stoktaki modellerde minimum 1 koli. Karma koli (aynı sevkiyatta farklı modeller) mümkündür.
+           Özel renk veya özel kalıp taleplerinde minimum adet ürüne göre değişir.</p></details>
+      <details class="reveal"><summary>Kapaklar ayrı mı satılıyor?</summary>
+        <p>Evet. Gövde ve kapak ayrı koli birimleriyle sevk edilir; böylece elinizde kalan parçaya göre
+           yalnızca ihtiyacınız olanı tamamlarsınız. Ürün kartlarında kapak koli adetleri ayrıca belirtilir.</p></details>
+      <details class="reveal"><summary>Dondurucuda kullanılabilir mi?</summary>
+        <p>PS gövde −18 °C'ye kadar kullanıma uygundur. Şoklama sonrası uzun süreli dondurucu saklamada
+           kapaklı modelleri tercih etmenizi öneririz.</p></details>
+      <details class="reveal"><summary>Üzerine logo baskısı yapılıyor mu?</summary>
+        <p>Ambalaj üzerine doğrudan baskı yerine banderol ve etiket çözümü öneriyoruz: hem daha ekonomik
+           hem de ürün değiştikçe tasarımı güncelleyebiliyorsunuz. Etiket ölçüsü için form yüzeylerini paylaşıyoruz.</p></details>
+      <details class="reveal"><summary>Numune ücretli mi?</summary>
+        <p>İlk numune seti ücretsizdir; kargo alıcı ödemelidir. Üç modele kadar numune gönderiyoruz.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ İLETİŞİM ============ -->
+<section class="contact" id="iletisim">
+  <div class="wrap contact__in">
+    <div class="contact__left">
+      <p class="eyebrow reveal"><i>09</i> İletişim</p>
+      <h2 class="big reveal">Formu seçelim,<br><em>fiyatı konuşalım.</em></h2>
+      <p class="reveal">Ürününüzü ve aylık tahmini adedinizi yazın; aynı gün içinde uygun modelleri
+        ve kademeli fiyat listesini iletelim.</p>
+      <ul class="contact__meta">
+        <li class="reveal"><span>E-posta</span><a href="mailto:info@vitrea.com.tr">info@vitrea.com.tr</a></li>
+        <li class="reveal"><span>Telefon</span><a href="tel:+900000000000">+90 (000) 000 00 00</a></li>
+        <li class="reveal"><span>Adres</span>İstanbul, Türkiye</li>
+      </ul>
+    </div>
+
+    <form class="form reveal" id="form" novalidate>
+      <div class="form__row">
+        <label class="field"><span>Ad Soyad</span><input name="ad" required autocomplete="name"></label>
+        <label class="field"><span>Firma</span><input name="firma" autocomplete="organization"></label>
+      </div>
+      <div class="form__row">
+        <label class="field"><span>Telefon</span><input name="tel" inputmode="tel" autocomplete="tel"></label>
+        <label class="field"><span>E-posta</span><input name="mail" type="email" required autocomplete="email"></label>
+      </div>
+      <div class="form__row">
+        <label class="field"><span>İlgilendiğiniz ürün</span>
+          <select name="urun" id="formUrun"><option value="">Seçiniz (opsiyonel)</option></select></label>
+        <label class="field"><span>Aylık tahmini adet</span><input name="adet" inputmode="numeric"></label>
+      </div>
+      <label class="field"><span>Mesajınız</span><textarea name="mesaj" rows="4"></textarea></label>
+      <div class="form__foot">
+        <button type="submit" class="btn btn--light">Teklif iste</button>
+        <a class="wa" id="wa" href="#" target="_blank" rel="noopener">WhatsApp'tan yaz</a>
+      </div>
+      <p class="form__note" id="formNote" role="status"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__mark">VITREA</div>
+    <div class="foot__cols">
+      <div><span>Koleksiyon</span>
+        <a href="#koleksiyon">Kase</a><a href="#koleksiyon">Bardak &amp; Kadeh</a>
+        <a href="#koleksiyon">Kare Form</a><a href="#koleksiyon">Dikdörtgen</a></div>
+      <div><span>Kurumsal</span>
+        <a href="#hakkimizda">Yaklaşım</a><a href="#malzeme">Malzeme</a>
+        <a href="#surec">Süreç</a><a href="#sss">S.S.S.</a></div>
+      <div><span>İletişim</span>
+        <a href="mailto:info@vitrea.com.tr">info@vitrea.com.tr</a>
+        <a href="tel:+900000000000">+90 (000) 000 00 00</a></div>
+    </div>
+    <div class="foot__bar">
+      <p>© <span id="yil">2026</span> VITREA Ambalaj. Tüm hakları saklıdır.</p>
+      <p>Görsellerdeki tatlılar sunum amaçlıdır.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ ÜRÜN PANELİ ============ -->
+<div class="panel" id="panel" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Ürün detayı">
+  <div class="panel__bg" data-close></div>
+  <aside class="panel__box">
+    <button class="panel__x" data-close aria-label="Kapat">&times;</button>
+    <div class="panel__body" id="panelBody"></div>
+  </aside>
+</div>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

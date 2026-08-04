@@ -1,0 +1,7 @@
+# admin şifresi — ASLA yayınlanmaz
+data/config.json
+
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
