@@ -48,7 +48,13 @@
     </div>
   </header>
 
-  <div class="bar">
+  <div class="views" id="views">
+    <button class="vw is-on" data-view="products">Ürünler</button>
+    <button class="vw" data-view="reviews">Yorumlar <b class="badge" id="rvBadge" hidden></b></button>
+    <button class="vw" data-view="customers">Müşteriler</button>
+  </div>
+
+  <div class="bar" data-vp="products">
     <input class="search" id="q" type="search" placeholder="Ürün adı veya kod ara…" autocomplete="off">
     <div class="segs" id="fCat">
       <button class="seg is-on" data-val="all">Tümü</button>
@@ -65,8 +71,15 @@
     </div>
   </div>
 
-  <div class="list" id="list"></div>
-  <p class="empty" id="empty" hidden>Bu filtreye uyan ürün yok.</p>
+  <div class="list" id="list" data-vp="products"></div>
+  <p class="empty" id="empty" hidden data-vp="products">Bu filtreye uyan ürün yok.</p>
+
+  <div class="list" id="rvList" data-vp="reviews" hidden></div>
+  <p class="empty" id="rvEmpty" data-vp="reviews" hidden>Henüz yorum yok.</p>
+
+  <div class="list" id="cuList" data-vp="customers" hidden></div>
+  <p class="empty" id="cuEmpty" data-vp="customers" hidden>Henüz kayıtlı müşteri yok.
+    Müşteriler sitedeki ürün panelinden hesap açabilir.</p>
 
   <footer class="foot">
     Değişiklikler <code>data/products.json</code> dosyasına anında yazılır ve site

@@ -545,6 +545,57 @@ body.panel-open .panel__box{transform:none}
 .panel__cta{display:flex;gap:12px;flex-wrap:wrap}
 
 /* ============================================================
+   YORUMLAR & HESAP
+   ============================================================ */
+.panel__rv{margin-top:34px;border-top:1px solid var(--line-l);padding-top:22px}
+.rv__h{font-size:20px;letter-spacing:-.02em;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rv__h span{font-size:13.5px;color:var(--mute-l);display:flex;align-items:center;gap:8px}
+.stars{display:inline-flex;gap:1px}
+.stars .st{font-style:normal;color:rgba(12,12,14,.18);font-size:15px;line-height:1}
+.stars .st.on{color:var(--accent)}
+.rv{border-bottom:1px solid var(--line-l);padding:13px 0}
+.rv__top{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.rv__top b{font-weight:500;font-size:14.5px}
+.rv__top time{font-size:12px;color:var(--mute-l)}
+.rv p{margin:0;font-size:14.5px;color:rgba(12,12,14,.75)}
+.rv__empty{color:var(--mute-l);font-size:14.5px}
+.rv__login{margin-top:16px}
+.rv__gate{font-size:14px;color:var(--mute-l);margin-top:16px}
+.rv__gate a{color:var(--accent-2);text-decoration:underline}
+.rv__out{background:none;border:0;color:var(--accent-2);cursor:pointer;font-size:13px;text-decoration:underline;padding:0}
+.rv__form{margin-top:18px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.rv__form .field{width:100%}
+.rv__form .field textarea{color:var(--ink);border-bottom-color:var(--line-l)}
+.rv__form .field span{color:var(--mute-l)}
+.rv__rate{display:flex;align-items:center;gap:12px}
+.rv__rate span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute-l)}
+.stars.pick .st{font-size:24px;cursor:pointer;transition:transform .2s var(--ease),color .2s}
+.stars.pick .st:hover{transform:scale(1.2)}
+
+.acct{position:fixed;inset:0;z-index:1200;pointer-events:none}
+.acct__bg{position:absolute;inset:0;background:rgba(8,8,10,.66);backdrop-filter:blur(4px);
+  opacity:0;transition:opacity .4s var(--ease)}
+.acct__box{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-46%) scale(.97);
+  width:min(420px,calc(100% - 32px));background:var(--ink-2);border:1px solid var(--line-d);
+  border-radius:14px;padding:28px;opacity:0;
+  transition:opacity .4s var(--ease),transform .4s var(--ease);
+}
+body.acct-open .acct{pointer-events:auto}
+body.acct-open .acct__bg{opacity:1}
+body.acct-open .acct__box{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.acct__box .panel__x{position:absolute;top:14px;right:14px;margin:0;background:transparent;
+  border-color:var(--line-d);color:var(--paper)}
+.acct__tabs{display:flex;gap:6px;background:var(--ink-3);border-radius:999px;padding:4px;
+  margin-bottom:22px;width:max-content}
+.acct__tabs button{background:none;border:0;border-radius:999px;padding:8px 18px;
+  font-size:13.5px;color:var(--mute-d);cursor:pointer;transition:background .3s,color .3s}
+.acct__tabs button.is-on{background:var(--paper);color:var(--ink);font-weight:500}
+#acctForm{display:flex;flex-direction:column;gap:16px}
+.acct__hint{font-size:12.5px;color:var(--mute-d);margin:18px 0 0;line-height:1.6}
+.acct__hint b{color:var(--paper);font-weight:500}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width:1080px){

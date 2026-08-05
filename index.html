@@ -367,7 +367,29 @@
   </aside>
 </div>
 
+<!-- ============ HESAP ============ -->
+<div class="acct" id="acct" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Hesap">
+  <div class="acct__bg" data-aclose></div>
+  <div class="acct__box">
+    <button class="panel__x" data-aclose aria-label="Kapat">&times;</button>
+    <div class="acct__tabs">
+      <button class="is-on" data-atab="login">Giriş yap</button>
+      <button data-atab="register">Hesap aç</button>
+    </div>
+    <form id="acctForm" novalidate>
+      <label class="field acct__adfield" hidden><span>Ad Soyad</span><input name="ad" autocomplete="name"></label>
+      <label class="field"><span>E-posta</span><input name="email" type="email" required autocomplete="email"></label>
+      <label class="field"><span>Şifre</span><input name="password" type="password" required autocomplete="current-password"></label>
+      <button type="submit" class="btn btn--light" style="width:100%">Giriş yap</button>
+      <p class="form__note" id="acctNote" role="status"></p>
+    </form>
+    <p class="acct__hint">Yorum yazabilmek için hesabınızın <b>satın alma kaydıyla eşleştirilmesi</b> gerekir;
+      siparişiniz varsa WhatsApp'tan bize hesabınızın e-postasını yazmanız yeterli.</p>
+  </div>
+</div>
+
 <script src="assets/js/products.js"></script>
+<script src="assets/js/reviews.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -76,6 +76,39 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;color:var
 .top__stats .off b{color:var(--mute)}
 .top__act{display:flex;align-items:center;gap:12px}
 
+/* ---------- görünüm sekmeleri ---------- */
+.views{display:flex;gap:8px;padding:14px clamp(16px,3vw,34px) 0}
+.vw{background:transparent;border:1px solid var(--line);border-radius:999px;
+  padding:9px 20px;font-size:14px;color:var(--mute);cursor:pointer;
+  display:flex;align-items:center;gap:8px;transition:background .25s,color .25s,border-color .25s}
+.vw:hover{border-color:var(--line-2);color:var(--paper)}
+.vw.is-on{background:var(--paper);color:var(--ink);border-color:var(--paper);font-weight:500}
+.badge{background:var(--accent);color:#fff;border-radius:999px;font-size:11px;
+  padding:2px 8px;font-weight:600}
+
+/* yorum & müşteri satırları */
+.rrow{display:flex;flex-direction:column;gap:8px;padding:14px;border-bottom:1px solid var(--line);
+  border-radius:8px}
+.rrow:hover{background:var(--ink-2)}
+.rrow.off{opacity:.5}
+.rrow__top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rrow__top .stars i{font-style:normal;color:rgba(242,239,233,.2);font-size:14px}
+.rrow__top .stars i.on{color:var(--accent)}
+.rrow__top b{font-size:14.5px}
+.rrow__top .pn{font-size:11.5px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+.rrow__top time{font-size:12px;color:var(--mute)}
+.rrow__top .st-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  border-radius:999px;padding:3px 10px;border:1px solid var(--line-2);color:var(--mute)}
+.rrow__top .st-tag.ok{border-color:var(--ok);color:var(--ok)}
+.rrow p{margin:0;font-size:14px;color:var(--mute)}
+.rrow__act{display:flex;gap:8px}
+.cu-products{margin-top:6px;padding:14px;background:var(--ink-3);border-radius:8px;
+  display:none;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.cu-products.open{display:grid}
+.cu-products label{display:flex;align-items:center;gap:8px;font-size:12.5px;cursor:pointer}
+.cu-products input{accent-color:var(--accent)}
+.cu-products .cu-save{grid-column:1/-1;justify-self:start;margin-top:6px}
+
 /* ---------- filtre çubuğu ---------- */
 .bar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;
   padding:16px clamp(16px,3vw,34px);border-bottom:1px solid var(--line)}

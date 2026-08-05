@@ -1,6 +1,11 @@
 # admin şifresi — ASLA yayınlanmaz
 data/config.json
 
+# müşteri hesapları ve ham yorumlar — kişisel veri, ASLA yayınlanmaz
+# (onaylı yorumlar assets/js/reviews.js ile yayınlanır, o dosya depoya girer)
+data/users.json
+data/reviews.json
+
 # fiyat üretici script — alış fiyatlarını ve kâr formülünü içerir, yayınlanmaz
 # (PDF'in kendisi sitede "Fiyat kataloğu indir" olarak YAYINLANIR)
 fiyat-listesi-uret.py

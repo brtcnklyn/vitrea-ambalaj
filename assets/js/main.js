@@ -186,7 +186,8 @@
       '<div class="panel__cta">' +
         '<a class="btn btn--light" href="mailto:' + MAIL + '?subject=' + subject + '&body=' + body + '">Bu ürün için teklif al</a>' +
         '<a class="btn btn--ghost" href="#iletisim" data-close>Numune iste</a>' +
-      '</div>';
+      '</div>' +
+      '<div class="panel__rv" id="panelRv"></div>';
   }
 
   function openPanel(id) {
@@ -194,6 +195,7 @@
     if (!p) return;
     lastFocus = document.activeElement;
     pbody.innerHTML = panelHTML(p);
+    renderReviews(p);
     document.body.classList.add('panel-open');
     panel.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -220,6 +222,156 @@
     if (document.body.classList.contains('panel-open')) closePanel();
     else if (document.body.classList.contains('menu-open')) closeMenu();
   });
+
+  /* ---------------- yorumlar & hesap ---------------- */
+  var RV = window.VITREAPLAS_REVIEWS || {};
+  var UT = null;
+  try { UT = JSON.parse(localStorage.getItem('vp_user') || 'null'); } catch (e) {}
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function stars(n, cls) {
+    var s = '';
+    for (var i = 1; i <= 5; i++) s += '<i class="st' + (i <= n ? ' on' : '') + '"' +
+      (cls ? ' data-star="' + i + '"' : '') + '>★</i>';
+    return '<span class="stars' + (cls ? ' ' + cls : '') + '">' + s + '</span>';
+  }
+
+  function renderReviews(p) {
+    var box = $('#panelRv');
+    if (!box) return;
+    var list = RV[p.id] || [];
+    var avg = list.length ? list.reduce(function (a, r) { return a + r.rating; }, 0) / list.length : 0;
+
+    var html = '<h3 class="rv__h">Değerlendirmeler' +
+      (list.length ? ' <span>' + stars(Math.round(avg)) + ' ' + avg.toFixed(1) +
+        ' · ' + list.length + ' yorum</span>' : '') + '</h3>';
+
+    html += list.length
+      ? list.map(function (r) {
+          return '<div class="rv"><div class="rv__top">' + stars(r.rating) +
+            '<b>' + esc(r.ad) + '</b><time>' + esc(r.date) + '</time></div>' +
+            '<p>' + esc(r.text) + '</p></div>';
+        }).join('')
+      : '<p class="rv__empty">Bu ürüne henüz yorum yapılmadı.</p>';
+
+    /* etkileşim alani */
+    if (!UT) {
+      html += '<button class="btn btn--ghost rv__login" id="rvLogin">Yorum yazmak için giriş yapın</button>';
+    } else if ((UT.purchased || []).indexOf(p.id) >= 0) {
+      html += '<form class="rv__form" id="rvForm" data-pid="' + p.id + '">' +
+        '<div class="rv__rate">' + stars(0, 'pick') + '<span>Puanınız</span></div>' +
+        '<label class="field"><span>Yorumunuz</span><textarea name="text" rows="3" maxlength="600"></textarea></label>' +
+        '<button type="submit" class="btn btn--light btn--sm">Gönder</button>' +
+        '<p class="form__note" id="rvNote"></p></form>';
+    } else {
+      html += '<p class="rv__gate">Merhaba <b>' + esc(UT.ad) + '</b> — bu ürüne yalnızca satın almış ' +
+        'müşteriler yorum yapabilir. Siparişiniz varsa <a href="https://wa.me/' + WA_TEL +
+        '" target="_blank" rel="noopener">WhatsApp\'tan yazın</a>, hesabınızı eşleştirelim. ' +
+        '<button type="button" class="rv__out" id="rvOut">Çıkış</button></p>';
+    }
+    box.innerHTML = html;
+
+    var lg = $('#rvLogin');
+    if (lg) lg.addEventListener('click', function () { openAcct(p); });
+    var out = $('#rvOut');
+    if (out) out.addEventListener('click', function () {
+      UT = null; localStorage.removeItem('vp_user'); renderReviews(p);
+    });
+
+    var form = $('#rvForm');
+    if (form) {
+      var picked = 0;
+      $$('.stars.pick .st', form).forEach(function (st) {
+        st.addEventListener('click', function () {
+          picked = +st.dataset.star;
+          $$('.stars.pick .st', form).forEach(function (x) {
+            x.classList.toggle('on', +x.dataset.star <= picked);
+          });
+        });
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var note = $('#rvNote');
+        fetch('api/review', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + UT.token },
+          body: JSON.stringify({ productId: form.dataset.pid, rating: picked,
+                                 text: form.elements.text.value })
+        }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (r) {
+            note.textContent = r.ok ? 'Teşekkürler! Yorumunuz onaydan sonra yayınlanacak.'
+                                    : (r.j.error || 'Bir sorun oluştu.');
+            if (r.ok) form.querySelector('button[type=submit]').disabled = true;
+          })
+          .catch(function () { note.textContent = 'Sunucuya ulaşılamadı; lütfen daha sonra deneyin.'; });
+      });
+    }
+  }
+
+  /* hesap kutusu */
+  var acct = $('#acct'), acctPanelProduct = null, acctMode = 'login';
+  function openAcct(p) {
+    acctPanelProduct = p || null;
+    document.body.classList.add('acct-open');
+    acct.setAttribute('aria-hidden', 'false');
+  }
+  function closeAcct() {
+    document.body.classList.remove('acct-open');
+    acct.setAttribute('aria-hidden', 'true');
+  }
+  if (acct) {
+    acct.addEventListener('click', function (e) {
+      if (e.target.closest('[data-aclose]')) closeAcct();
+      var tab = e.target.closest('[data-atab]');
+      if (tab) {
+        acctMode = tab.dataset.atab;
+        $$('[data-atab]', acct).forEach(function (b) {
+          b.classList.toggle('is-on', b === tab);
+        });
+        $('.acct__adfield', acct).hidden = acctMode !== 'register';
+        $('#acctForm button[type=submit]').textContent =
+          acctMode === 'register' ? 'Hesap aç' : 'Giriş yap';
+        $('#acctNote').textContent = '';
+      }
+    });
+    $('#acctForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target, note = $('#acctNote');
+      var body = { email: f.elements.email.value.trim(), password: f.elements.password.value };
+      if (acctMode === 'register') body.ad = f.elements.ad.value.trim();
+      fetch(acctMode === 'register' ? 'api/register' : 'api/user/login', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (r) {
+          if (!r.ok) { note.textContent = r.j.error || 'Bir sorun oluştu.'; return; }
+          UT = { token: r.j.token, ad: r.j.ad, purchased: r.j.purchased || [] };
+          localStorage.setItem('vp_user', JSON.stringify(UT));
+          closeAcct();
+          if (acctPanelProduct) renderReviews(acctPanelProduct);
+        })
+        .catch(function () {
+          note.textContent = 'Sunucuya ulaşılamadı. Hesap işlemleri kısa süreliğine kapalı olabilir.';
+        });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('acct-open')) closeAcct();
+    });
+  }
+
+  /* oturum tazele: purchased listesi admin tarafindan degismis olabilir */
+  if (UT) {
+    fetch('api/me', { headers: { Authorization: 'Bearer ' + UT.token } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (j) { UT.ad = j.ad; UT.purchased = j.purchased || [];
+                 localStorage.setItem('vp_user', JSON.stringify(UT)); }
+        else { UT = null; localStorage.removeItem('vp_user'); }
+      }).catch(function () {});
+  }
 
   /* ---------------- kullanım şeridi ---------------- */
   var rail = $('#rail');

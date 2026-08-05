@@ -45,22 +45,44 @@ if (!db) {
   process.exit(1);
 }
 
+/* kullanicilar ve yorumlar */
+const USERS_FILE   = path.join(DATA_DIR, 'users.json');
+const REVIEWS_FILE = path.join(DATA_DIR, 'reviews.json');
+const REVIEWS_SEED = path.join(ROOT, 'assets', 'js', 'reviews.js');
+let users   = readJSON(USERS_FILE,   { users: [] });
+let reviews = readJSON(REVIEWS_FILE, { reviews: [] });
+
 /* products.json degistiginde statik yedegi de tazele:
    boylece sunucu kapaliyken index.html yine calisir  */
 function syncSeed() {
   const active = db.products.filter(p => p.active !== false);
   const out =
-    '/* VITREA — otomatik uretilir, elle duzenlemeyin.\n' +
+    '/* VITREAPLAS — otomatik uretilir, elle duzenlemeyin.\n' +
     '   Kaynak: data/products.json  ·  Duzenleme: /admin\n' +
     '   Uretim: ' + new Date().toISOString() + ' */\n' +
     'window.VITREA_PRODUCTS = ' + JSON.stringify(active, null, 2) + ';\n\n' +
     'window.VITREA_USES = ' + JSON.stringify(db.uses, null, 2) + ';\n';
   fs.writeFileSync(SEED_FILE, out, 'utf8');
+  syncReviewsSeed();
+}
+/* onayli yorumlar statik siteye de yazilir */
+function syncReviewsSeed() {
+  const grouped = {};
+  reviews.reviews.filter(r => r.approved).forEach(r => {
+    (grouped[r.productId] = grouped[r.productId] || []).push({
+      ad: r.ad, rating: r.rating, text: r.text, date: r.date
+    });
+  });
+  fs.writeFileSync(REVIEWS_SEED,
+    '/* VITREAPLAS — onayli musteri yorumlari (otomatik uretilir) */\n' +
+    'window.VITREAPLAS_REVIEWS = ' + JSON.stringify(grouped, null, 1) + ';\n', 'utf8');
 }
 function save() {
   writeJSON(DATA_FILE, db);
   syncSeed();
 }
+function saveUsers()   { writeJSON(USERS_FILE, users); }
+function saveReviews() { writeJSON(REVIEWS_FILE, reviews); syncReviewsSeed(); }
 
 /* ---------------- oturum ---------------- */
 const tokens = new Map();                       // token -> son kullanim zamani
@@ -78,6 +100,26 @@ function authed(req) {
   if (Date.now() - tokens.get(t) > TTL) { tokens.delete(t); return false; }
   tokens.set(t, Date.now());
   return true;
+}
+
+/* musteri oturumlari (admin'den ayri) */
+const utokens = new Map();                      // token -> { userId, ts }
+function newUserToken(userId) {
+  const t = crypto.randomBytes(24).toString('hex');
+  utokens.set(t, { userId, ts: Date.now() });
+  return t;
+}
+function userAuthed(req) {
+  const h = req.headers.authorization || '';
+  const t = h.replace(/^Bearer\s+/i, '');
+  const s = utokens.get(t);
+  if (!s) return null;
+  if (Date.now() - s.ts > TTL * 14) { utokens.delete(t); return null; }   // 7 gun
+  s.ts = Date.now();
+  return users.users.find(u => u.id === s.userId) || null;
+}
+function hashPw(pw, salt) {
+  return crypto.scryptSync(String(pw), salt, 64).toString('hex');
 }
 
 /* ---------------- yardimcilar ---------------- */
@@ -199,6 +241,78 @@ const server = http.createServer(async (req, res) => {
     } catch (e) { return send(res, 400, { error: e.message }); }
   }
 
+  /* --- musteri hesaplari --- */
+  if (url === '/api/register' && req.method === 'POST') {
+    try {
+      const b = await readBody(req, 8192);
+      const ad = String(b.ad || '').trim();
+      const email = String(b.email || '').trim().toLowerCase();
+      const pw = String(b.password || '');
+      if (ad.length < 2)  return send(res, 400, { error: 'Ad Soyad girin.' });
+      if (!/^\S+@\S+\.\S+$/.test(email)) return send(res, 400, { error: 'Geçerli bir e-posta girin.' });
+      if (pw.length < 6)  return send(res, 400, { error: 'Şifre en az 6 karakter olmalı.' });
+      if (users.users.some(u => u.email === email)) {
+        return send(res, 409, { error: 'Bu e-posta ile zaten bir hesap var. Giriş yapın.' });
+      }
+      const salt = crypto.randomBytes(16).toString('hex');
+      const u = { id: crypto.randomBytes(10).toString('hex'), ad, email,
+                  salt, hash: hashPw(pw, salt),
+                  purchased: [], created: new Date().toISOString() };
+      users.users.push(u);
+      saveUsers();
+      return send(res, 200, { token: newUserToken(u.id), ad: u.ad, purchased: u.purchased });
+    } catch (e) { return send(res, 400, { error: e.message }); }
+  }
+
+  if (url === '/api/user/login' && req.method === 'POST') {
+    try {
+      const b = await readBody(req, 8192);
+      const email = String(b.email || '').trim().toLowerCase();
+      const u = users.users.find(x => x.email === email);
+      if (!u || hashPw(String(b.password || ''), u.salt) !== u.hash) {
+        return send(res, 401, { error: 'E-posta veya şifre hatalı.' });
+      }
+      return send(res, 200, { token: newUserToken(u.id), ad: u.ad, purchased: u.purchased });
+    } catch (e) { return send(res, 400, { error: e.message }); }
+  }
+
+  if (url === '/api/me') {
+    const u = userAuthed(req);
+    if (!u) return send(res, 401, { error: 'Oturum yok.' });
+    return send(res, 200, { ad: u.ad, email: u.email, purchased: u.purchased });
+  }
+
+  /* yorum gonder — yalnizca o urunu satin almis musteriler */
+  if (url === '/api/review' && req.method === 'POST') {
+    const u = userAuthed(req);
+    if (!u) return send(res, 401, { error: 'Yorum yazmak için giriş yapın.' });
+    try {
+      const b = await readBody(req, 16384);
+      const pid = String(b.productId || '');
+      if (!db.products.some(p => p.id === pid)) {
+        return send(res, 404, { error: 'Ürün bulunamadı.' });
+      }
+      if ((u.purchased || []).indexOf(pid) < 0) {
+        return send(res, 403, { error: 'Bu ürüne yalnızca satın almış müşteriler yorum yapabilir. ' +
+          'Siparişiniz varsa hesabınızın tanımlanması için bize WhatsApp\'tan yazın.' });
+      }
+      const rating = Math.min(5, Math.max(1, parseInt(b.rating, 10) || 0));
+      const text = String(b.text || '').trim().slice(0, 600);
+      if (!rating) return send(res, 400, { error: 'Puan seçin (1–5).' });
+      if (text.length < 3) return send(res, 400, { error: 'Kısa da olsa bir yorum yazın.' });
+      if (reviews.reviews.some(r => r.userId === u.id && r.productId === pid)) {
+        return send(res, 409, { error: 'Bu ürüne zaten yorum yaptınız.' });
+      }
+      reviews.reviews.push({
+        id: crypto.randomBytes(8).toString('hex'), productId: pid, userId: u.id,
+        ad: u.ad, rating, text, date: new Date().toISOString().slice(0, 10),
+        approved: false
+      });
+      saveReviews();
+      return send(res, 200, { ok: true, pending: true });
+    } catch (e) { return send(res, 400, { error: e.message }); }
+  }
+
   /* --- admin (yetki gerekli) --- */
   if (url.startsWith('/api/admin/')) {
     if (!authed(req)) return send(res, 401, { error: 'Oturum geçersiz. Yeniden giriş yapın.' });
@@ -278,6 +392,43 @@ const server = http.createServer(async (req, res) => {
         fs.mkdirSync(dir, { recursive: true });
         fs.writeFileSync(path.join(dir, name + '.' + (ext === 'jpeg' ? 'jpg' : ext)), buf);
         return send(res, 200, { ok: true, ad: name, klasor: folder });
+      }
+
+      /* --- musteriler --- */
+      if (url === '/api/admin/users' && req.method === 'GET') {
+        return send(res, 200, { users: users.users.map(u => ({
+          id: u.id, ad: u.ad, email: u.email, purchased: u.purchased, created: u.created
+        })) });
+      }
+      if (url === '/api/admin/purchase' && req.method === 'POST') {
+        const b = await readBody(req, 32768);
+        const u = users.users.find(x => x.id === b.userId);
+        if (!u) return send(res, 404, { error: 'Müşteri bulunamadı.' });
+        u.purchased = (Array.isArray(b.productIds) ? b.productIds : [])
+          .filter(id => db.products.some(p => p.id === id));
+        saveUsers();
+        return send(res, 200, { ok: true, purchased: u.purchased });
+      }
+
+      /* --- yorumlar --- */
+      if (url === '/api/admin/reviews' && req.method === 'GET') {
+        return send(res, 200, { reviews: reviews.reviews });
+      }
+      if (url.startsWith('/api/admin/review-approve/') && req.method === 'POST') {
+        const id = url.split('/').pop();
+        const r = reviews.reviews.find(x => x.id === id);
+        if (!r) return send(res, 404, { error: 'Yorum bulunamadı.' });
+        r.approved = !r.approved;
+        saveReviews();
+        return send(res, 200, { ok: true, approved: r.approved });
+      }
+      if (url.startsWith('/api/admin/review/') && req.method === 'DELETE') {
+        const id = url.split('/').pop();
+        const n = reviews.reviews.length;
+        reviews.reviews = reviews.reviews.filter(x => x.id !== id);
+        if (reviews.reviews.length === n) return send(res, 404, { error: 'Yorum bulunamadı.' });
+        saveReviews();
+        return send(res, 200, { ok: true });
       }
 
       return send(res, 404, { error: 'Bilinmeyen istek.' });

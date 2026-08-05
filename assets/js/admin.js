@@ -326,6 +326,129 @@
       .then(function () { btn.disabled = false; });
   });
 
+  /* ---------------- görünümler: yorumlar & müşteriler ---------------- */
+  var reviews = [], customers = [];
+
+  function prName(id) {
+    var p = products.filter(function (x) { return x.id === id; })[0];
+    return p ? p.name : id;
+  }
+  function starsHTML(n) {
+    var s = '';
+    for (var i = 1; i <= 5; i++) s += '<i class="' + (i <= n ? 'on' : '') + '">★</i>';
+    return '<span class="stars">' + s + '</span>';
+  }
+
+  function renderReviews() {
+    var bek = reviews.filter(function (r) { return !r.approved; }).length;
+    var badge = $('#rvBadge');
+    badge.hidden = !bek;
+    badge.textContent = bek;
+    $('#rvEmpty').hidden = reviews.length > 0 || $('#rvList').hidden;
+    $('#rvList').innerHTML = reviews.slice().reverse().map(function (r) {
+      return '<div class="rrow' + (r.approved ? '' : ' off') + '" data-id="' + esc(r.id) + '">' +
+        '<div class="rrow__top">' + starsHTML(r.rating) +
+          '<b>' + esc(r.ad) + '</b><span class="pn">' + esc(prName(r.productId)) + '</span>' +
+          '<time>' + esc(r.date) + '</time>' +
+          '<span class="st-tag' + (r.approved ? ' ok' : '') + '">' +
+            (r.approved ? 'Yayında' : 'Onay bekliyor') + '</span></div>' +
+        '<p>' + esc(r.text) + '</p>' +
+        '<div class="rrow__act">' +
+          '<button class="btn btn--sm" data-ra="toggle">' +
+            (r.approved ? 'Yayından kaldır' : 'Onayla ve yayınla') + '</button>' +
+          '<button class="btn btn--ghost btn--sm" data-ra="del">Sil</button>' +
+        '</div></div>';
+    }).join('');
+  }
+
+  function renderCustomers() {
+    $('#cuEmpty').hidden = customers.length > 0 || $('#cuList').hidden;
+    $('#cuList').innerHTML = customers.map(function (u) {
+      var checks = products.map(function (p) {
+        var on = (u.purchased || []).indexOf(p.id) >= 0;
+        return '<label><input type="checkbox" value="' + esc(p.id) + '"' +
+          (on ? ' checked' : '') + '> ' + esc(p.name) + '</label>';
+      }).join('');
+      return '<div class="rrow" data-id="' + esc(u.id) + '">' +
+        '<div class="rrow__top"><b>' + esc(u.ad) + '</b>' +
+          '<span style="font-size:13px;color:var(--mute)">' + esc(u.email) + '</span>' +
+          '<time>' + esc((u.created || '').slice(0, 10)) + '</time>' +
+          '<span class="st-tag' + ((u.purchased || []).length ? ' ok' : '') + '">' +
+            (u.purchased || []).length + ' ürün tanımlı</span></div>' +
+        '<div class="rrow__act">' +
+          '<button class="btn btn--sm" data-ca="edit">Satın aldıklarını düzenle</button></div>' +
+        '<div class="cu-products">' + checks +
+          '<button class="btn btn--sm cu-save" data-ca="save">Kaydet</button></div></div>';
+    }).join('');
+  }
+
+  $('#rvList').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-ra]');
+    if (!btn) return;
+    var id = e.target.closest('.rrow').dataset.id;
+    if (btn.dataset.ra === 'toggle') {
+      api('/api/admin/review-approve/' + id, { method: 'POST' }).then(function (j) {
+        var r = reviews.filter(function (x) { return x.id === id; })[0];
+        r.approved = j.approved;
+        renderReviews();
+        toast(j.approved ? 'Yorum yayınlandı — sitede görünür' : 'Yorum yayından kaldırıldı');
+      }).catch(function (e) { toast(e.message, true); });
+    }
+    if (btn.dataset.ra === 'del') {
+      if (!confirm('Yorum kalıcı olarak silinsin mi?')) return;
+      api('/api/admin/review/' + id, { method: 'DELETE' }).then(function () {
+        reviews = reviews.filter(function (x) { return x.id !== id; });
+        renderReviews();
+        toast('Yorum silindi');
+      }).catch(function (e) { toast(e.message, true); });
+    }
+  });
+
+  $('#cuList').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-ca]');
+    if (!btn) return;
+    var row = e.target.closest('.rrow');
+    if (btn.dataset.ca === 'edit') {
+      row.querySelector('.cu-products').classList.toggle('open');
+      return;
+    }
+    if (btn.dataset.ca === 'save') {
+      var ids = $$('.cu-products input:checked', row).map(function (c) { return c.value; });
+      api('/api/admin/purchase', { method: 'POST',
+        body: { userId: row.dataset.id, productIds: ids } })
+        .then(function (j) {
+          var u = customers.filter(function (x) { return x.id === row.dataset.id; })[0];
+          u.purchased = j.purchased;
+          renderCustomers();
+          toast('Müşteri güncellendi — artık ' + j.purchased.length + ' ürüne yorum yazabilir');
+        }).catch(function (e) { toast(e.message, true); });
+    }
+  });
+
+  function loadExtra() {
+    Promise.all([api('/api/admin/reviews'), api('/api/admin/users')])
+      .then(function (r) {
+        reviews = r[0].reviews;
+        customers = r[1].users;
+        renderReviews();
+        renderCustomers();
+      }).catch(function (e) { toast(e.message, true); });
+  }
+
+  $('#views').addEventListener('click', function (e) {
+    var b = e.target.closest('.vw');
+    if (!b) return;
+    $$('.vw').forEach(function (x) { x.classList.toggle('is-on', x === b); });
+    var v = b.dataset.view;
+    $$('[data-vp]').forEach(function (el) { el.hidden = el.dataset.vp !== v; });
+    if (v === 'products') { render(); }
+    if (v === 'reviews')  { $('#rvEmpty').hidden = reviews.length > 0; renderReviews(); }
+    if (v === 'customers'){ $('#cuEmpty').hidden = customers.length > 0; renderCustomers(); }
+  });
+
+  var _start = start;
+  start = function () { _start(); loadExtra(); };
+
   /* ---------------- açılış ---------------- */
   if (token) {
     api('/api/admin/products')
