@@ -1,6 +1,11 @@
 # admin şifresi — ASLA yayınlanmaz
 data/config.json
 
+# fiyat listesi ve üretici script — müşteriye özel, herkese açık depoya girmez
+# (script alış fiyatlarını ve kâr formülünü içerir)
+vitrea-fiyat-listesi.pdf
+fiyat-listesi-uret.py
+
 node_modules/
 *.log
 .DS_Store
