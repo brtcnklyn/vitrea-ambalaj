@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- VITREAPLAS mark (acik zemin icin) -->
+  <path d="M32 7 L57 32 L32 57 L7 32 Z" stroke="#0C0C0E" stroke-width="3" stroke-linejoin="miter"/>
+  <path d="M32 50.5 L15.5 34 L48.5 34 Z" fill="#C0703C"/>
+  <path d="M32 7 L32 20" stroke="#0C0C0E" stroke-width="1.6" opacity=".45"/>
+</svg>

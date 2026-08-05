@@ -10,7 +10,7 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var WA_TEL = '905348433188';                       // WhatsApp numarası
-  var MAIL   = 'info@vitrea.com.tr';                 // teklif e-postası (düzenleyin)
+  var MAIL   = 'info@vitreaplas.com';                // teklif e-postası
 
   /* ---------------- ticker ---------------- */
   function buildTicker() {
@@ -305,7 +305,7 @@
   var wa = $('#wa');
   if (wa) {
     wa.href = 'https://wa.me/' + WA_TEL + '?text=' +
-      encodeURIComponent('Merhaba, VITREA sütlü tatlı ambalajları için fiyat teklifi almak istiyorum.');
+      encodeURIComponent('Merhaba, VITREAPLAS sütlü tatlı ambalajları için fiyat teklifi almak istiyorum.');
   }
 
   /* yıl */

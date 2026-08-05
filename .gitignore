@@ -1,10 +1,10 @@
 # admin şifresi — ASLA yayınlanmaz
 data/config.json
 
-# fiyat listesi ve üretici script — müşteriye özel, herkese açık depoya girmez
-# (script alış fiyatlarını ve kâr formülünü içerir)
-vitrea-fiyat-listesi.pdf
+# fiyat üretici script — alış fiyatlarını ve kâr formülünü içerir, yayınlanmaz
+# (PDF'in kendisi sitede "Fiyat kataloğu indir" olarak YAYINLANIR)
 fiyat-listesi-uret.py
+vitrea-fiyat-listesi.pdf
 
 node_modules/
 *.log

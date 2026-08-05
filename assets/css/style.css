@@ -71,13 +71,13 @@ p{margin:0 0 1em}
   max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:76px;
   display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
-.brand{display:flex;align-items:center;gap:11px;flex:0 0 auto}
-.brand__mark{
-  width:11px;height:11px;border:1.4px solid currentColor;transform:rotate(45deg);
-  transition:transform .6s var(--ease);
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.brand__logo{
+  width:30px;height:30px;transition:transform .6s var(--ease);
 }
-.brand:hover .brand__mark{transform:rotate(225deg)}
-.brand__txt{font-size:18px;letter-spacing:.42em;font-weight:500;padding-left:2px}
+.brand:hover .brand__logo{transform:rotate(180deg)}
+.brand__txt{font-size:17px;letter-spacing:.3em;font-weight:500;padding-left:2px}
+.brand__txt b{font-weight:300;color:var(--accent)}
 
 .nav__links{display:flex;gap:34px}
 .nav__links a{
@@ -276,6 +276,7 @@ section{position:relative}
 .coll{padding:clamp(80px,10vw,150px) 0 clamp(90px,11vw,160px)}
 .coll__head{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-end;margin-bottom:44px}
 .coll__note{max-width:40ch;font-size:14.5px;color:var(--mute-l);margin:0}
+.coll__side{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
 
 .filters{border-block:1px solid var(--line-l);padding:14px 0;margin-bottom:clamp(30px,4vw,52px);
   display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:space-between}
@@ -490,8 +491,9 @@ section{position:relative}
    ============================================================ */
 .foot{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(50px,6vw,80px) 0 30px}
 .foot__mark{
-  font-size:clamp(56px,17vw,230px);letter-spacing:.06em;line-height:.9;font-weight:400;
+  font-size:clamp(36px,10.5vw,150px);letter-spacing:.06em;line-height:.9;font-weight:400;
   color:transparent;-webkit-text-stroke:1px rgba(242,239,233,.16);margin-bottom:clamp(40px,5vw,70px);
+  white-space:nowrap;
 }
 .foot__cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;
   border-top:1px solid var(--line-d);padding-top:36px}

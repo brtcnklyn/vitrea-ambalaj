@@ -295,7 +295,7 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   syncSeed();
   const aktif = db.products.filter(p => p.active !== false).length;
-  console.log('\n  VITREA');
+  console.log('\n  VITREAPLAS');
   console.log('  ─────────────────────────────────────');
   console.log('  Site   : http://localhost:' + PORT);
   console.log('  Admin  : http://localhost:' + PORT + '/admin');

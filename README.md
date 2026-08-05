@@ -1,6 +1,6 @@
-# VITREA — Sütlü Tatlı Ambalajları
+# VITREAPLAS — Sütlü Tatlı Ambalajları
 
-**Canlı site: https://brtcnklyn.github.io/vitrea-ambalaj/**
+**Canlı site: https://brtcnklyn.github.io/vitrea-ambalaj/** · Alan adı: **vitreaplas.com** (bağlanacak, aşağıya bakın)
 
 Ürün tanıtım sitesi + yönetim paneli. Node.js dışında hiçbir kurulum gerekmez.
 
@@ -67,15 +67,29 @@ Telefon / WhatsApp **+90 534 843 31 88** olarak ayarlı. Geçtiği yerler:
 | Teklif e-postası | `assets/js/main.js` → `MAIL` |
 | Telefon ve e-posta (iletişim bölümü + footer) | `index.html` |
 
-**Hâlâ yer tutucu:** e-posta `info@vitrea.com.tr`. Gerçek adresinizle değiştirin —
-`main.js` içindeki `MAIL` değişkeni ve `index.html` içinde geçtiği iki yer.
+**E-posta:** sitede `info@vitreaplas.com` yazıyor. Bu kutunun çalışması için alan adı
+sağlayıcınızda (domaini aldığınız yerde) e-posta hizmeti açmanız gerekir — çoğu sağlayıcı
+"e-posta yönlendirme" ile info@vitreaplas.com'u Gmail'inize ücretsiz yönlendirebilir.
+
+## vitreaplas.com'u siteye bağlama
+
+1. Alan adı sağlayıcınızın DNS panelinde şu kayıtları ekleyin:
+   - `A` kaydı, host `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (4 ayrı A kaydı)
+   - `CNAME` kaydı, host `www` → `brtcnklyn.github.io`
+2. DNS yayıldıktan sonra (birkaç saat sürebilir) GitHub'da:
+   github.com/brtcnklyn/vitrea-ambalaj → Settings → Pages → Custom domain →
+   `vitreaplas.com` yazıp Save; "Enforce HTTPS" işaretleyin.
+3. Bu işlem depoya bir `CNAME` dosyası ekler; ondan sonra site hem
+   vitreaplas.com hem www.vitreaplas.com adresinden açılır.
+
+> DNS kayıtlarını ekledikten sonra bana "domaini bağla" demeniz yeterli; 2. adımı ben yaparım.
 
 ## Diğer değiştirebilecekleriniz
 
 **Admin şifresi** — `data/config.json`.
 
-**Marka adı** — "VITREA" uydurma bir isimdir. Değiştirecekseniz `index.html`
-içindeki geçtiği yerleri ve ürün kodlarındaki `VT-` önekini güncelleyin.
+**Logo** — `assets/img/logo-mark.svg` (koyu zemin) ve `logo-mark-dark.svg` (açık zemin).
+PNG kopyaları `assets/img/logo-*.png`.
 
 ## Dosyalar
 
