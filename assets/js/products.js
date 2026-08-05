@@ -1,6 +1,6 @@
 /* VITREA — otomatik uretilir, elle duzenlemeyin.
    Kaynak: data/products.json  ·  Duzenleme: /admin
-   Uretim: 2026-08-03T22:26:38.731Z */
+   Uretim: 2026-08-05T05:02:52.740Z */
 window.VITREA_PRODUCTS = [
   {
     "id": "luna",
@@ -13,7 +13,7 @@ window.VITREA_PRODUCTS = [
     "boxDim": "645 × 460 × 410",
     "lid": null,
     "img": "luna",
-    "scene": "elara",
+    "scene": "",
     "tag": "Oval kesit",
     "note": "Yumuşak oval kesitli dar gövde. Köşesiz hatları katmanlı tatlıyı yandan tek bir şerit gibi gösterir; dolapta yan yana dizildiğinde ferah bir vitrin kurar.",
     "active": true
@@ -29,7 +29,7 @@ window.VITREA_PRODUCTS = [
     "boxDim": "400 × 570 × 500",
     "lid": null,
     "img": "faceta",
-    "scene": "terra",
+    "scene": "",
     "tag": "Elmas form · kapaklı",
     "note": "Elmas yüzeyli kapaklı kutu. Kırılan yüzeyler ışığı farklı açılarda yansıtır; vitrinde en çok dönüp bakılan formlardan biri. Kapak gövdeye entegre.",
     "active": true
@@ -87,7 +87,7 @@ window.VITREA_PRODUCTS = [
       "boxDim": "270 × 540 × 520"
     },
     "img": "larga",
-    "scene": "rega",
+    "scene": "",
     "tag": "Geniş ağız",
     "note": "Geniş ve alçak gövde; sosun yüzeye yayıldığı supangle ve krem karamel için ideal.",
     "active": true
@@ -430,7 +430,7 @@ window.VITREA_PRODUCTS = [
     "boxDim": "605 × 470 × 385",
     "lid": null,
     "img": "kubik",
-    "scene": "terra",
+    "scene": "",
     "tag": "Küp",
     "note": "Dört yüzü de vitrin olan küp form. Katmanlı pastalarda en çarpıcı sunumu verir.",
     "active": true
