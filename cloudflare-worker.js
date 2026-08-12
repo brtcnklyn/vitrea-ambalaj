@@ -49,7 +49,11 @@ export default {
         role: m.role === 'model' ? 'model' : 'user',
         parts: [{ text: String(m.text || '').slice(0, 2000) }]
       })),
-      generationConfig: { maxOutputTokens: 600, temperature: 0.7 }
+      generationConfig: {
+        maxOutputTokens: 1000,
+        temperature: 0.7,
+        thinkingConfig: { thinkingBudget: 0 }
+      }
     };
 
     const cevap = await fetch(
