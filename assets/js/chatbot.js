@@ -32,6 +32,7 @@
       '',
       'KURALLAR:',
       '- Her zaman Turkce, dogal, kibar ve kisa yaz. Sorulmayan bilgiyi yigma.',
+      '- Duz metin yaz; markdown, yildiz (**) veya baslik isareti kullanma.',
       '- Fiyat sorulursa net rakam verme; fiyatlar teklifle netlesir, "Teklif Al" formuna yonlendir.',
       '- Israr etme, abartili vaatte bulunma. Emin olmadigin konuda uydurma; iletisim bolumune yonlendir.',
       '- Siparis, numune, kargo ve odeme detaylari icin iletisim formunu veya telefonu oner.',
