@@ -9,7 +9,7 @@
 Yayındaki site `main` dalının kökünden servis edilir. Değişikliği yayına almak için:
 
 ```bash
-cd C:\Users\user\vitrea
+cd D:\claud\vitrea
 git add -A
 git commit -m "urun guncellemesi"
 git push
@@ -24,7 +24,7 @@ Push'tan ~1 dakika sonra site güncellenir.
 ## Çalıştırma (kendi bilgisayarınızda)
 
 ```bash
-node C:\Users\user\vitrea\server.js
+node D:\claud\vitrea\server.js
 ```
 
 | Adres | Ne |
@@ -63,13 +63,13 @@ Telefon / WhatsApp **+90 534 843 31 88** olarak ayarlı. Geçtiği yerler:
 
 | Bilgi | Dosya |
 |---|---|
-| WhatsApp (buton bağlantısı) | `assets/js/main.js` → `WA_TEL` |
-| Teklif e-postası | `assets/js/main.js` → `MAIL` |
-| Telefon ve e-posta (iletişim bölümü + footer) | `index.html` |
+| WhatsApp numarası (tüm bağlantılar) | `assets/js/main.js` → `WA_TEL` |
+| Telefon (iletişim bölümü + footer) | `index.html` |
 
-**E-posta:** sitede `info@vitreaplas.com` yazıyor. Bu kutunun çalışması için alan adı
-sağlayıcınızda (domaini aldığınız yerde) e-posta hizmeti açmanız gerekir — çoğu sağlayıcı
-"e-posta yönlendirme" ile info@vitreaplas.com'u Gmail'inize ücretsiz yönlendirebilir.
+**Sitede e-posta yok.** İletişimin tamamı WhatsApp'a gider: iletişim formu doldurulup
+gönderildiğinde alanlar mesaj metnine dizilip `wa.me` üzerinden WhatsApp'ta açılır, ürün
+panelindeki "teklif al" düğmesi de o ürünün adı ve koduyla WhatsApp'ı açar. Numarayı
+değiştirmek için tek yer `WA_TEL`.
 
 ## vitreaplas.com'u siteye bağlama
 
@@ -117,5 +117,26 @@ PNG kopyaları `assets/img/logo-*.png`.
 - Panel yerel ağ içinde kullanılmak üzere tasarlandı: şifre düz metin tutulur ve trafik
   şifresiz akar. Sunucuyu internete açacaksanız önüne HTTPS koyun (Caddy, Nginx vb.)
   ve şifreyi mutlaka değiştirin.
-- Form gönderimi arka uç gerektirmez; kullanıcının e-posta uygulamasını açar. Gerçek
-  form gönderimi için Formspree / Netlify Forms gibi bir servis eklenebilir.
+- Form gönderimi arka uç gerektirmez; alanları mesaja dizip WhatsApp'ı açar. Bu yüzden
+  GitHub Pages'teki statik sitede de sorunsuz çalışır.
+
+## Fiyat sayfaları (yalnızca yerelde)
+
+Panelde iki sekme var ve **ikisi de yalnızca kendi bilgisayarınızda**, `node server.js`
+çalışırken açılır. Yayınlanan sitede yoktur.
+
+| Sekme | Ne yapar |
+|---|---|
+| **Alış Fiyatları** | Mayer'in tüm kataloğu (gövde + kapak) koli fiyatı ve koli adediyle. KDV, iskonto ve kâr marjını girersiniz; satış fiyatı anında hesaplanır. Koli fiyatı/adedi değişirse satırda elle düzeltirsiniz. |
+| **Fiyat Listesi Yap** | İstediğiniz ürünleri seçip müşteriye özel liste kurarsınız. Fiyatlar ayarlardan hesaplanır, istediğiniz satırda elle değiştirebilirsiniz. Liste kaydedilir; "PDF / Yazdır" ile önizleme açılır, yazdır penceresinde **Hedef: PDF olarak kaydet** seçersiniz. |
+
+Hesap zinciri: `Mayer koli ÷ koli adedi` → KDV çıkar → iskonto uygula → kâr marjı ekle →
+(isteğe bağlı) tam liraya yukarı yuvarla.
+
+**Gizlilik.** Alış fiyatları `data/mayer-fiyat.json`, ayarlar `data/fiyat-ayar.json`,
+listeler `data/fiyat-listeleri.json` dosyasında tutulur; üçü de `.gitignore` içindedir ve
+depoya girmez. Sunucu `data/` klasörünü statik olarak servis etmez — bu dosyalara yalnızca
+giriş yapılmış panelden, token ile erişilir.
+
+Mayer fiyatlarını sıfırdan yenilemek için kataloğu tekrar çekmek gerekir; tek tek
+güncellemeler için panelden satırı düzeltmek yeterlidir.

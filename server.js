@@ -52,6 +52,39 @@ const REVIEWS_SEED = path.join(ROOT, 'assets', 'js', 'reviews.js');
 let users   = readJSON(USERS_FILE,   { users: [] });
 let reviews = readJSON(REVIEWS_FILE, { reviews: [] });
 
+/* ---- fiyat katmani (GIZLI: yalnizca admin, statik siteye ASLA yazilmaz) ---- */
+const MAYER_FILE  = path.join(DATA_DIR, 'mayer-fiyat.json');
+const AYAR_FILE   = path.join(DATA_DIR, 'fiyat-ayar.json');
+const LISTE_FILE  = path.join(DATA_DIR, 'fiyat-listeleri.json');
+
+let mayer  = readJSON(MAYER_FILE,  { guncelleme: '', kaynak: '', kalemler: [] });
+let ayar   = readJSON(AYAR_FILE,   null);
+let liste  = readJSON(LISTE_FILE,  { listeler: [] });
+
+if (!ayar) {
+  ayar = { kdv: 20, iskonto: 35, kar: 50, yuvarla: true };   // varsayilan hesap ayarlari
+  writeJSON(AYAR_FILE, ayar);
+}
+function saveMayer()  { writeJSON(MAYER_FILE, mayer); }
+function saveAyar()   { writeJSON(AYAR_FILE, ayar); }
+function saveListe()  { writeJSON(LISTE_FILE, liste); }
+
+/* Mayer koli fiyatindan bizim satis fiyatimiz:
+   mayerAdet (KDV dahil) -> KDV cikar -> iskonto uygula -> kar marji ekle -> yuvarla */
+function hesapla(koliFiyat, koliAdet, a) {
+  if (!koliFiyat || !koliAdet) return null;
+  const mayerAdet = koliFiyat / koliAdet;                 // Mayer adet, KDV dahil
+  const alisHaric = mayerAdet / (1 + a.kdv / 100);        // KDV haric alis
+  const iskontolu = alisHaric * (1 - a.iskonto / 100);    // iskonto sonrasi maliyet
+  let satisHaric  = iskontolu * (1 + a.kar / 100);        // kar marji eklenmis
+  if (a.yuvarla) satisHaric = Math.ceil(satisHaric);
+  const satisDahil = satisHaric * (1 + a.kdv / 100);
+  return {
+    mayerAdet, alisHaric, maliyet: iskontolu,
+    satisHaric, satisDahil, koliDahil: satisDahil * koliAdet
+  };
+}
+
 /* products.json degistiginde statik yedegi de tazele:
    boylece sunucu kapaliyken index.html yine calisir  */
 function syncSeed() {
@@ -161,8 +194,9 @@ function sanitize(p, existing) {
     box: num(p.lid.box, 0), boxDim: str(p.lid.boxDim, '—')
   } : null;
   return {
-    id:     str(p.id, base.id) || slugify(p.name) || ('urun-' + Date.now()),
-    code:   str(p.code, base.code || '—'),
+    id:       str(p.id, base.id) || slugify(p.name) || ('urun-' + Date.now()),
+    code:     str(p.code, base.code || '—'),
+    mayerKod: str(p.mayerKod, base.mayerKod || str(p.code, base.code || '')),
     name:   str(p.name, base.name || 'İSİMSİZ'),
     vol:    num(p.vol, base.vol || 0),
     cat:    cats.indexOf(p.cat) >= 0 ? p.cat : (base.cat || 'kase'),
@@ -186,6 +220,12 @@ function serveStatic(req, res, urlPath) {
 
   const file = path.join(ROOT, path.normalize(rel).replace(/^(\.\.[/\\])+/, ''));
   if (!file.startsWith(ROOT)) return send(res, 403, { error: 'Yasak' });
+
+  /* data/ klasörü ASLA statik servis edilmez: admin şifresi, müşteri kayıtları,
+     tedarikçi alış fiyatları burada. Yalnızca /api/admin/* üzerinden, token ile. */
+  if (file === DATA_DIR || file.startsWith(DATA_DIR + path.sep)) {
+    return send(res, 403, { error: 'Yasak' });
+  }
 
   fs.stat(file, (err, st) => {
     if (err || !st.isFile()) return send(res, 404, 'Bulunamadı', 'text/plain; charset=utf-8');
@@ -408,6 +448,92 @@ const server = http.createServer(async (req, res) => {
           .filter(id => db.products.some(p => p.id === id));
         saveUsers();
         return send(res, 200, { ok: true, purchased: u.purchased });
+      }
+
+      /* --- FIYAT: Mayer alis fiyatlari (gizli) --- */
+      if (url === '/api/admin/fiyat' && req.method === 'GET') {
+        const kalemler = mayer.kalemler.map(k => ({
+          ...k, hesap: hesapla(k.koliFiyat, k.koliAdet, ayar)
+        }));
+        /* site urunlerini mayerKod uzerinden esle */
+        const urunler = db.products.map(p => ({
+          id: p.id, code: p.code, name: p.name, vol: p.vol, cat: p.cat,
+          box: p.box, img: p.img, active: p.active !== false,
+          mayerKod: p.mayerKod || p.code
+        }));
+        return send(res, 200, {
+          guncelleme: mayer.guncelleme, kaynak: mayer.kaynak,
+          ayar, kalemler, urunler
+        });
+      }
+
+      /* hesap ayarlarini guncelle */
+      if (url === '/api/admin/fiyat-ayar' && req.method === 'POST') {
+        const b = await readBody(req, 4096);
+        const s = (v, d, min, max) => {
+          const n = parseFloat(v);
+          return isNaN(n) ? d : Math.min(max, Math.max(min, n));
+        };
+        ayar = {
+          kdv:     s(b.kdv,     ayar.kdv,     0, 100),
+          iskonto: s(b.iskonto, ayar.iskonto, 0, 95),
+          kar:     s(b.kar,     ayar.kar,   -50, 500),
+          yuvarla: b.yuvarla !== false
+        };
+        saveAyar();
+        return send(res, 200, { ok: true, ayar });
+      }
+
+      /* tek kalemin Mayer fiyatini/koli adedini elle duzelt */
+      if (url === '/api/admin/fiyat-kalem' && req.method === 'POST') {
+        const b = await readBody(req, 8192);
+        const k = mayer.kalemler.find(x =>
+          x.kod === b.kod && x.tip === (b.tip || 'govde') && (x.varyant || '') === (b.varyant || ''));
+        if (!k) return send(res, 404, { error: 'Kalem bulunamadı.' });
+        const f = parseFloat(b.koliFiyat), a = parseInt(b.koliAdet, 10);
+        if (!isNaN(f) && f >= 0) k.koliFiyat = f;
+        if (!isNaN(a) && a > 0)  k.koliAdet  = a;
+        mayer.guncelleme = new Date().toISOString().slice(0, 10);
+        saveMayer();
+        return send(res, 200, { ok: true, kalem: { ...k, hesap: hesapla(k.koliFiyat, k.koliAdet, ayar) } });
+      }
+
+      /* --- FIYAT: kaydedilmis musteri listeleri --- */
+      if (url === '/api/admin/listeler' && req.method === 'GET') {
+        return send(res, 200, { listeler: liste.listeler });
+      }
+
+      if (url === '/api/admin/liste' && req.method === 'POST') {
+        const b = await readBody(req, 512 * 1024);
+        const kayit = {
+          id: String(b.id || '') || crypto.randomBytes(8).toString('hex'),
+          baslik: String(b.baslik || 'Fiyat listesi').trim().slice(0, 120),
+          musteri: String(b.musteri || '').trim().slice(0, 120),
+          not: String(b.not || '').trim().slice(0, 600),
+          ayar: b.ayar || ayar,
+          satirlar: (Array.isArray(b.satirlar) ? b.satirlar : []).slice(0, 300).map(s => ({
+            kod: String(s.kod || '').slice(0, 40),
+            ad: String(s.ad || '').slice(0, 80),
+            aciklama: String(s.aciklama || '').slice(0, 120),
+            koliAdet: parseInt(s.koliAdet, 10) || 0,
+            fiyat: parseFloat(s.fiyat) || 0,          // adet, KDV haric
+            elle: s.elle === true                     // fiyat elle girildi mi
+          })),
+          tarih: new Date().toISOString().slice(0, 10)
+        };
+        const i = liste.listeler.findIndex(x => x.id === kayit.id);
+        if (i >= 0) liste.listeler[i] = kayit; else liste.listeler.unshift(kayit);
+        saveListe();
+        return send(res, 200, { ok: true, liste: kayit, listeler: liste.listeler });
+      }
+
+      if (url.startsWith('/api/admin/liste/') && req.method === 'DELETE') {
+        const id = decodeURIComponent(url.split('/').pop());
+        const n = liste.listeler.length;
+        liste.listeler = liste.listeler.filter(x => x.id !== id);
+        if (liste.listeler.length === n) return send(res, 404, { error: 'Liste bulunamadı.' });
+        saveListe();
+        return send(res, 200, { ok: true, listeler: liste.listeler });
       }
 
       /* --- yorumlar --- */

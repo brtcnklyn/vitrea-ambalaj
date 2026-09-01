@@ -1,11 +1,11 @@
 /* VITREAPLAS — otomatik uretilir, elle duzenlemeyin.
    Kaynak: data/products.json  ·  Duzenleme: /admin
-   Uretim: 2026-08-05T06:48:51.834Z */
+   Uretim: 2026-09-01T17:46:48.204Z */
 window.VITREA_PRODUCTS = [
   {
     "id": "luna",
-    "code": "VT-W31",
-    "name": "LUNA",
+    "code": "MAY 284",
+    "name": "LAVENE",
     "vol": 300,
     "cat": "dikdortgen",
     "dim": "63,5 × 121 × 60",
@@ -16,12 +16,13 @@ window.VITREA_PRODUCTS = [
     "scene": "luna",
     "tag": "Oval kesit",
     "note": "Yumuşak oval kesitli dar gövde. Köşesiz hatları katmanlı tatlıyı yandan tek bir şerit gibi gösterir; dolapta yan yana dizildiğinde ferah bir vitrin kurar.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 284"
   },
   {
     "id": "faceta",
-    "code": "VT-K26",
-    "name": "FACETA",
+    "code": "MAY 727",
+    "name": "DIAMOND",
     "vol": 250,
     "cat": "kare",
     "dim": "78 × 78 × 84",
@@ -32,12 +33,13 @@ window.VITREA_PRODUCTS = [
     "scene": "faceta",
     "tag": "Elmas form · kapaklı",
     "note": "Elmas yüzeyli kapaklı kutu. Kırılan yüzeyler ışığı farklı açılarda yansıtır; vitrinde en çok dönüp bakılan formlardan biri. Kapak gövdeye entegre.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 727"
   },
   {
     "id": "sfera",
-    "code": "VT-S22",
-    "name": "SFERA",
+    "code": "MAY 312",
+    "name": "MODERN",
     "vol": 220,
     "cat": "kase",
     "dim": "95 × 75",
@@ -53,12 +55,13 @@ window.VITREA_PRODUCTS = [
     "scene": "sfera",
     "tag": "Bombeli kapak",
     "note": "Yüksek bombeli kapağıyla üstü süslenen tatlılar için. Fıstık, kırıntı ve meyve dekoru ezilmeden kapanır.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 312"
   },
   {
     "id": "rega",
-    "code": "VT-R22",
-    "name": "REGA",
+    "code": "MAY 305",
+    "name": "ROYAL",
     "vol": 220,
     "cat": "kase",
     "dim": "100 × 70",
@@ -69,12 +72,13 @@ window.VITREA_PRODUCTS = [
     "scene": "rega",
     "tag": "Ayaklı gövde",
     "note": "Ayaklı formu tezgâhta yükseklik kazandırır. Katmanlı sunumlarda silüeti belirgin gösterir.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 305"
   },
   {
     "id": "larga",
-    "code": "VT-G33",
-    "name": "LARGA",
+    "code": "MAY 307",
+    "name": "VIOLA",
     "vol": 330,
     "cat": "kase",
     "dim": "125 × 55",
@@ -90,12 +94,13 @@ window.VITREA_PRODUCTS = [
     "scene": "larga",
     "tag": "Geniş ağız",
     "note": "Geniş ve alçak gövde; sosun yüzeye yayıldığı supangle ve krem karamel için ideal.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 307"
   },
   {
     "id": "vela-270",
-    "code": "VT-V27",
-    "name": "VELA 270",
+    "code": "MAY 309",
+    "name": "NORA",
     "vol": 270,
     "cat": "kase",
     "dim": "116 × 66",
@@ -106,12 +111,13 @@ window.VITREA_PRODUCTS = [
     "scene": "vela",
     "tag": "Entegre kapak",
     "note": "Tek parça kilitli kapak. Paket servis ve dolap sunumunda en çok tercih edilen porsiyon.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 309"
   },
   {
     "id": "vela-300",
-    "code": "VT-V30",
-    "name": "VELA 300",
+    "code": "MAY 310",
+    "name": "NORA",
     "vol": 300,
     "cat": "kase",
     "dim": "122 × 73",
@@ -122,12 +128,13 @@ window.VITREA_PRODUCTS = [
     "scene": "vela-trio",
     "tag": "Büyük porsiyon",
     "note": "VELA ailesinin büyük boyu. Aile boyu sütlaç ve fırın sütlaç için doğru hacim.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 310"
   },
   {
     "id": "mino",
-    "code": "VT-M20",
-    "name": "MINO",
+    "code": "MAY 311",
+    "name": "MORE",
     "vol": 200,
     "cat": "kase",
     "dim": "95 × 60",
@@ -143,12 +150,13 @@ window.VITREA_PRODUCTS = [
     "scene": "mino",
     "tag": "Tekli porsiyon",
     "note": "Küçük ve net. Panna cotta, muhallebi ve tek kişilik krem şanti sunumları için.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 311"
   },
   {
     "id": "rota",
-    "code": "VT-O30",
-    "name": "ROTA",
+    "code": "MAY 346",
+    "name": "LUCA",
     "vol": 300,
     "cat": "kase",
     "dim": "105 × 60",
@@ -164,12 +172,13 @@ window.VITREA_PRODUCTS = [
     "scene": "rota",
     "tag": "Düz kapak",
     "note": "Düz kapağı üst üste istiflemeye izin verir. Yoğun sirkülasyonlu vitrinlerde düzeni korur.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 346"
   },
   {
     "id": "armonia",
-    "code": "VT-A25",
-    "name": "ARMONIA",
+    "code": "MAY 500",
+    "name": "HARMONY",
     "vol": 250,
     "cat": "kase",
     "dim": "104 × 50",
@@ -180,12 +189,13 @@ window.VITREA_PRODUCTS = [
     "scene": "armonia",
     "tag": "Klasik form",
     "note": "Zamansız yuvarlak kase. Kazandibi ve fırın sütlaçta standart porsiyon ölçüsü.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 500"
   },
   {
     "id": "piatto",
-    "code": "VT-T25",
-    "name": "PIATTO",
+    "code": "MAY 308",
+    "name": "PUDING",
     "vol": 250,
     "cat": "kase",
     "dim": "115 × 60",
@@ -196,12 +206,13 @@ window.VITREA_PRODUCTS = [
     "scene": "piatto",
     "tag": "Yayvan",
     "note": "Alçak ve geniş; kaşıkla ilk hamlede ulaşılan yüzey geniş. Puding ve jöleli tatlılar için.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 308"
   },
   {
     "id": "linea-130",
-    "code": "VT-L13",
-    "name": "LINEA 130",
+    "code": "MAY 301",
+    "name": "FAVORİTE",
     "vol": 130,
     "cat": "kase",
     "dim": "105 × 36",
@@ -217,12 +228,13 @@ window.VITREA_PRODUCTS = [
     "scene": "linea",
     "tag": "İnce profil",
     "note": "İnce profilli tabak formu. Tadımlık porsiyon ve ikili set sunumlarında kullanılır.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 301"
   },
   {
     "id": "linea-160",
-    "code": "VT-L16",
-    "name": "LINEA 160",
+    "code": "MAY 302",
+    "name": "FAVORITE",
     "vol": 160,
     "cat": "kase",
     "dim": "118 × 39",
@@ -238,12 +250,13 @@ window.VITREA_PRODUCTS = [
     "scene": "linea",
     "tag": "Orta boy",
     "note": "LINEA ailesinin orta boyu. Cheesecake dilimi ve tart porsiyonu için ölçülü bir zemin.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 302"
   },
   {
     "id": "linea-250",
-    "code": "VT-L25",
-    "name": "LINEA 250",
+    "code": "MAY 303",
+    "name": "FAVORİTE",
     "vol": 250,
     "cat": "kase",
     "dim": "118 × 40",
@@ -259,12 +272,13 @@ window.VITREA_PRODUCTS = [
     "scene": "linea",
     "tag": "1000 adet koli",
     "note": "Yüksek adetli koli avantajıyla seri üretim yapan üreticiler için en ekonomik LINEA.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 303"
   },
   {
     "id": "cilindro-270",
-    "code": "VT-C27",
-    "name": "CILINDRO 270",
+    "code": "MAY 317",
+    "name": "TREND",
     "vol": 270,
     "cat": "bardak",
     "dim": "78 × 87",
@@ -275,12 +289,13 @@ window.VITREA_PRODUCTS = [
     "scene": "cilindro",
     "tag": "Silindir",
     "note": "Düz duvarlı silindir; katmanlar dışarıdan kusursuz bir çizgi hâlinde görünür. Trileçe ve tiramisu için.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 317"
   },
   {
     "id": "cilindro-330",
-    "code": "VT-C33",
-    "name": "CILINDRO 330",
+    "code": "MAY 318",
+    "name": "TREND",
     "vol": 330,
     "cat": "bardak",
     "dim": "82 × 90",
@@ -291,12 +306,13 @@ window.VITREA_PRODUCTS = [
     "scene": "cilindro",
     "tag": "Büyük silindir",
     "note": "Aynı formun geniş hacimlisi. Meyveli ve bisküvili kalın katmanlarda nefes payı bırakır.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 318"
   },
   {
     "id": "vero-60",
-    "code": "VT-B06",
-    "name": "VERO 60",
+    "code": "MAY 352",
+    "name": "VER",
     "vol": 60,
     "cat": "bardak",
     "dim": "50 × 65",
@@ -312,12 +328,13 @@ window.VITREA_PRODUCTS = [
     "scene": "vero",
     "tag": "Shot boy",
     "note": "Tadımlık boy. Açık büfe, ikram tabağı ve mini tatlı setlerinde kullanılır.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 352"
   },
   {
     "id": "vero-150",
-    "code": "VT-B15",
-    "name": "VERO 150",
+    "code": "MAY 353",
+    "name": "VER",
     "vol": 150,
     "cat": "bardak",
     "dim": "70 × 80",
@@ -333,12 +350,13 @@ window.VITREA_PRODUCTS = [
     "scene": "vero",
     "tag": "Ara boy",
     "note": "İki lokmalık ideal porsiyon; kafe menülerinde yanında kahveyle sunulan boy.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 353"
   },
   {
     "id": "vero-240",
-    "code": "VT-B24",
-    "name": "VERO 240",
+    "code": "MAY 354",
+    "name": "VER",
     "vol": 240,
     "cat": "bardak",
     "dim": "83 × 100",
@@ -354,12 +372,13 @@ window.VITREA_PRODUCTS = [
     "scene": "vero",
     "tag": "Tam porsiyon",
     "note": "Konik gövde elde rahat durur. Paket servis tatlılarında dökülmeye karşı dengeli form.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 354"
   },
   {
     "id": "capri-180",
-    "code": "VT-D18",
-    "name": "CAPRI 180",
+    "code": "MAY 355",
+    "name": "BODEGA",
     "vol": 180,
     "cat": "bardak",
     "dim": "76 × 56",
@@ -375,12 +394,13 @@ window.VITREA_PRODUCTS = [
     "scene": "capri",
     "tag": "Alçak bardak",
     "note": "Kalın cidar hissi veren bodur form. Mousse ve krema ağırlıklı tatlılarda tercih edilir.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 355"
   },
   {
     "id": "capri-250",
-    "code": "VT-D25",
-    "name": "CAPRI 250",
+    "code": "MAY 356",
+    "name": "BODEGA",
     "vol": 250,
     "cat": "bardak",
     "dim": "83 × 60",
@@ -396,12 +416,13 @@ window.VITREA_PRODUCTS = [
     "scene": "capri",
     "tag": "Standart",
     "note": "CAPRI ailesinin en çok satan boyu; düz ve bombeli kapak seçenekleriyle kullanılabilir.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 356"
   },
   {
     "id": "capri-380",
-    "code": "VT-D38",
-    "name": "CAPRI 380",
+    "code": "MAY 357",
+    "name": "BODEGA",
     "vol": 380,
     "cat": "bardak",
     "dim": "83 × 88",
@@ -417,12 +438,13 @@ window.VITREA_PRODUCTS = [
     "scene": "capri",
     "tag": "Yüksek gövde",
     "note": "Uzun gövde katman sayısını artırır. Bombeli kapakla üst dekor için ek hacim sağlar.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 357"
   },
   {
     "id": "kubik",
-    "code": "VT-K25",
-    "name": "KUBIK",
+    "code": "MAY 282",
+    "name": "MODERNA",
     "vol": 250,
     "cat": "kare",
     "dim": "73 × 73 × 78",
@@ -433,12 +455,13 @@ window.VITREA_PRODUCTS = [
     "scene": "kubik",
     "tag": "Küp",
     "note": "Dört yüzü de vitrin olan küp form. Katmanlı pastalarda en çarpıcı sunumu verir.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 282"
   },
   {
     "id": "quadra",
-    "code": "VT-N26",
-    "name": "QUADRA",
+    "code": "MAY 314",
+    "name": "ASOS",
     "vol": 260,
     "cat": "kare",
     "dim": "110 × 110 × 64",
@@ -449,12 +472,13 @@ window.VITREA_PRODUCTS = [
     "scene": "quadra",
     "tag": "Derin kare",
     "note": "Yumuşak köşeli derin kare. Dolapta yan yana dizildiğinde boşluksuz bir düzen kurar.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 314"
   },
   {
     "id": "plana",
-    "code": "VT-P27",
-    "name": "PLANA",
+    "code": "MAY 315",
+    "name": "ELEGANT",
     "vol": 270,
     "cat": "kare",
     "dim": "110 × 110 × 47",
@@ -465,12 +489,13 @@ window.VITREA_PRODUCTS = [
     "scene": "plana",
     "tag": "Alçak kare",
     "note": "Alçak profili tatlıyı yukarıdan tümüyle gösterir. Kare dilim ve brownie sunumları için.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 315"
   },
   {
     "id": "terra-250",
-    "code": "VT-E25",
-    "name": "TERRA 250",
+    "code": "MAY 322",
+    "name": "KARMEN",
     "vol": 250,
     "cat": "kare",
     "dim": "110 × 110 × 41",
@@ -486,12 +511,13 @@ window.VITREA_PRODUCTS = [
     "scene": "terra",
     "tag": "Ayrı kapak",
     "note": "Gövde ve kapak ayrı; ihtiyaç kadar tamamlama imkânı verir. Vitrin ve paket servis için.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 322"
   },
   {
     "id": "terra-300",
-    "code": "VT-E30",
-    "name": "TERRA 300",
+    "code": "MAY 323",
+    "name": "KARMEN",
     "vol": 300,
     "cat": "kare",
     "dim": "110 × 110 × 45",
@@ -507,12 +533,13 @@ window.VITREA_PRODUCTS = [
     "scene": "terra-koyu",
     "tag": "Derin kare",
     "note": "TERRA ailesinin derin versiyonu; sos ve fındık dekorunun ezilmediği ekstra yükseklik.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 323"
   },
   {
     "id": "prisma-60",
-    "code": "VT-X06",
-    "name": "PRISMA 60",
+    "code": "MAY 349",
+    "name": "PYRAMID",
     "vol": 60,
     "cat": "kare",
     "dim": "50 × 50 × 45",
@@ -528,12 +555,13 @@ window.VITREA_PRODUCTS = [
     "scene": "prisma",
     "tag": "Mini piramit",
     "note": "Piramit kesitli mini kap. İkramlık ve tadım setlerinde göz alıcı bir dizilim kurar.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 349"
   },
   {
     "id": "prisma-120",
-    "code": "VT-X12",
-    "name": "PRISMA 120",
+    "code": "MAY 350",
+    "name": "PYRAMID",
     "vol": 120,
     "cat": "kare",
     "dim": "60 × 60 × 60",
@@ -549,12 +577,13 @@ window.VITREA_PRODUCTS = [
     "scene": "prisma",
     "tag": "1000 adet koli",
     "note": "Orta boy piramit. Yüksek adetli kolisiyle etkinlik ve catering işleri için ekonomik.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 350"
   },
   {
     "id": "prisma-200",
-    "code": "VT-X20",
-    "name": "PRISMA 200",
+    "code": "MAY 351",
+    "name": "PYRAMID",
     "vol": 200,
     "cat": "kare",
     "dim": "70 × 70 × 65",
@@ -570,12 +599,13 @@ window.VITREA_PRODUCTS = [
     "scene": "prisma",
     "tag": "Büyük piramit",
     "note": "Ailenin en büyüğü; tek kişilik tam porsiyonu farklı bir geometriyle sunar.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 351"
   },
   {
     "id": "onda",
-    "code": "VT-W30",
-    "name": "ONDA",
+    "code": "MAY 287",
+    "name": "BENETTA",
     "vol": 300,
     "cat": "dikdortgen",
     "dim": "63 × 112 × 60",
@@ -586,12 +616,13 @@ window.VITREA_PRODUCTS = [
     "scene": "onda",
     "tag": "Dar & uzun",
     "note": "Dar ve uzun gövde; kaşık boyunca ilerleyen katmanları yandan bir kesit gibi gösterir.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 287"
   },
   {
     "id": "fiore-150",
-    "code": "VT-F15",
-    "name": "FIORE 150",
+    "code": "MAY 223",
+    "name": "FLORA",
     "vol": 150,
     "cat": "dikdortgen",
     "dim": "78 × 115 × 38",
@@ -602,12 +633,13 @@ window.VITREA_PRODUCTS = [
     "scene": "fiore",
     "tag": "İnce dilim",
     "note": "Dilim tatlılar için ince gövde. Kazandibi ve baklava porsiyonlarında sık kullanılır.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 223"
   },
   {
     "id": "fiore-250",
-    "code": "VT-F25",
-    "name": "FIORE 250",
+    "code": "MAY 224",
+    "name": "FLORA",
     "vol": 250,
     "cat": "dikdortgen",
     "dim": "81 × 129 × 48",
@@ -618,12 +650,13 @@ window.VITREA_PRODUCTS = [
     "scene": "fiore",
     "tag": "Menteşeli kapak",
     "note": "Menteşeli kapağı tek hareketle kapanır. Tezgâh üstü satışta en pratik dilim ambalajı.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 224"
   },
   {
     "id": "fiore-470",
-    "code": "VT-F47",
-    "name": "FIORE 470",
+    "code": "MAY 228",
+    "name": "FLORA",
     "vol": 470,
     "cat": "dikdortgen",
     "dim": "106 × 165 × 51",
@@ -634,12 +667,13 @@ window.VITREA_PRODUCTS = [
     "scene": "fiore",
     "tag": "Çift porsiyon",
     "note": "İki dilim veya bir aile porsiyonu. Paket servis siparişlerinde tek kutuda çözüm.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 228"
   },
   {
     "id": "elara",
-    "code": "VT-Y25",
-    "name": "ELARA",
+    "code": "MAY 277",
+    "name": "ELİSE",
     "vol": 250,
     "cat": "dikdortgen",
     "dim": "110 × 132 × 41",
@@ -650,12 +684,13 @@ window.VITREA_PRODUCTS = [
     "scene": "elara",
     "tag": "Renkli kapak opsiyonu",
     "note": "Şeffaf gövde, talebe göre renkli kapak. Markanızın rengini rafta görünür kılar.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 277"
   },
   {
     "id": "cuore",
-    "code": "VT-H28",
-    "name": "CUORE",
+    "code": "MAY 336",
+    "name": "HEART",
     "vol": 280,
     "cat": "ozel",
     "dim": "120 × 115 × 48",
@@ -666,12 +701,13 @@ window.VITREA_PRODUCTS = [
     "scene": "cuore",
     "tag": "Kalp form",
     "note": "Kalp kesitli özel form. Sevgililer günü, nişan ve özel gün setlerinde satışı yükseltir.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 336"
   },
   {
     "id": "profi",
-    "code": "VT-Q76",
-    "name": "PROFI 760",
+    "code": "MAY 360",
+    "name": "PROFITEROLE",
     "vol": 760,
     "cat": "ozel",
     "dim": "125 × 207 × 63",
@@ -682,12 +718,13 @@ window.VITREA_PRODUCTS = [
     "scene": "profi",
     "tag": "Profiterol",
     "note": "Profiterol ve toplu tatlılar için geniş tabanlı kutu. Sos akıtmayan yüksek kenar.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 360"
   },
   {
     "id": "profi-xl",
-    "code": "VT-Q113",
-    "name": "PROFI 1130",
+    "code": "MAY 390",
+    "name": "PROFITEROLE",
     "vol": 1130,
     "cat": "ozel",
     "dim": "125 × 207 × 80",
@@ -698,7 +735,8 @@ window.VITREA_PRODUCTS = [
     "scene": "profi-2",
     "tag": "Aile boyu",
     "note": "Ailenin en büyük hacmi. Aile boyu profiterol ve çikolatalı sunumlar için tasarlandı.",
-    "active": true
+    "active": true,
+    "mayerKod": "MAY 390"
   }
 ];
 

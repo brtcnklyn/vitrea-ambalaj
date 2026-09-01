@@ -7,11 +7,21 @@ data/users.json
 data/reviews.json
 
 # fiyat üretici script — alış fiyatlarını ve kâr formülünü içerir, yayınlanmaz
-# (PDF'in kendisi sitede "Fiyat kataloğu indir" olarak YAYINLANIR)
 fiyat-listesi-uret.py
 vitrea-fiyat-listesi.pdf
+vitreaplas-fiyat-listesi.pdf
+
+# TEDARİKÇİ ALIŞ FİYATLARI — ASLA YAYINLANMAZ.
+# Yalnızca yerelde çalışan panelden (node server.js -> /admin) görülür.
+data/mayer-fiyat.json
+data/fiyat-ayar.json
+data/fiyat-listeleri.json
+data/*.yedek-*
 
 node_modules/
 *.log
 .DS_Store
 Thumbs.db
+
+# tedarikçi katalog çekici — alış fiyatı üretir, yayınlanmaz
+mayer-fiyat-cek.py

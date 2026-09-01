@@ -10,7 +10,7 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var WA_TEL = '905348433188';                       // WhatsApp numarası
-  var MAIL   = 'info@vitreaplas.com';                // teklif e-postası
+  /* İletişim yalnızca WhatsApp üzerinden — e-posta kullanılmıyor. */
 
   /* ---------------- ticker ---------------- */
   function buildTicker() {
@@ -170,9 +170,9 @@
       '<tr><th>Koli ölçüsü</th><td>' + p.lid.boxDim + ' mm</td></tr></table>'
       : '<p class="panel__note"><em>Kapak gövdeye entegredir; ayrıca sipariş edilmesi gerekmez.</em></p>';
 
-    var subject = encodeURIComponent('Teklif talebi — ' + p.name + ' (' + p.code + ')');
-    var body = encodeURIComponent('Merhaba,\n\n' + p.name + ' (' + p.code + ', ' + p.vol +
-      ' cc) için fiyat teklifi almak istiyorum.\n\nAylık tahmini adet: \nFirma: \nTelefon: \n');
+    var waMsg = encodeURIComponent(
+      'Merhaba, ' + p.name + ' (' + p.code + ', ' + p.vol +
+      ' cc) için fiyat teklifi almak istiyorum.\n\nAylık tahmini adet: \nFirma: ');
 
     return '<div class="panel__ph"><img src="assets/img/urun/' + p.img + '.png" alt="' + p.name + '"></div>' +
       '<span class="panel__code">' + p.code + '</span>' +
@@ -184,7 +184,8 @@
       (p.scene ? '<div class="panel__scene"><img src="assets/img/sahne/' + p.scene +
                  '.jpg" alt="' + p.name + ' kullanım örneği" loading="lazy"></div>' : '') +
       '<div class="panel__cta">' +
-        '<a class="btn btn--light" href="mailto:' + MAIL + '?subject=' + subject + '&body=' + body + '">Bu ürün için teklif al</a>' +
+        '<a class="btn btn--light" target="_blank" rel="noopener" href="https://wa.me/' + WA_TEL +
+          '?text=' + waMsg + '">Bu ürün için WhatsApp\'tan teklif al</a>' +
         '<a class="btn btn--ghost" href="#iletisim" data-close>Numune iste</a>' +
       '</div>' +
       '<div class="panel__rv" id="panelRv"></div>';
@@ -420,31 +421,33 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(form), ok = true;
+    /* WhatsApp'a gidiyor: yalnizca ad zorunlu, e-posta girildiyse gecerli olmali */
     ['ad', 'mail'].forEach(function (k) {
       var el = form.elements[k];
-      var bad = !String(d.get(k) || '').trim() || (k === 'mail' && !/^\S+@\S+\.\S+$/.test(d.get(k)));
+      var v = String(d.get(k) || '').trim();
+      var bad = k === 'ad' ? !v : (v && !/^\S+@\S+\.\S+$/.test(v));
       el.parentElement.classList.toggle('is-bad', bad);
       if (bad) ok = false;
     });
-    if (!ok) { note.textContent = 'Lütfen ad ve geçerli bir e-posta girin.'; return; }
+    if (!ok) { note.textContent = 'Lütfen adınızı girin (e-posta yazacaksanız geçerli olsun).'; return; }
 
     var urun = d.get('urun');
     var pr = P.filter(function (x) { return x.id === urun; })[0];
     var lines = [
+      'Merhaba, VITREAPLAS için teklif almak istiyorum.',
+      '',
       'Ad Soyad: ' + d.get('ad'),
       'Firma: ' + (d.get('firma') || '-'),
       'Telefon: ' + (d.get('tel') || '-'),
-      'E-posta: ' + d.get('mail'),
+      'E-posta: ' + (d.get('mail') || '-'),
       'Ürün: ' + (pr ? pr.name + ' (' + pr.code + ', ' + pr.vol + ' cc)' : '-'),
-      'Aylık tahmini adet: ' + (d.get('adet') || '-'),
-      '',
-      d.get('mesaj') || ''
-    ].join('\n');
+      'Aylık tahmini adet: ' + (d.get('adet') || '-')
+    ];
+    if (String(d.get('mesaj') || '').trim()) lines.push('', d.get('mesaj'));
 
-    note.textContent = 'E-posta uygulamanız açılıyor…';
-    window.location.href = 'mailto:' + MAIL +
-      '?subject=' + encodeURIComponent('Teklif talebi — ' + d.get('ad')) +
-      '&body=' + encodeURIComponent(lines);
+    note.textContent = 'WhatsApp açılıyor…';
+    window.open('https://wa.me/' + WA_TEL + '?text=' + encodeURIComponent(lines.join('\n')),
+                '_blank', 'noopener');
   });
 
   form.addEventListener('input', function (e) {
@@ -453,12 +456,13 @@
     note.textContent = '';
   });
 
-  /* WhatsApp bağlantısı */
-  var wa = $('#wa');
-  if (wa) {
-    wa.href = 'https://wa.me/' + WA_TEL + '?text=' +
-      encodeURIComponent('Merhaba, VITREAPLAS sütlü tatlı ambalajları için fiyat teklifi almak istiyorum.');
-  }
+  /* WhatsApp bağlantıları — sitedeki tüm iletişim buraya gider, e-posta yok */
+  var waLink = 'https://wa.me/' + WA_TEL + '?text=' +
+    encodeURIComponent('Merhaba, VITREAPLAS sütlü tatlı ambalajları için fiyat teklifi almak istiyorum.');
+  ['#wa', '#waMeta', '#waFoot', '#waColl'].forEach(function (sel) {
+    var el = $(sel);
+    if (el) { el.href = waLink; el.target = '_blank'; el.rel = 'noopener'; }
+  });
 
   /* yıl */
   $('#yil').textContent = new Date().getFullYear();

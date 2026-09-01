@@ -50,6 +50,8 @@
 
   <div class="views" id="views">
     <button class="vw is-on" data-view="products">Ürünler</button>
+    <button class="vw" data-view="fiyat">Alış Fiyatları <b class="lock" title="Yalnızca bu bilgisayarda görünür">gizli</b></button>
+    <button class="vw" data-view="liste">Fiyat Listesi Yap</button>
     <button class="vw" data-view="reviews">Yorumlar <b class="badge" id="rvBadge" hidden></b></button>
     <button class="vw" data-view="customers">Müşteriler</button>
   </div>
@@ -73,6 +75,67 @@
 
   <div class="list" id="list" data-vp="products"></div>
   <p class="empty" id="empty" hidden data-vp="products">Bu filtreye uyan ürün yok.</p>
+
+  <!-- ============ ALIŞ FİYATLARI (gizli) ============ -->
+  <div class="fy" data-vp="fiyat" hidden>
+    <div class="fy__warn">
+      Bu sayfadaki alış fiyatları <b>yalnızca bu bilgisayarda</b>, sunucu açıkken görünür.
+      <code>data/mayer-fiyat.json</code> depoya girmez, yayınlanan sitede yer almaz.
+    </div>
+
+    <div class="fy__ayar">
+      <label class="fyf"><span>KDV %</span><input id="ayKdv" type="number" min="0" max="100" step="1"></label>
+      <label class="fyf"><span>Mayer iskontosu %</span><input id="ayIsk" type="number" min="0" max="95" step="0.5"></label>
+      <label class="fyf"><span>Kâr marjı %</span><input id="ayKar" type="number" min="-50" max="500" step="1"></label>
+      <label class="fyc"><input id="ayYuv" type="checkbox"><span>Tam liraya yukarı yuvarla</span></label>
+      <button class="btn btn--sm" id="ayKaydet">Ayarları kaydet</button>
+      <span class="fy__meta" id="fyMeta"></span>
+    </div>
+
+    <div class="bar">
+      <input class="search" id="fyQ" type="search" placeholder="Kod veya ad ara…" autocomplete="off">
+      <div class="segs" id="fyTip">
+        <button class="seg is-on" data-val="all">Tümü</button>
+        <button class="seg" data-val="govde">Gövde</button>
+        <button class="seg" data-val="kapak">Kapak</button>
+        <button class="seg" data-val="site">Sitede satılan</button>
+      </div>
+    </div>
+
+    <div class="fy__tbl" id="fyTbl"></div>
+  </div>
+
+  <!-- ============ FİYAT LİSTESİ YAP ============ -->
+  <div class="fy" data-vp="liste" hidden>
+    <div class="fy__ayar fy__ayar--liste">
+      <label class="fyf fyf--w"><span>Liste başlığı</span><input id="liBaslik" placeholder="VITREAPLAS Fiyat Listesi"></label>
+      <label class="fyf fyf--w"><span>Müşteri (opsiyonel)</span><input id="liMusteri" placeholder="ör. Daisy Patisserie"></label>
+      <label class="fyf"><span>Kayıtlı liste</span>
+        <select id="liKayit"><option value="">— yeni liste —</option></select></label>
+      <button class="btn btn--sm" id="liKaydet">Kaydet</button>
+      <button class="btn btn--ghost btn--sm" id="liSil">Sil</button>
+      <button class="btn btn--sm" id="liPdf">PDF / Yazdır</button>
+    </div>
+
+    <label class="fyf fyf--full"><span>Liste altına not (opsiyonel)</span>
+      <textarea id="liNot" rows="2" placeholder="Teslimat, geçerlilik, ödeme koşulları…"></textarea></label>
+
+    <div class="bar">
+      <input class="search" id="liQ" type="search" placeholder="Listeye eklemek için ürün ara…" autocomplete="off">
+      <div class="segs" id="liTip">
+        <button class="seg is-on" data-val="site">Sitede satılan</button>
+        <button class="seg" data-val="govde">Gövde</button>
+        <button class="seg" data-val="kapak">Kapak</button>
+        <button class="seg" data-val="all">Tümü</button>
+      </div>
+      <span class="fy__meta" id="liSay">0 ürün seçili</span>
+    </div>
+
+    <div class="fy__iki">
+      <div class="fy__sec" id="liSecenek"></div>
+      <div class="fy__sepet" id="liSepet"></div>
+    </div>
+  </div>
 
   <div class="list" id="rvList" data-vp="reviews" hidden></div>
   <p class="empty" id="rvEmpty" data-vp="reviews" hidden>Henüz yorum yok.</p>
@@ -174,5 +237,6 @@
 <div class="toast" id="toast"></div>
 
 <script src="assets/js/admin.js"></script>
+<script src="assets/js/admin-fiyat.js"></script>
 </body>
 </html>
