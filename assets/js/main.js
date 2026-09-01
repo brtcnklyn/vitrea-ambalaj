@@ -170,9 +170,12 @@
       '<tr><th>Koli ölçüsü</th><td>' + p.lid.boxDim + ' mm</td></tr></table>'
       : '<p class="panel__note"><em>Kapak gövdeye entegredir; ayrıca sipariş edilmesi gerekmez.</em></p>';
 
+    var urunEt = p.name + ' (' + p.code + ', ' + p.vol + ' cc)';
     var waMsg = encodeURIComponent(
-      'Merhaba, ' + p.name + ' (' + p.code + ', ' + p.vol +
-      ' cc) için fiyat teklifi almak istiyorum.\n\nAylık tahmini adet: \nFirma: ');
+      'Merhaba, ' + urunEt + ' için fiyat teklifi almak istiyorum.' +
+      '\n\nAylık tahmini adet: \nFirma: ');
+    var waNum = encodeURIComponent(
+      'Merhaba, ' + urunEt + ' ürününden numune istiyorum.\n\nFirma: \nAdres: ');
 
     return '<div class="panel__ph"><img src="assets/img/urun/' + p.img + '.png" alt="' + p.name + '"></div>' +
       '<span class="panel__code">' + p.code + '</span>' +
@@ -186,7 +189,8 @@
       '<div class="panel__cta">' +
         '<a class="btn btn--light" target="_blank" rel="noopener" href="https://wa.me/' + WA_TEL +
           '?text=' + waMsg + '">Bu ürün için WhatsApp\'tan teklif al</a>' +
-        '<a class="btn btn--ghost" href="#iletisim" data-close>Numune iste</a>' +
+        '<a class="btn btn--ghost" target="_blank" rel="noopener" href="https://wa.me/' +
+          WA_TEL + '?text=' + waNum + '">Numune iste</a>' +
       '</div>' +
       '<div class="panel__rv" id="panelRv"></div>';
   }
@@ -457,11 +461,16 @@
   });
 
   /* WhatsApp bağlantıları — sitedeki tüm iletişim buraya gider, e-posta yok */
-  var waLink = 'https://wa.me/' + WA_TEL + '?text=' +
-    encodeURIComponent('Merhaba, VITREAPLAS sütlü tatlı ambalajları için fiyat teklifi almak istiyorum.');
-  ['#wa', '#waMeta', '#waFoot', '#waColl'].forEach(function (sel) {
-    var el = $(sel);
-    if (el) { el.href = waLink; el.target = '_blank'; el.rel = 'noopener'; }
+  function waHref(metin) {
+    return 'https://wa.me/' + WA_TEL + '?text=' + encodeURIComponent(metin);
+  }
+  var TEKLIF = 'Merhaba, VITREAPLAS sütlü tatlı ambalajları için fiyat teklifi almak istiyorum.';
+  var NUMUNE = 'Merhaba, VITREAPLAS ambalajlarından numune istiyorum.\n\n' +
+               'İlgilendiğim ürün: \nFirma: ';
+  [['#wa', TEKLIF], ['#waMeta', TEKLIF], ['#waFoot', TEKLIF], ['#waColl', TEKLIF],
+   ['#waTeklif', TEKLIF], ['#waNumune', NUMUNE]].forEach(function (p) {
+    var el = $(p[0]);
+    if (el) { el.href = waHref(p[1]); el.target = '_blank'; el.rel = 'noopener'; }
   });
 
   /* yıl */

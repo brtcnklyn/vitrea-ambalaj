@@ -1,6 +1,6 @@
 /* VITREAPLAS — otomatik uretilir, elle duzenlemeyin.
    Kaynak: data/products.json  ·  Duzenleme: /admin
-   Uretim: 2026-09-01T17:46:48.204Z */
+   Uretim: 2026-09-01T18:17:47.875Z */
 window.VITREA_PRODUCTS = [
   {
     "id": "luna",

@@ -17,9 +17,19 @@ git push
 
 Push'tan ~1 dakika sonra site güncellenir.
 
-> Yönetim paneli yayındaki adreste **çalışmaz** — sunucu ister. Panelde yaptığınız
-> değişiklikler `data/products.json` ve `assets/js/products.js` dosyalarına yazılır;
-> yayına almak için yukarıdaki üç komutu çalıştırmanız yeterli.
+> **Yönetim paneli yayına hiç çıkmaz.** `admin.html`, `admin.css`, `admin.js` ve
+> `admin-fiyat.js` `.gitignore` içindedir: bilgisayarınızda durur ve çalışır, ama depoya
+> ve GitHub Pages'e gitmez. Yani `vitreaplas.com/admin` diye bir adres yoktur.
+> Panel yalnızca `http://localhost:8161/admin` adresinden açılır.
+>
+> Bunun sebebi GitHub Pages'in statik olması: şifre kontrolü, fiyat verisi ve kayıt
+> işlemleri sunucu tarafında olduğu için orada çalışamaz. Şifreyi tarayıcıya gömüp
+> "çalışır" hale getirmek, alış fiyatlarını herkese açık bir dosyaya koymak demek olurdu.
+> Paneli internetten erişilebilir yapmak isterseniz doğru yol, siteyi program
+> çalıştırabilen bir yere (Render, Railway vb.) taşımaktır.
+>
+> Panelde yaptığınız değişiklikler `data/products.json` ve `assets/js/products.js`
+> dosyalarına yazılır; yayına almak için yukarıdaki üç komutu çalıştırmanız yeterli.
 
 ## Çalıştırma (kendi bilgisayarınızda)
 
@@ -97,13 +107,15 @@ PNG kopyaları `assets/img/logo-*.png`.
 |---|---|
 | `server.js` | Sunucu + admin API (bağımlılık yok) |
 | `index.html` | Site |
-| `admin.html` | Yönetim paneli |
+| `admin.html` | Yönetim paneli · **yayınlanmaz** |
 | `data/products.json` | **Ürün verisi — asıl kaynak** |
-| `data/config.json` | Admin şifresi |
+| `data/config.json` | Admin şifresi · yayınlanmaz |
 | `assets/js/products.js` | Otomatik üretilen statik yedek (elle düzenlemeyin) |
 | `assets/js/main.js` | Site etkileşimi |
-| `assets/js/admin.js` | Panel etkileşimi |
-| `assets/css/style.css` · `admin.css` | Tasarım |
+| `assets/js/admin.js` | Panel etkileşimi · yayınlanmaz |
+| `assets/js/admin-fiyat.js` | Panel fiyat sekmeleri · yayınlanmaz |
+| `assets/css/style.css` | Site tasarımı |
+| `assets/css/admin.css` | Panel tasarımı · yayınlanmaz |
 | `assets/img/urun/` | Şeffaf ürün görselleri (PNG) |
 | `assets/img/sahne/` | Kullanım/sunum fotoğrafları (JPG) |
 | `assets/video/` | Hero videosu ve poster kareleri |

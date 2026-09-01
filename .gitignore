@@ -25,3 +25,13 @@ Thumbs.db
 
 # tedarikçi katalog çekici — alış fiyatı üretir, yayınlanmaz
 mayer-fiyat-cek.py
+
+# YÖNETİM PANELİ — yayınlanmaz, yalnızca yerelde (node server.js -> /admin).
+# Dosyalar diskte durur ve çalışır; sadece depoya/GitHub Pages'e gitmez.
+admin.html
+assets/css/admin.css
+assets/js/admin.js
+assets/js/admin-fiyat.js
+panel-baslat.bat
+panel-baslat.vbs
+assets/img/panel.ico
