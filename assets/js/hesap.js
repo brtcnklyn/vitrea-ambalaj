@@ -118,6 +118,13 @@
       password: f.elements.password.value
     };
     if (mod === 'register') govde.ad = f.elements.ad.value.trim();
+    if (!window.VP_SUNUCU) {
+      not.innerHTML = 'Üyelik sistemi henüz devrede değil. Siparişinizi ' +
+        '<a href="' + waLink('Merhaba, VITREAPLAS sipariş vermek istiyorum.') +
+        '" target="_blank" rel="noopener">WhatsApp&#39;tan</a> verebilir, ' +
+        '<a href="urunler.html">ürünlere</a> göz atabilirsiniz.';
+      return;
+    }
     not.textContent = 'Gönderiliyor…';
     fetch(mod === 'register' ? 'api/register' : 'api/user/login', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -146,6 +153,12 @@
     e.preventDefault();
     var f = e.target, not = $('#takipNot'), kutu = $('#takipSonuc');
     kutu.innerHTML = '';
+    if (!window.VP_SUNUCU) {
+      not.innerHTML = 'Online sipariş takibi henüz devrede değil. Sipariş numaranızla ' +
+        '<a href="' + waLink('Merhaba, sipariş durumumu öğrenebilir miyim? Sipariş no: ') +
+        '" target="_blank" rel="noopener">WhatsApp&#39;tan</a> sorabilirsiniz.';
+      return;
+    }
     not.textContent = 'Sorgulanıyor…';
     fetch('api/siparis-takip?no=' + encodeURIComponent(f.elements.no.value.trim()) +
           '&tel=' + encodeURIComponent(f.elements.tel.value.trim()))
@@ -160,17 +173,27 @@
   });
 
   /* ---------------- ortam ---------------- */
+  function waLink(metin) {
+    return 'https://wa.me/905348433188?text=' + encodeURIComponent(metin);
+  }
+
   document.addEventListener('ortam:belli', function (e) {
     $('#hesapKapali').hidden = e.detail.sunucu;
-    if (e.detail.sunucu) { sekmeYaz(); yukle();
+    var w = $('#waKapali');
+    if (w) w.href = waLink('Merhaba, VITREAPLAS siparişim hakkında bilgi almak istiyorum.');
+    sekmeYaz();
+    if (e.detail.sunucu) {
+      yukle();
       if (location.hash === '#takip') {
         setTimeout(function () {
           var t = $('#takipForm');
           if (t) t.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 400);
       }
+    } else {
+      /* sunucu yok: formlar gorunur kalir, gonderilince acikca soylenir */
+      goster(false);
     }
-    else { $('#hesapGiris').hidden = true; $('#hesapPanel').hidden = true; }
   });
   if (window.VP_SUNUCU) { $('#hesapKapali').hidden = true; sekmeYaz(); yukle(); }
 })();

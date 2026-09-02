@@ -65,16 +65,15 @@
 <section class="section--paper hesap">
   <div class="wrap hesap__in">
 
-    <!-- sunucu yoksa -->
-    <div class="hesap__kapali" id="hesapKapali" hidden>
-      <h2 class="mid">Üyelik şu an kapalı.</h2>
-      <p>Siparişlerinizi WhatsApp üzerinden alıyoruz; üyelik ve online sipariş takibi
-        yakında açılacak. Bu arada sipariş durumunuzu WhatsApp'tan sorabilirsiniz.</p>
-      <a class="btn" id="waKapali" href="#" target="_blank" rel="noopener">WhatsApp'tan sorun</a>
+    <!-- sunucu yoksa: form görünür kalır, üstte bilgi şeridi çıkar -->
+    <div class="hesap__uyari" id="hesapKapali" hidden>
+      <b>Üyelik sistemi hazırlanıyor.</b> Kayıt ve giriş henüz devrede değil;
+      siparişlerinizi WhatsApp üzerinden alıyoruz.
+      <a id="waKapali" href="#" target="_blank" rel="noopener">WhatsApp'tan yazın →</a>
     </div>
 
     <!-- giriş / kayıt -->
-    <div class="hesap__giris srv-only" id="hesapGiris" hidden>
+    <div class="hesap__giris" id="hesapGiris" hidden>
       <div class="hesap__kart">
         <div class="acct__tabs" id="hTabs">
           <button class="is-on" data-htab="login">Giriş yap</button>

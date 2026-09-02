@@ -122,6 +122,16 @@
     return (x || 0).toLocaleString('tr-TR',
       { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ₺';
   }
+  /* Kartta hangi kullanimlara uygun oldugunu yazariz. Mayer'de bir kap
+     birden fazla kategoride olabiliyor; bu satir "neden ayni urun tekrar
+     cikiyor" sorusunu bastan cevapliyor. */
+  function katHTML(p) {
+    var k = (p.kategoriler || []).map(function (x) { return KAT_AD[x]; })
+             .filter(Boolean);
+    if (!k.length) return '';
+    return '<span class="card__kat">' + k.join(' · ') + '</span>';
+  }
+
   /* fiyat satiri: fiyati olmayan urunde rakam yerine "sorun" yazar */
   function fiyatHTML(p) {
     if (!p.fiyat) return '<span class="card__fy card__fy--yok">Fiyat için sorun</span>';
@@ -141,6 +151,7 @@
           '<span class="card__code">' + p.code + '</span>' +
           '<span class="card__name">' + p.name + '</span>' +
           '<span class="card__meta"><span><b>' + p.vol + '</b> cc</span><span>' + p.dim + ' mm</span></span>' +
+          katHTML(p) +
           fiyatHTML(p) +
         '</span>' +
       '</button>' +
@@ -227,6 +238,10 @@
       '<span class="panel__code">' + p.code + '</span>' +
       '<h2 class="panel__name">' + p.name + '</h2>' +
       '<p class="panel__vol">' + p.vol + ' cc · ' + p.dim + ' mm</p>' +
+      ((p.kategoriler || []).length
+        ? '<p class="panel__kat">Uygun kullanımlar: <b>' +
+          (p.kategoriler || []).map(function (x) { return KAT_AD[x]; })
+            .filter(Boolean).join('</b> · <b>') + '</b></p>' : '') +
       (p.fiyat
         ? '<p class="panel__fy"><b>' + tl(p.fiyat) + '</b> <i>adet · KDV hariç</i>' +
           '<span>' + tl(p.fiyatKdv) + ' KDV dahil' +

@@ -100,6 +100,15 @@
   if (uyeBtn) {
     uyeBtn.addEventListener('click', function () {
       if (localStorage.getItem(TOKEN)) { adim(2); dolduranUye(); return; }
+      if (!window.VP_SUNUCU) {
+        /* Uyelik henuz devrede degil: musteriyi bos formda birakmayalim,
+           acikca soyleyip misafir olarak devam ettirelim. */
+        adim(2);
+        var n = $('#odemeNot');
+        if (n) n.textContent = 'Üyelik sistemi hazırlanıyor; siparişinizi üye olmadan ' +
+                               'tamamlayabilirsiniz. Bilgileriniz WhatsApp üzerinden iletilir.';
+        return;
+      }
       /* main.js'teki hesap kutusunu ac; giris sonrasi form doldurulur */
       document.body.classList.add('acct-open');
       var a = $('#acct');

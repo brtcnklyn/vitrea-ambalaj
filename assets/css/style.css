@@ -643,10 +643,9 @@ body.acct-open .acct__box{opacity:1;transform:translate(-50%,-50%) scale(1)}
    ÇOK SAYFALI YAPI — sayfa başlıkları, sepet, hesap, fiyatlar
    ============================================================ */
 
-/* Sunucu yokken (GitHub Pages) üyelik bölümleri gizli kalır.
-   Yalnızca "sunucu yok" durumunda gizliyoruz; sunucu varsa hiç display
-   kuralı koymuyoruz ki ögenin kendi [hidden] özniteliği çalışabilsin. */
-html:not(.srv) .srv-only{display:none !important}
+/* Üyelik bölümleri her durumda görünür (kullanıcı isteği).
+   Sunucu yokken form çalışmaz; bu durumda JS dürüst bir mesaj gösterip
+   WhatsApp'a yönlendirir — sessizce hata vermez. */
 
 .nav__lnk{font-size:13.5px;color:var(--mute-d);text-decoration:none;transition:color .3s}
 .nav__lnk:hover,.nav__lnk.is-now{color:var(--paper)}
@@ -864,3 +863,17 @@ html:not(.srv) .srv-only{display:none !important}
   .wafab:hover span{max-width:0;opacity:0}
   .navik__b{width:36px;height:36px}
 }
+
+/* kartta ve panelde kullanım kategorileri */
+.card__kat{display:block;margin-top:7px;font-size:11px;letter-spacing:.04em;
+  color:var(--accent-2);line-height:1.5}
+.panel__kat{font-size:13px;color:var(--mute-l);margin:-10px 0 16px}
+.panel__kat b{color:var(--ink);font-weight:500}
+
+/* hesap sayfası: üyelik hazırlanıyor şeridi */
+.hesap__uyari{background:rgba(192,112,60,.10);border:1px solid rgba(192,112,60,.30);
+  border-radius:10px;padding:14px 18px;margin-bottom:22px;font-size:13.5px;
+  color:var(--mute-l);line-height:1.7}
+.hesap__uyari b{color:var(--ink);font-weight:500}
+.hesap__uyari a{color:var(--accent-2);margin-left:6px;white-space:nowrap}
+.form__note a{color:var(--accent-2)}
