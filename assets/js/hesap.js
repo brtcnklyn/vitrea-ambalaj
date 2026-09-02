@@ -177,12 +177,12 @@
     return 'https://wa.me/905348433188?text=' + encodeURIComponent(metin);
   }
 
-  document.addEventListener('ortam:belli', function (e) {
-    $('#hesapKapali').hidden = e.detail.sunucu;
+  function ortamUygula(sunucu) {
+    $('#hesapKapali').hidden = sunucu;
     var w = $('#waKapali');
     if (w) w.href = waLink('Merhaba, VITREAPLAS siparişim hakkında bilgi almak istiyorum.');
     sekmeYaz();
-    if (e.detail.sunucu) {
+    if (sunucu) {
       yukle();
       if (location.hash === '#takip') {
         setTimeout(function () {
@@ -194,6 +194,13 @@
       /* sunucu yok: formlar gorunur kalir, gonderilince acikca soylenir */
       goster(false);
     }
-  });
-  if (window.VP_SUNUCU) { $('#hesapKapali').hidden = true; sekmeYaz(); yukle(); }
+  }
+
+  document.addEventListener('ortam:belli', function (e) { ortamUygula(e.detail.sunucu); });
+
+  /* ortam.js bu dosyadan once cozulmus olabilir (o zaman olay bir daha atmaz):
+     durum zaten belliyse hemen uygula. */
+  if (document.documentElement.classList.contains('srv-belli')) {
+    ortamUygula(!!window.VP_SUNUCU);
+  }
 })();
