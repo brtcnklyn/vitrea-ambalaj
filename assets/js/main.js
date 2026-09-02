@@ -84,11 +84,14 @@
   var nav = $('#nav'), last = 0;
   function onScroll() {
     var y = window.scrollY || 0;
-    nav.classList.toggle('is-solid', y > 40);
-    nav.classList.toggle('is-hidden', y > 460 && y > last && !document.body.classList.contains('menu-open'));
+    if (nav) {
+      nav.classList.toggle('is-solid', y > 40);
+      nav.classList.toggle('is-hidden', y > 460 && y > last && !document.body.classList.contains('menu-open'));
+    }
     last = y;
     var h = document.documentElement.scrollHeight - window.innerHeight;
-    $('#scrollbarFill').style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    var sb = $('#scrollbarFill');
+    if (sb) sb.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -97,13 +100,13 @@
   var burger = $('#burger');
   function closeMenu() {
     document.body.classList.remove('menu-open');
-    burger.setAttribute('aria-expanded', 'false');
-    $('#menu').setAttribute('aria-hidden', 'true');
+    if (burger) burger.setAttribute('aria-expanded', 'false');
+    if ($('#menu')) $('#menu').setAttribute('aria-hidden', 'true');
   }
-  burger.addEventListener('click', function () {
+  if (burger) burger.addEventListener('click', function () {
     var open = document.body.classList.toggle('menu-open');
     burger.setAttribute('aria-expanded', String(open));
-    $('#menu').setAttribute('aria-hidden', String(!open));
+    if ($('#menu')) $('#menu').setAttribute('aria-hidden', String(!open));
   });
   $$('#menu a').forEach(function (a) { a.addEventListener('click', closeMenu); });
 
@@ -113,31 +116,71 @@
 
   function volBand(v) { return v < 200 ? 's' : (v < 300 ? 'm' : 'l'); }
 
+  function tl(x) {
+    return (x || 0).toLocaleString('tr-TR',
+      { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ₺';
+  }
+  /* fiyat satiri: fiyati olmayan urunde rakam yerine "sorun" yazar */
+  function fiyatHTML(p) {
+    if (!p.fiyat) return '<span class="card__fy card__fy--yok">Fiyat için sorun</span>';
+    return '<span class="card__fy"><b>' + tl(p.fiyat) + '</b>' +
+           '<i>adet · KDV hariç</i></span>';
+  }
+
   function cardHTML(p) {
-    return '<button class="card" data-id="' + p.id + '" aria-label="' + p.name + ' detayları">' +
-      '<span class="card__ph">' +
-        (p.scene ? '<img class="card__scene" src="assets/img/sahne/' + p.scene + '.jpg" alt="" loading="lazy" aria-hidden="true">' : '') +
-        '<img class="card__img" src="assets/img/urun/' + p.img + '.png" alt="' + p.name + ' ' + p.vol + ' cc ambalaj" loading="lazy">' +
-        (p.tag ? '<span class="card__tag">' + p.tag + '</span>' : '') +
-      '</span>' +
-      '<span class="card__body">' +
-        '<span class="card__code">' + p.code + '</span>' +
-        '<span class="card__name">' + p.name + '</span>' +
-        '<span class="card__meta"><span><b>' + p.vol + '</b> cc</span><span>' + p.dim + ' mm</span></span>' +
-      '</span></button>';
+    return '<article class="card" data-id="' + p.id + '">' +
+      '<button class="card__hit" data-ac="detay" aria-label="' + p.name + ' detayları">' +
+        '<span class="card__ph">' +
+          (p.scene ? '<img class="card__scene" src="assets/img/sahne/' + p.scene + '.jpg" alt="" loading="lazy" aria-hidden="true">' : '') +
+          '<img class="card__img" src="assets/img/urun/' + p.img + '.png" alt="' + p.name + ' ' + p.vol + ' cc ambalaj" loading="lazy">' +
+          (p.tag ? '<span class="card__tag">' + p.tag + '</span>' : '') +
+        '</span>' +
+        '<span class="card__body">' +
+          '<span class="card__code">' + p.code + '</span>' +
+          '<span class="card__name">' + p.name + '</span>' +
+          '<span class="card__meta"><span><b>' + p.vol + '</b> cc</span><span>' + p.dim + ' mm</span></span>' +
+          fiyatHTML(p) +
+        '</span>' +
+      '</button>' +
+      '<div class="card__buy">' +
+        (p.box ? '<span class="card__koli">koli ' + p.box + ' adet</span>' : '<span class="card__koli"></span>') +
+        (p.fiyat
+          ? '<button class="btn btn--sm" data-ac="ekle">Sepete ekle</button>'
+          : '<a class="btn btn--sm btn--ghost" target="_blank" rel="noopener" href="https://wa.me/' +
+            WA_TEL + '?text=' + encodeURIComponent(
+              'Merhaba, ' + p.name + ' (' + p.code + ', ' + p.vol + ' cc) fiyatını öğrenebilir miyim?') +
+            '">Fiyat sor</a>') +
+      '</div>' +
+    '</article>';
   }
 
   function render() {
+    if (!grid) return;
     var list = P.filter(function (p) {
       return (filt.cat === 'all' || p.cat === filt.cat) &&
              (filt.vol === 'all' || volBand(p.vol) === filt.vol);
     });
     grid.innerHTML = list.map(cardHTML).join('');
-    empty.hidden = list.length > 0;
+    if (empty) empty.hidden = list.length > 0;
     $$('.card', grid).forEach(function (c, i) {
       c.style.transitionDelay = Math.min(i, 12) * 0.035 + 's';
       watch(c);
     });
+  }
+
+  /* anasayfadaki "popüler ürünler" seridi */
+  function renderPopuler() {
+    var box = $('#populer');
+    if (!box) return;
+    var list = P.filter(function (p) { return p.populer; });
+    if (!list.length) list = P.slice(0, 4);          // secim yapilmadiysa ilk dordu
+    box.innerHTML = list.map(cardHTML).join('');
+    $$('.card', box).forEach(function (c, i) {
+      c.style.transitionDelay = Math.min(i, 12) * 0.035 + 's';
+      watch(c);
+    });
+    var say = $('#populerSay');
+    if (say) say.textContent = list.length;
   }
 
   $$('#filters .chip').forEach(function (chip) {
@@ -181,14 +224,21 @@
       '<span class="panel__code">' + p.code + '</span>' +
       '<h2 class="panel__name">' + p.name + '</h2>' +
       '<p class="panel__vol">' + p.vol + ' cc · ' + p.dim + ' mm</p>' +
+      (p.fiyat
+        ? '<p class="panel__fy"><b>' + tl(p.fiyat) + '</b> <i>adet · KDV hariç</i>' +
+          '<span>' + tl(p.fiyatKdv) + ' KDV dahil' +
+          (p.box ? ' · koli ' + p.box + ' adet' : '') + '</span></p>'
+        : '<p class="panel__fy panel__fy--yok">Bu ürün için fiyat sorunuz.</p>') +
       '<p class="panel__note">' + p.note + '</p>' +
       '<table class="tbl"><caption>Teknik bilgi</caption>' + rows + '</table>' +
       lid +
       (p.scene ? '<div class="panel__scene"><img src="assets/img/sahne/' + p.scene +
                  '.jpg" alt="' + p.name + ' kullanım örneği" loading="lazy"></div>' : '') +
       '<div class="panel__cta">' +
+        (p.fiyat ? '<button class="btn" data-ac="ekle" data-id="' + p.id + '">Sepete ekle' +
+                   (p.box ? ' <i>(' + p.box + ' adet)</i>' : '') + '</button>' : '') +
         '<a class="btn btn--light" target="_blank" rel="noopener" href="https://wa.me/' + WA_TEL +
-          '?text=' + waMsg + '">Bu ürün için WhatsApp\'tan teklif al</a>' +
+          '?text=' + waMsg + '">WhatsApp\'tan teklif al</a>' +
         '<a class="btn btn--ghost" target="_blank" rel="noopener" href="https://wa.me/' +
           WA_TEL + '?text=' + waNum + '">Numune iste</a>' +
       '</div>' +
@@ -215,13 +265,47 @@
     if (lastFocus) lastFocus.focus();
   }
 
-  grid.addEventListener('click', function (e) {
+  /* kart tiklamalari: govde -> detay, düğme -> sepete ekle */
+  function kartTikla(e) {
     var c = e.target.closest('.card');
-    if (c) openPanel(c.dataset.id);
+    if (!c) return;
+    if (e.target.closest('[data-ac="ekle"]')) {
+      window.SEPET.ekle(c.dataset.id);
+      sepetBildir(c.dataset.id);
+      return;
+    }
+    openPanel(c.dataset.id);
+  }
+  [grid, $('#populer')].forEach(function (b) {
+    if (b) b.addEventListener('click', kartTikla);
   });
-  panel.addEventListener('click', function (e) {
-    if (e.target.closest('[data-close]')) closePanel();
-  });
+
+  if (panel) {
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('[data-close]')) closePanel();
+      var ek = e.target.closest('[data-ac="ekle"]');
+      if (ek && ek.dataset.id) { window.SEPET.ekle(ek.dataset.id); sepetBildir(ek.dataset.id); }
+    });
+  }
+
+  /* sepete eklenince kisa bilgi */
+  var bildirZ;
+  function sepetBildir(id) {
+    var p = P.filter(function (x) { return x.id === id; })[0];
+    var el = $('#sepetBildir');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'sepetBildir';
+      el.className = 'sbild';
+      document.body.appendChild(el);
+    }
+    el.innerHTML = '<b>' + (p ? p.name : 'Ürün') + '</b> sepete eklendi' +
+      (p && p.box ? ' <i>(' + p.box + ' adet)</i>' : '') +
+      ' <a href="sepet.html">Sepete git →</a>';
+    el.classList.add('on');
+    clearTimeout(bildirZ);
+    bildirZ = setTimeout(function () { el.classList.remove('on'); }, 3800);
+  }
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (document.body.classList.contains('panel-open')) closePanel();
@@ -422,7 +506,7 @@
   }
 
   var form = $('#form'), note = $('#formNote');
-  form.addEventListener('submit', function (e) {
+  if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
     var d = new FormData(form), ok = true;
     /* WhatsApp'a gidiyor: yalnizca ad zorunlu, e-posta girildiyse gecerli olmali */
@@ -454,10 +538,10 @@
                 '_blank', 'noopener');
   });
 
-  form.addEventListener('input', function (e) {
+  if (form) form.addEventListener('input', function (e) {
     var f = e.target.closest('.field');
     if (f) f.classList.remove('is-bad');
-    note.textContent = '';
+    if (note) note.textContent = '';
   });
 
   /* WhatsApp bağlantıları — sitedeki tüm iletişim buraya gider, e-posta yok */
@@ -474,7 +558,7 @@
   });
 
   /* yıl */
-  $('#yil').textContent = new Date().getFullYear();
+  if ($('#yil')) $('#yil').textContent = new Date().getFullYear();
 
   /* iç bağlantılarda menüyü kapat + panel açıksa kapat */
   $$('a[href^="#"]').forEach(function (a) {
@@ -498,7 +582,21 @@
     var x = $('#stMax');     if (x) x.textContent = '–' + hi + ' cc';
   }
 
-  function boot() { render(); buildRail(); buildSelect(); buildTicker(); buildStats(); }
+  /* ---------------- sepet rozeti ---------------- */
+  function rozetTazele() {
+    if (!window.SEPET) return;
+    var d = window.SEPET.dokum();
+    $$('[data-sepet-say]').forEach(function (el) {
+      el.textContent = d.kalem;
+      el.hidden = d.kalem === 0;
+    });
+  }
+  document.addEventListener('sepet:degisti', rozetTazele);
+
+  function boot() {
+    render(); renderPopuler(); buildRail(); buildSelect(); buildTicker(); buildStats();
+    rozetTazele();
+  }
   boot();
 
   fetch('api/products', { cache: 'no-store' })

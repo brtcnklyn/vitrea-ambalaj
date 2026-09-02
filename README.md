@@ -122,8 +122,8 @@ PNG kopyaları `assets/img/logo-*.png`.
 
 ## Notlar
 
-- Ölçü, hacim ve koli bilgileri tedarikçi kataloğundaki teknik verilerden alınmıştır;
-  siteye fiyat konulmamıştır.
+- Ölçü, hacim ve koli bilgileri tedarikçi kataloğundaki teknik verilerden alınmıştır.
+  Sitede **perakende satış fiyatı** görünür; alış fiyatı yalnızca panelde durur.
 - Ürün ve sunum fotoğrafları tedarikçi kaynaklıdır. Kendi çekimlerinizi yaptırana kadar
   kullanmak isterseniz tedarikçiden yazılı onay almanız yerinde olur.
 - Panel yerel ağ içinde kullanılmak üzere tasarlandı: şifre düz metin tutulur ve trafik
@@ -131,6 +131,47 @@ PNG kopyaları `assets/img/logo-*.png`.
   ve şifreyi mutlaka değiştirin.
 - Form gönderimi arka uç gerektirmez; alanları mesaja dizip WhatsApp'ı açar. Bu yüzden
   GitHub Pages'teki statik sitede de sorunsuz çalışır.
+
+## Sayfalar
+
+| Adres | İçerik |
+|---|---|
+| `index.html` | Ana sayfa: hero, **popüler ürünler**, kristal etki, film, iletişim |
+| `urunler.html` | Tüm koleksiyon: filtreler, fiyatlar, sepete ekle |
+| `hakkimizda.html` | Yaklaşım, malzeme, kullanım, süreç, S.S.S. |
+| `sepet.html` | Sepet, üye/misafir seçimi, sipariş formu |
+| `hesap.html` | Giriş / kayıt, siparişlerim, üyeliksiz sipariş takibi |
+
+Ürün detayı ayrı sayfa değil; her sayfada kartın üstüne tıklayınca açılan yan panelde
+gösterilir (tasarım bu şekilde kurgulanmıştı, korundu).
+
+## Sunucu var / yok ayrımı
+
+`assets/js/ortam.js` açılışta `api/durum` adresini yoklar:
+
+- **Sunucu çalışıyorsa** (kendi bilgisayarınızda `node server.js`): üyelik, sipariş kaydı ve
+  sipariş takibi açılır. `<html>` etiketine `srv` sınıfı eklenir.
+- **GitHub Pages'te** bu adres 404 döner: `srv-only` sınıflı her şey (Hesabım bağlantısı,
+  "Üye olarak devam et", siparişlerim) gizlenir. Sepet ve sipariş yine çalışır, sadece
+  WhatsApp'a mesaj olarak gider.
+
+Yani canlı sitede müşteri sepet kurar, "Üye olmadan devam et" ile bilgilerini girer ve
+sipariş WhatsApp'ta açılır. Üyelik/sipariş takibi ancak site bir sunucuya taşınırsa açılır.
+
+## Fiyatlar
+
+Sitede görünen fiyat **perakende satış fiyatıdır**; alış fiyatı hiçbir zaman siteye çıkmaz.
+
+- Panel → **Satış Fiyatları**: her ürünün sitede görünecek fiyatı. Boş bırakılırsa Mayer
+  alışından iskonto + kâr marjıyla otomatik hesaplanır; elle yazılan fiyat hesabı geçersiz
+  kılar ("otomatiğe dön" ile geri alınır). **Popüler** kutusu ana sayfadaki şeridi belirler.
+- Panel → **Alış Fiyatları**: Mayer kataloğu (yalnızca yerelde). "Mayer'den güncel fiyatları
+  çek" düğmesi canlı kataloğu okur, değişenleri gösterir, onaylayınca kaydeder.
+- Fiyat değiştiğinde `assets/js/products.js` otomatik yenilenir; siteye yansıması için
+  yayına almanız (`git add -A; git commit; git push`) yeterlidir.
+
+Mayer kategorileri: `path=81` (sütlü tatlı ambalajları) + `path=83` (kase, bal kabı,
+sunum kapları). Yeni kategori eklemek için `server.js` içindeki `MAYER_PATHS` dizisi.
 
 ## Fiyat sayfaları (yalnızca yerelde)
 

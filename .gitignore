@@ -32,6 +32,15 @@ admin.html
 assets/css/admin.css
 assets/js/admin.js
 assets/js/admin-fiyat.js
+assets/js/admin-satis.js
 panel-baslat.bat
 panel-baslat.vbs
 assets/img/panel.ico
+
+# satış fiyatı seçimleri ve müşteri siparişleri — kişisel veri, yayınlanmaz
+# (satış fiyatları siteye assets/js/products.js üzerinden zaten gidiyor)
+data/satis-fiyat.json
+data/siparisler.json
+
+# Instagram kiti — yayina gerek yok, yerelde dursun
+instagram/

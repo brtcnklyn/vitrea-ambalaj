@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ürünler — VITREAPLAS Sütlü Tatlı Ambalajları</title>
+<meta name="description" content="Sütlü tatlı, salata ve sunum ambalajlarının tamamı: kase, bardak, kare ve dikdörtgen formlar. Ölçü, koli adedi ve güncel fiyatlarıyla.">
+<meta name="theme-color" content="#0C0C0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230C0C0E'/><path d='M32 10 L54 32 L32 54 L10 32 Z' stroke='%23F2EFE9' stroke-width='3' fill='none'/><path d='M32 48 L18 34 L46 34 Z' fill='%23C0703C'/></svg>">
+<script src="assets/js/ortam.js"></script>
+</head>
+<body class="sayfa">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav is-solid" id="nav">
+  <div class="nav__in">
+    <a href="index.html" class="brand" aria-label="VITREAPLAS ana sayfa">
+      <img class="brand__logo" src="assets/img/logo-mark.svg" alt="" aria-hidden="true">
+      <span class="brand__txt">VITREA<b>PLAS</b></span>
+    </a>
+    <nav class="nav__links" aria-label="Ana menü">
+      <a href="urunler.html" class="is-now">Ürünler</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="hakkimizda.html#malzeme">Malzeme</a>
+      <a href="hakkimizda.html#sss">S.S.S.</a>
+      <a href="index.html#iletisim">İletişim</a>
+    </nav>
+    <div class="nav__right">
+      <a href="hesap.html" class="nav__lnk srv-only">Hesabım</a>
+      <a href="sepet.html" class="nav__sepet">Sepet<b data-sepet-say hidden>0</b></a>
+      <button class="burger" id="burger" aria-label="Menüyü aç" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__in">
+    <a href="index.html"><i>01</i> Ana sayfa</a>
+    <a href="urunler.html"><i>02</i> Ürünler</a>
+    <a href="hakkimizda.html"><i>03</i> Hakkımızda</a>
+    <a href="sepet.html"><i>04</i> Sepet</a>
+    <a href="hesap.html" class="srv-only"><i>05</i> Hesabım</a>
+    <a href="index.html#iletisim"><i>06</i> İletişim</a>
+  </div>
+</div>
+
+<main id="top">
+
+<section class="sayfa__bas">
+  <div class="wrap">
+    <p class="eyebrow reveal">Koleksiyon</p>
+    <h1 class="big reveal"><span id="collCount">54</span> form,<br><em>tek bir dil.</em></h1>
+    <p class="sayfa__lead reveal">Tüm ölçüler mm, hacimler cc. Fiyatlar adet başına ve KDV hariçtir;
+      satış birimi kolidir, koli içi adet her kartta yazılıdır. Karma koli ve özel adet
+      talepleriniz için WhatsApp'tan yazın.</p>
+  </div>
+</section>
+
+<section class="section--paper coll coll--sayfa" id="koleksiyon">
+  <div class="wrap">
+    <div class="filters" id="filters">
+      <div class="filters__row" data-group="cat">
+        <button class="chip is-on" data-val="all">Tümü</button>
+        <button class="chip" data-val="kase">Kase</button>
+        <button class="chip" data-val="bardak">Bardak &amp; Kadeh</button>
+        <button class="chip" data-val="kare">Kare Form</button>
+        <button class="chip" data-val="dikdortgen">Dikdörtgen</button>
+        <button class="chip" data-val="ozel">Özel Form</button>
+      </div>
+      <div class="filters__row filters__row--alt" data-group="vol">
+        <button class="chip is-on" data-val="all">Tüm hacimler</button>
+        <button class="chip" data-val="s">200 cc altı</button>
+        <button class="chip" data-val="m">200 – 300 cc</button>
+        <button class="chip" data-val="l">300 cc üstü</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <p class="grid__empty" id="gridEmpty" hidden>Bu filtrede ürün yok. Filtreyi genişletin.</p>
+  </div>
+</section>
+
+<section class="serit">
+  <div class="wrap serit__in">
+    <div>
+      <h2 class="mid">Aradığınız ölçü listede yok mu?</h2>
+      <p>Mayer kataloğundaki tüm modellere ulaşabiliyoruz. İhtiyacınızı yazın, uygun formu
+        ve koli fiyatını aynı gün iletelim.</p>
+    </div>
+    <a class="btn" id="waColl" href="index.html#iletisim">WhatsApp'tan sorun</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__mark">VITREAPLAS</div>
+    <div class="foot__cols">
+      <div><span>Ürünler</span>
+        <a href="urunler.html">Tüm koleksiyon</a><a href="sepet.html">Sepetim</a>
+        <a href="hesap.html" class="srv-only">Siparişlerim</a></div>
+      <div><span>Kurumsal</span>
+        <a href="hakkimizda.html">Hakkımızda</a><a href="hakkimizda.html#malzeme">Malzeme</a>
+        <a href="hakkimizda.html#surec">Süreç</a><a href="hakkimizda.html#sss">S.S.S.</a></div>
+      <div><span>İletişim</span>
+        <a id="waFoot" href="#" target="_blank" rel="noopener">WhatsApp'tan yazın</a>
+        <a href="tel:+905348433188">+90 534 843 31 88</a></div>
+    </div>
+    <div class="foot__bar">
+      <p>© <span id="yil">2026</span> VITREAPLAS Ambalaj · vitreaplas.com. Tüm hakları saklıdır.</p>
+      <p>Görsellerdeki tatlılar sunum amaçlıdır.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ ÜRÜN PANELİ ============ -->
+<div class="panel" id="panel" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Ürün detayı">
+  <div class="panel__bg" data-close></div>
+  <aside class="panel__box">
+    <button class="panel__x" data-close aria-label="Kapat">&times;</button>
+    <div class="panel__body" id="panelBody"></div>
+  </aside>
+</div>
+
+<!-- ============ HESAP ============ -->
+<div class="acct" id="acct" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Hesap">
+  <div class="acct__bg" data-aclose></div>
+  <div class="acct__box">
+    <button class="panel__x" data-aclose aria-label="Kapat">&times;</button>
+    <div class="acct__tabs">
+      <button class="is-on" data-atab="login">Giriş yap</button>
+      <button data-atab="register">Hesap aç</button>
+    </div>
+    <form id="acctForm" novalidate>
+      <label class="field acct__adfield" hidden><span>Ad Soyad</span><input name="ad" autocomplete="name"></label>
+      <label class="field"><span>E-posta</span><input name="email" type="email" required autocomplete="email"></label>
+      <label class="field"><span>Şifre</span><input name="password" type="password" required autocomplete="current-password"></label>
+      <button type="submit" class="btn btn--light" style="width:100%">Giriş yap</button>
+      <p class="form__note" id="acctNote" role="status"></p>
+    </form>
+    <p class="acct__hint">Yorum yazabilmek için hesabınızın <b>satın alma kaydıyla eşleştirilmesi</b> gerekir;
+      siparişiniz varsa WhatsApp'tan bize hesabınızın e-postasını yazmanız yeterli.</p>
+  </div>
+</div>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/reviews.js"></script>
+<script src="assets/js/sepet.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

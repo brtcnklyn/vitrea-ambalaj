@@ -57,9 +57,15 @@ const MAYER_FILE  = path.join(DATA_DIR, 'mayer-fiyat.json');
 const AYAR_FILE   = path.join(DATA_DIR, 'fiyat-ayar.json');
 const LISTE_FILE  = path.join(DATA_DIR, 'fiyat-listeleri.json');
 
+/* satis fiyatlari + populer secimi -> BUNLAR SITEDE YAYINLANIR (perakende fiyat) */
+const SATIS_FILE   = path.join(DATA_DIR, 'satis-fiyat.json');
+const SIPARIS_FILE = path.join(DATA_DIR, 'siparisler.json');
+
 let mayer  = readJSON(MAYER_FILE,  { guncelleme: '', kaynak: '', kalemler: [] });
 let ayar   = readJSON(AYAR_FILE,   null);
 let liste  = readJSON(LISTE_FILE,  { listeler: [] });
+let satis    = readJSON(SATIS_FILE,   { urunler: {} });   // id -> {fiyat, elle, populer}
+let siparis  = readJSON(SIPARIS_FILE, { siparisler: [] });
 
 if (!ayar) {
   ayar = { kdv: 20, iskonto: 35, kar: 50, yuvarla: true };   // varsayilan hesap ayarlari
@@ -68,6 +74,102 @@ if (!ayar) {
 function saveMayer()  { writeJSON(MAYER_FILE, mayer); }
 function saveAyar()   { writeJSON(AYAR_FILE, ayar); }
 function saveListe()  { writeJSON(LISTE_FILE, liste); }
+function saveSatis()   { writeJSON(SATIS_FILE, satis); syncSeed(); }
+function saveSiparis() { writeJSON(SIPARIS_FILE, siparis); }
+
+/* ---- Mayer katalogunu canli cekip ayristir ----
+   Kaynak: kategori listesi. Kart yapisi:
+   <div class="name"><a ...product_id=N>BASLIK</a></div> ... <div class="price">FIYAT</div> */
+/* 81 = sütlü tatlı ambalajları, 83 = kase / bal kabı / sunum kapları */
+const MAYER_PATHS = ['81', '83'];
+const MAYER_URL = MAYER_PATHS
+  .map(p => 'https://mayerplastik.com.tr/index.php?route=product/category&path=' + p + '&limit=200')
+  .join(' + ');
+const MAYER_UA  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
+                  '(KHTML, like Gecko) Chrome/125.0 Safari/537.36';
+const HARF_TR = 'A-Za-zÇĞİÖŞÜçğıöşü';
+
+function metinTemizle(s) {
+  return s.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ')
+          .replace(/\s+/g, ' ').trim();
+}
+function fiyatOku(s) {
+  const m = /([\d.]+,\d{2})\s*TL/.exec(s);
+  return m ? parseFloat(m[1].replace(/\./g, '').replace(',', '.')) : null;
+}
+
+async function mayerSayfa(path) {
+  const u = 'https://mayerplastik.com.tr/index.php?route=product/category&path=' + path + '&limit=200';
+  const r = await fetch(u, {
+    headers: { 'User-Agent': MAYER_UA, 'Accept-Language': 'tr-TR,tr;q=0.9' },
+    signal: AbortSignal.timeout(30000)
+  });
+  if (!r.ok) throw new Error('Mayer sitesi ' + r.status + ' döndü (path=' + path + ').');
+  return r.text();
+}
+
+async function mayerCek() {
+  const sayfalar = await Promise.all(MAYER_PATHS.map(mayerSayfa));
+  const html = sayfalar.join('\n');
+
+  const kartRe = /<div class="name"><a href="[^"]*product_id=(\d+)[^"]*">([\s\S]*?)<\/a><\/div>[\s\S]*?<div class="price">([\s\S]*?)<\/div>/g;
+  const kapakRe = new RegExp('(DÜZ|BOMBE)?\\s*KAPAK(?![' + HARF_TR + '])', 'i');
+  const bulunan = new Map();
+  let m;
+
+  while ((m = kartRe.exec(html)) !== null) {
+    const baslik = metinTemizle(m[2]);
+    const fiyat  = fiyatOku(metinTemizle(m[3]));
+    const kk = /^MAY\s*(\d+)\s*([\s\S]*)$/i.exec(baslik);
+    if (!kk || fiyat == null) continue;
+
+    const kod = 'MAY ' + kk[1];
+    const kalan = kk[2];
+    const adet = /KOL[İI]\s*İ?I?Ç[İI]\s*(\d+)\s*ADET/i.exec(kalan);
+    const cc   = /(\d+)\s*CC/i.exec(kalan);
+    const kap  = kapakRe.exec(kalan);
+
+    let ad = kalan;
+    [/\(YEN[İI]\)/ig, /\d+\s*CC/ig, new RegExp(kapakRe.source, 'ig'),
+     /KAPAKLI KUTU/ig, /KOL[İI][\s\S]*$/i, /^[-\s]+/]
+      .forEach(p => { ad = ad.replace(p, ' '); });
+    ad = ad.replace(/\s+/g, ' ').replace(/^[-\s]+|[-\s]+$/g, '');
+
+    const tip = kap ? 'kapak' : 'govde';
+    const varyant = (kap && kap[1]) ? kap[1].toUpperCase() : '';
+    const anahtar = kod + '|' + tip + '|' + varyant;
+    if (bulunan.has(anahtar)) continue;
+    bulunan.set(anahtar, {
+      pid: parseInt(m[1], 10), kod, ad: ad || '—', tip, varyant,
+      cc: cc ? parseInt(cc[1], 10) : null,
+      koliAdet: adet ? parseInt(adet[1], 10) : null,
+      koliFiyat: fiyat, baslik
+    });
+  }
+  if (!bulunan.size) throw new Error('Sayfa okundu ama ürün bulunamadı — site yapısı değişmiş olabilir.');
+  return bulunan;
+}
+
+/* mevcut veri ile karsilastir: yeni / degisen / listeden dusen */
+function mayerFark(bulunan) {
+  const key = k => k.kod + '|' + k.tip + '|' + (k.varyant || '');
+  const eski = new Map(mayer.kalemler.map(k => [key(k), k]));
+  const yeni = [], degisen = [], dusen = [];
+
+  bulunan.forEach((y, a) => {
+    const e = eski.get(a);
+    if (!e) { yeni.push(y); return; }
+    if (e.koliFiyat !== y.koliFiyat || e.koliAdet !== y.koliAdet) {
+      degisen.push({
+        kod: y.kod, ad: y.ad, tip: y.tip, varyant: y.varyant,
+        eskiFiyat: e.koliFiyat, yeniFiyat: y.koliFiyat,
+        eskiAdet: e.koliAdet, yeniAdet: y.koliAdet
+      });
+    }
+  });
+  eski.forEach((e, a) => { if (!bulunan.has(a)) dusen.push(e); });
+  return { yeni, degisen, dusen };
+}
 
 /* Mayer koli fiyatindan bizim satis fiyatimiz:
    mayerAdet (KDV dahil) -> KDV cikar -> iskonto uygula -> kar marji ekle -> yuvarla */
@@ -87,14 +189,46 @@ function hesapla(koliFiyat, koliAdet, a) {
 
 /* products.json degistiginde statik yedegi de tazele:
    boylece sunucu kapaliyken index.html yine calisir  */
+/* Bir urunun SATIS fiyati (adet, KDV haric).
+   Once elle girilen fiyat, yoksa Mayer alisindan iskonto+kar ile hesaplanan. */
+function satisFiyat(p) {
+  const s = satis.urunler[p.id] || {};
+  if (s.elle && typeof s.fiyat === 'number' && s.fiyat > 0) {
+    return { haric: s.fiyat, elle: true };
+  }
+  const kod = p.mayerKod || p.code;
+  const k = mayer.kalemler.find(x => x.kod === kod && x.tip === 'govde');
+  const c = k && hesapla(k.koliFiyat, k.koliAdet, ayar);
+  return c ? { haric: c.satisHaric, elle: false } : { haric: 0, elle: false };
+}
+
+/* Siteye gidecek urun listesi: yalnizca PERAKENDE satis fiyati eklenir;
+   alis fiyati / iskonto / kar ASLA disari cikmaz.
+   Hem statik yedek (products.js) hem /api/products bunu kullanir ki
+   sunucu acikken ve kapaliyken site ayni veriyi gorsun. */
+function yayinUrunleri() {
+  return db.products.filter(p => p.active !== false).map(p => {
+    const f = satisFiyat(p);
+    const s = satis.urunler[p.id] || {};
+    return {
+      ...p,
+      fiyat: Math.round(f.haric * 100) / 100,                          // adet, KDV haric
+      fiyatKdv: Math.round(f.haric * (1 + ayar.kdv / 100) * 100) / 100, // adet, KDV dahil
+      populer: s.populer === true
+    };
+  });
+}
+
 function syncSeed() {
-  const active = db.products.filter(p => p.active !== false);
+  const active = yayinUrunleri();
   const out =
     '/* VITREAPLAS — otomatik uretilir, elle duzenlemeyin.\n' +
     '   Kaynak: data/products.json  ·  Duzenleme: /admin\n' +
+    '   Fiyatlar perakende satis fiyatidir; alis fiyati bu dosyada YOKTUR.\n' +
     '   Uretim: ' + new Date().toISOString() + ' */\n' +
     'window.VITREA_PRODUCTS = ' + JSON.stringify(active, null, 2) + ';\n\n' +
-    'window.VITREA_USES = ' + JSON.stringify(db.uses, null, 2) + ';\n';
+    'window.VITREA_USES = ' + JSON.stringify(db.uses, null, 2) + ';\n\n' +
+    'window.VITREA_KDV = ' + (ayar.kdv || 20) + ';\n';
   fs.writeFileSync(SEED_FILE, out, 'utf8');
   syncReviewsSeed();
 }
@@ -264,10 +398,18 @@ const server = http.createServer(async (req, res) => {
   const url = req.url || '/';
 
   /* --- herkese acik --- */
+
+  /* Site "sunucu var mi" diye buraya bakar. GitHub Pages'te 404 doner,
+     uyelik / siparis bolumleri gizlenir; burada 200 doner, acilir. */
+  if (url === '/api/durum') {
+    return send(res, 200, { ok: true, uyelik: true, siparis: true, kdv: ayar.kdv });
+  }
+
   if (url === '/api/products') {
     return send(res, 200, {
-      products: db.products.filter(p => p.active !== false),
-      uses: db.uses
+      products: yayinUrunleri(),
+      uses: db.uses,
+      kdv: ayar.kdv
     });
   }
 
@@ -320,6 +462,81 @@ const server = http.createServer(async (req, res) => {
     const u = userAuthed(req);
     if (!u) return send(res, 401, { error: 'Oturum yok.' });
     return send(res, 200, { ad: u.ad, email: u.email, purchased: u.purchased });
+  }
+
+  /* --- SIPARIS: musteri tarafi --- */
+
+  /* sipariş oluştur — üyelik zorunlu degil (misafir siparisi serbest) */
+  if (url === '/api/siparis' && req.method === 'POST') {
+    try {
+      const b = await readBody(req, 256 * 1024);
+      const u = userAuthed(req);                       // varsa uye, yoksa misafir
+      const kalemler = (Array.isArray(b.kalemler) ? b.kalemler : []).slice(0, 100)
+        .map(k => {
+          const p = db.products.find(x => x.id === k.id);
+          if (!p) return null;
+          const adet = Math.max(1, Math.min(100000, parseInt(k.adet, 10) || 0));
+          const birim = satisFiyat(p).haric;
+          return { id: p.id, kod: p.code, ad: p.name, vol: p.vol,
+                   adet, birim: Math.round(birim * 100) / 100,
+                   tutar: Math.round(birim * adet * 100) / 100 };
+        }).filter(Boolean);
+
+      if (!kalemler.length) return send(res, 400, { error: 'Sepetiniz boş.' });
+
+      const ad   = String(b.ad || '').trim();
+      const tel  = String(b.tel || '').trim();
+      if (ad.length < 2)  return send(res, 400, { error: 'Ad Soyad girin.' });
+      if (tel.length < 7) return send(res, 400, { error: 'Telefon girin.' });
+
+      const araToplam = kalemler.reduce((t, k) => t + k.tutar, 0);
+      const kdvTutar  = araToplam * (ayar.kdv / 100);
+      const no = 'VP' + new Date().toISOString().slice(2, 10).replace(/-/g, '') + '-' +
+                 crypto.randomBytes(2).toString('hex').toUpperCase();
+
+      const kayit = {
+        no,
+        userId: u ? u.id : null,
+        ad, tel,
+        email: String(b.email || '').trim().slice(0, 120),
+        firma: String(b.firma || '').trim().slice(0, 120),
+        adres: String(b.adres || '').trim().slice(0, 600),
+        not:   String(b.not || '').trim().slice(0, 600),
+        kalemler,
+        araToplam: Math.round(araToplam * 100) / 100,
+        kdv: ayar.kdv,
+        kdvTutar: Math.round(kdvTutar * 100) / 100,
+        toplam: Math.round((araToplam + kdvTutar) * 100) / 100,
+        durum: 'Alındı',
+        odeme: 'WhatsApp ile mutabakat',
+        tarih: new Date().toISOString(),
+        gecmis: [{ durum: 'Alındı', tarih: new Date().toISOString() }]
+      };
+      siparis.siparisler.unshift(kayit);
+      saveSiparis();
+      return send(res, 200, { ok: true, siparis: kayit });
+    } catch (e) { return send(res, 400, { error: e.message }); }
+  }
+
+  /* uyenin kendi siparisleri */
+  if (url === '/api/siparislerim') {
+    const u = userAuthed(req);
+    if (!u) return send(res, 401, { error: 'Siparişlerinizi görmek için giriş yapın.' });
+    return send(res, 200, {
+      siparisler: siparis.siparisler.filter(s => s.userId === u.id)
+    });
+  }
+
+  /* siparis no + telefon ile takip (uyelik gerekmez) */
+  if (url.startsWith('/api/siparis-takip')) {
+    const q = new URL(url, 'http://x').searchParams;
+    const no  = String(q.get('no') || '').trim().toUpperCase();
+    const tel = String(q.get('tel') || '').replace(/\D/g, '');
+    const s = siparis.siparisler.find(x => x.no === no);
+    if (!s || !tel || s.tel.replace(/\D/g, '').slice(-7) !== tel.slice(-7)) {
+      return send(res, 404, { error: 'Sipariş bulunamadı. Numara ve telefonu kontrol edin.' });
+    }
+    return send(res, 200, { siparis: s });
   }
 
   /* yorum gonder — yalnizca o urunu satin almis musteriler */
@@ -481,6 +698,7 @@ const server = http.createServer(async (req, res) => {
           yuvarla: b.yuvarla !== false
         };
         saveAyar();
+        syncSeed();                     // satis fiyatlari degisti -> statik yedegi tazele
         return send(res, 200, { ok: true, ayar });
       }
 
@@ -495,7 +713,115 @@ const server = http.createServer(async (req, res) => {
         if (!isNaN(a) && a > 0)  k.koliAdet  = a;
         mayer.guncelleme = new Date().toISOString().slice(0, 10);
         saveMayer();
+        syncSeed();
         return send(res, 200, { ok: true, kalem: { ...k, hesap: hesapla(k.koliFiyat, k.koliAdet, ayar) } });
+      }
+
+      /* Mayer'den canli fiyat cek.
+         {uygula:false} -> yalnizca farki dondurur (onizleme)
+         {uygula:true}  -> farki uygular ve kaydeder */
+      if (url === '/api/admin/fiyat-cek' && req.method === 'POST') {
+        const b = await readBody(req, 4096);
+        let bulunan;
+        try {
+          bulunan = await mayerCek();
+        } catch (e) {
+          return send(res, 502, { error: 'Mayer sitesine ulaşılamadı: ' + e.message });
+        }
+        const fark = mayerFark(bulunan);
+
+        if (!b.uygula) {
+          return send(res, 200, { onizleme: true, bulunanSayi: bulunan.size, ...fark });
+        }
+
+        /* uygula: fiyat ve koli adedini guncelle, yeni kalemleri ekle.
+           Listeden dusenler SILINMEZ — elle satilan/eski urunler kaybolmasin. */
+        const key = k => k.kod + '|' + k.tip + '|' + (k.varyant || '');
+        const idx = new Map(mayer.kalemler.map((k, i) => [key(k), i]));
+        bulunan.forEach((y, a) => {
+          if (idx.has(a)) {
+            const k = mayer.kalemler[idx.get(a)];
+            k.koliFiyat = y.koliFiyat;
+            k.koliAdet  = y.koliAdet;
+            k.ad = y.ad; k.cc = y.cc; k.baslik = y.baslik; k.pid = y.pid;
+          } else {
+            mayer.kalemler.push(y);
+          }
+        });
+        mayer.kalemler.sort((a, c) =>
+          (parseInt(a.kod.split(' ')[1], 10) - parseInt(c.kod.split(' ')[1], 10)) ||
+          a.tip.localeCompare(c.tip) || (a.varyant || '').localeCompare(c.varyant || ''));
+        mayer.guncelleme = new Date().toISOString().slice(0, 10);
+        mayer.kaynak = MAYER_URL;
+        saveMayer();
+        syncSeed();
+        return send(res, 200, {
+          ok: true, guncelleme: mayer.guncelleme, bulunanSayi: bulunan.size, ...fark
+        });
+      }
+
+      /* --- SATIS FIYATLARI (sitede gorunen) + populer secimi --- */
+      if (url === '/api/admin/satis' && req.method === 'GET') {
+        return send(res, 200, {
+          kdv: ayar.kdv,
+          urunler: db.products.map(p => {
+            const f = satisFiyat(p);
+            const s = satis.urunler[p.id] || {};
+            const kod = p.mayerKod || p.code;
+            const k = mayer.kalemler.find(x => x.kod === kod && x.tip === 'govde');
+            const c = k && hesapla(k.koliFiyat, k.koliAdet, ayar);
+            return {
+              id: p.id, code: p.code, name: p.name, vol: p.vol, cat: p.cat,
+              img: p.img, box: p.box, active: p.active !== false,
+              hesaplanan: c ? Math.round(c.satisHaric * 100) / 100 : null,
+              fiyat: Math.round(f.haric * 100) / 100,
+              elle: f.elle, populer: s.populer === true
+            };
+          })
+        });
+      }
+
+      /* tek urunun satis fiyatini / populer isaretini degistir */
+      if (url === '/api/admin/satis-urun' && req.method === 'POST') {
+        const b = await readBody(req, 8192);
+        const p = db.products.find(x => x.id === b.id);
+        if (!p) return send(res, 404, { error: 'Ürün bulunamadı.' });
+        const s = satis.urunler[p.id] || {};
+        if ('populer' in b) s.populer = b.populer === true;
+        if ('elle' in b && b.elle === false) { delete s.fiyat; s.elle = false; }
+        else if ('fiyat' in b) {
+          const f = parseFloat(b.fiyat);
+          if (isNaN(f) || f < 0) return send(res, 400, { error: 'Geçersiz fiyat.' });
+          s.fiyat = Math.round(f * 100) / 100;
+          s.elle = true;
+        }
+        satis.urunler[p.id] = s;
+        saveSatis();
+        const y = satisFiyat(p);
+        return send(res, 200, {
+          ok: true,
+          urun: { id: p.id, fiyat: Math.round(y.haric * 100) / 100,
+                  elle: y.elle, populer: s.populer === true }
+        });
+      }
+
+      /* --- SIPARISLER --- */
+      if (url === '/api/admin/siparisler' && req.method === 'GET') {
+        return send(res, 200, { siparisler: siparis.siparisler });
+      }
+      if (url.startsWith('/api/admin/siparis-durum/') && req.method === 'POST') {
+        const no = decodeURIComponent(url.split('/').pop());
+        const b = await readBody(req, 4096);
+        const s = siparis.siparisler.find(x => x.no === no);
+        if (!s) return send(res, 404, { error: 'Sipariş bulunamadı.' });
+        const gecerli = ['Alındı', 'Hazırlanıyor', 'Kargoda', 'Teslim edildi', 'İptal'];
+        if (gecerli.indexOf(b.durum) < 0) return send(res, 400, { error: 'Geçersiz durum.' });
+        s.durum = b.durum;
+        s.gecmis = s.gecmis || [];
+        s.gecmis.push({ durum: b.durum, tarih: new Date().toISOString() });
+        if (b.kargo) s.kargo = String(b.kargo).slice(0, 120);
+        saveSiparis();
+        return send(res, 200, { ok: true, siparis: s });
       }
 
       /* --- FIYAT: kaydedilmis musteri listeleri --- */

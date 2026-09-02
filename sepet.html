@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sepetim — VITREAPLAS</title>
+<meta name="description" content="Sepetinizdeki ambalajları gözden geçirin ve siparişinizi tamamlayın.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C0C0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230C0C0E'/><path d='M32 10 L54 32 L32 54 L10 32 Z' stroke='%23F2EFE9' stroke-width='3' fill='none'/><path d='M32 48 L18 34 L46 34 Z' fill='%23C0703C'/></svg>">
+<script src="assets/js/ortam.js"></script>
+</head>
+<body class="sayfa">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
+
+<header class="nav is-solid" id="nav">
+  <div class="nav__in">
+    <a href="index.html" class="brand" aria-label="VITREAPLAS ana sayfa">
+      <img class="brand__logo" src="assets/img/logo-mark.svg" alt="" aria-hidden="true">
+      <span class="brand__txt">VITREA<b>PLAS</b></span>
+    </a>
+    <nav class="nav__links" aria-label="Ana menü">
+      <a href="urunler.html">Ürünler</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="hakkimizda.html#malzeme">Malzeme</a>
+      <a href="hakkimizda.html#sss">S.S.S.</a>
+      <a href="index.html#iletisim">İletişim</a>
+    </nav>
+    <div class="nav__right">
+      <a href="hesap.html" class="nav__lnk srv-only">Hesabım</a>
+      <a href="sepet.html" class="nav__sepet is-now">Sepet<b data-sepet-say hidden>0</b></a>
+      <button class="burger" id="burger" aria-label="Menüyü aç" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__in">
+    <a href="index.html"><i>01</i> Ana sayfa</a>
+    <a href="urunler.html"><i>02</i> Ürünler</a>
+    <a href="hakkimizda.html"><i>03</i> Hakkımızda</a>
+    <a href="sepet.html"><i>04</i> Sepet</a>
+    <a href="hesap.html" class="srv-only"><i>05</i> Hesabım</a>
+    <a href="index.html#iletisim"><i>06</i> İletişim</a>
+  </div>
+</div>
+
+<main id="top">
+
+<section class="sayfa__bas sayfa__bas--dar">
+  <div class="wrap">
+    <p class="eyebrow reveal">Sipariş</p>
+    <h1 class="big reveal">Sepetim</h1>
+  </div>
+</section>
+
+<section class="section--paper sepet">
+  <div class="wrap sepet__in">
+
+    <!-- ---------- sol: kalemler ---------- -->
+    <div class="sepet__sol">
+      <div id="sepetBos" class="sepet__bos" hidden>
+        <h2 class="mid">Sepetiniz boş.</h2>
+        <p>Koleksiyondan ürün ekleyin; ölçüler, koli adetleri ve fiyatlar her kartta yazılı.</p>
+        <a class="btn" href="urunler.html">Ürünlere göz at</a>
+      </div>
+      <div id="sepetListe"></div>
+    </div>
+
+    <!-- ---------- sağ: özet + ödeme ---------- -->
+    <aside class="sepet__sag" id="sepetSag" hidden>
+      <div class="ozet">
+        <h2>Sipariş özeti</h2>
+        <dl class="ozet__satir"><dt>Ara toplam</dt><dd id="ozAra">—</dd></dl>
+        <dl class="ozet__satir"><dt>KDV (%<span id="ozKdvOran">20</span>)</dt><dd id="ozKdv">—</dd></dl>
+        <dl class="ozet__satir ozet__satir--top"><dt>Genel toplam</dt><dd id="ozTop">—</dd></dl>
+        <p class="ozet__not">Kargo dahildir. Fiyatlar sipariş anında teyit edilir.</p>
+      </div>
+
+      <!-- adım 1: nasıl devam edilecek -->
+      <div class="odeme" id="adim1">
+        <h3>Siparişi tamamla</h3>
+        <p class="odeme__not srv-only">Üye olursanız siparişlerinizi <b>Hesabım</b> sayfasından
+          takip edebilirsiniz. Üye olmadan da sipariş verebilirsiniz.</p>
+        <div class="odeme__sec">
+          <button class="btn btn--light srv-only" id="secUye">Üye olarak devam et</button>
+          <button class="btn" id="secMisafir">Üye olmadan devam et</button>
+        </div>
+      </div>
+
+      <!-- adım 2: teslimat bilgileri -->
+      <form class="odeme" id="adim2" hidden novalidate>
+        <h3>Teslimat bilgileri</h3>
+        <label class="field"><span>Ad Soyad *</span><input name="ad" required autocomplete="name"></label>
+        <label class="field"><span>Telefon *</span><input name="tel" required inputmode="tel" autocomplete="tel"></label>
+        <label class="field"><span>Firma</span><input name="firma" autocomplete="organization"></label>
+        <label class="field"><span>E-posta</span><input name="email" type="email" autocomplete="email"></label>
+        <label class="field"><span>Teslimat adresi</span><textarea name="adres" rows="3" autocomplete="street-address"></textarea></label>
+        <label class="field"><span>Sipariş notu</span><textarea name="not" rows="2"></textarea></label>
+
+        <p class="odeme__uyari">Ödeme şu an <b>WhatsApp üzerinden</b> alınıyor: siparişinizi
+          gönderdiğinizde bilgiler WhatsApp'ta açılır, ödemeyi birlikte netleştiriyoruz.
+          Online ödeme yakında eklenecek.</p>
+
+        <button type="submit" class="btn btn--light odeme__gonder">Siparişi gönder</button>
+        <button type="button" class="btn btn--ghost" id="geri">Geri</button>
+        <p class="form__note" id="odemeNot" role="status"></p>
+      </form>
+
+      <!-- adım 3: sonuç -->
+      <div class="odeme" id="adim3" hidden>
+        <h3>Siparişiniz alındı</h3>
+        <p class="odeme__no">Sipariş no: <b id="sipNo">—</b></p>
+        <p class="odeme__not" id="sipMesaj"></p>
+        <a class="btn btn--light" id="sipWa" target="_blank" rel="noopener" href="#">WhatsApp'ta aç</a>
+        <a class="btn btn--ghost srv-only" href="hesap.html">Siparişlerim</a>
+        <a class="btn btn--ghost" href="urunler.html">Alışverişe devam</a>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__mark">VITREAPLAS</div>
+    <div class="foot__cols">
+      <div><span>Ürünler</span>
+        <a href="urunler.html">Tüm koleksiyon</a><a href="sepet.html">Sepetim</a>
+        <a href="hesap.html" class="srv-only">Siparişlerim</a></div>
+      <div><span>Kurumsal</span>
+        <a href="hakkimizda.html">Hakkımızda</a><a href="hakkimizda.html#malzeme">Malzeme</a>
+        <a href="hakkimizda.html#surec">Süreç</a><a href="hakkimizda.html#sss">S.S.S.</a></div>
+      <div><span>İletişim</span>
+        <a id="waFoot" href="#" target="_blank" rel="noopener">WhatsApp'tan yazın</a>
+        <a href="tel:+905348433188">+90 534 843 31 88</a></div>
+    </div>
+    <div class="foot__bar">
+      <p>© <span id="yil">2026</span> VITREAPLAS Ambalaj · vitreaplas.com. Tüm hakları saklıdır.</p>
+      <p>Görsellerdeki tatlılar sunum amaçlıdır.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ HESAP ============ -->
+<div class="acct" id="acct" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Hesap">
+  <div class="acct__bg" data-aclose></div>
+  <div class="acct__box">
+    <button class="panel__x" data-aclose aria-label="Kapat">&times;</button>
+    <div class="acct__tabs">
+      <button class="is-on" data-atab="login">Giriş yap</button>
+      <button data-atab="register">Hesap aç</button>
+    </div>
+    <form id="acctForm" novalidate>
+      <label class="field acct__adfield" hidden><span>Ad Soyad</span><input name="ad" autocomplete="name"></label>
+      <label class="field"><span>E-posta</span><input name="email" type="email" required autocomplete="email"></label>
+      <label class="field"><span>Şifre</span><input name="password" type="password" required autocomplete="current-password"></label>
+      <button type="submit" class="btn btn--light" style="width:100%">Giriş yap</button>
+      <p class="form__note" id="acctNote" role="status"></p>
+    </form>
+    <p class="acct__hint">Hesabınızla siparişlerinizi takip edebilir, geçmiş siparişlerinizi
+      görebilirsiniz.</p>
+  </div>
+</div>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/sepet.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/sepet-sayfa.js"></script>
+</body>
+</html>

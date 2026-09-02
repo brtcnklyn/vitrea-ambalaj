@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hesabım — VITREAPLAS</title>
+<meta name="description" content="Hesabınıza giriş yapın, siparişlerinizi görün ve sipariş durumunuzu takip edin.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C0C0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230C0C0E'/><path d='M32 10 L54 32 L32 54 L10 32 Z' stroke='%23F2EFE9' stroke-width='3' fill='none'/><path d='M32 48 L18 34 L46 34 Z' fill='%23C0703C'/></svg>">
+<script src="assets/js/ortam.js"></script>
+</head>
+<body class="sayfa">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
+
+<header class="nav is-solid" id="nav">
+  <div class="nav__in">
+    <a href="index.html" class="brand" aria-label="VITREAPLAS ana sayfa">
+      <img class="brand__logo" src="assets/img/logo-mark.svg" alt="" aria-hidden="true">
+      <span class="brand__txt">VITREA<b>PLAS</b></span>
+    </a>
+    <nav class="nav__links" aria-label="Ana menü">
+      <a href="urunler.html">Ürünler</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="hakkimizda.html#malzeme">Malzeme</a>
+      <a href="hakkimizda.html#sss">S.S.S.</a>
+      <a href="index.html#iletisim">İletişim</a>
+    </nav>
+    <div class="nav__right">
+      <a href="hesap.html" class="nav__lnk is-now">Hesabım</a>
+      <a href="sepet.html" class="nav__sepet">Sepet<b data-sepet-say hidden>0</b></a>
+      <button class="burger" id="burger" aria-label="Menüyü aç" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__in">
+    <a href="index.html"><i>01</i> Ana sayfa</a>
+    <a href="urunler.html"><i>02</i> Ürünler</a>
+    <a href="hakkimizda.html"><i>03</i> Hakkımızda</a>
+    <a href="sepet.html"><i>04</i> Sepet</a>
+    <a href="hesap.html"><i>05</i> Hesabım</a>
+    <a href="index.html#iletisim"><i>06</i> İletişim</a>
+  </div>
+</div>
+
+<main id="top">
+
+<section class="sayfa__bas sayfa__bas--dar">
+  <div class="wrap">
+    <p class="eyebrow reveal">Hesap</p>
+    <h1 class="big reveal" id="hesapBaslik">Hesabım</h1>
+  </div>
+</section>
+
+<section class="section--paper hesap">
+  <div class="wrap hesap__in">
+
+    <!-- sunucu yoksa -->
+    <div class="hesap__kapali" id="hesapKapali" hidden>
+      <h2 class="mid">Üyelik şu an kapalı.</h2>
+      <p>Siparişlerinizi WhatsApp üzerinden alıyoruz; üyelik ve online sipariş takibi
+        yakında açılacak. Bu arada sipariş durumunuzu WhatsApp'tan sorabilirsiniz.</p>
+      <a class="btn" id="waKapali" href="#" target="_blank" rel="noopener">WhatsApp'tan sorun</a>
+    </div>
+
+    <!-- giriş / kayıt -->
+    <div class="hesap__giris srv-only" id="hesapGiris" hidden>
+      <div class="hesap__kart">
+        <div class="acct__tabs" id="hTabs">
+          <button class="is-on" data-htab="login">Giriş yap</button>
+          <button data-htab="register">Hesap aç</button>
+        </div>
+        <form id="hForm" novalidate>
+          <label class="field" id="hAdAlan" hidden><span>Ad Soyad</span><input name="ad" autocomplete="name"></label>
+          <label class="field"><span>E-posta</span><input name="email" type="email" required autocomplete="email"></label>
+          <label class="field"><span>Şifre</span><input name="password" type="password" required autocomplete="current-password"></label>
+          <button type="submit" class="btn btn--light" style="width:100%">Giriş yap</button>
+          <p class="form__note" id="hNot" role="status"></p>
+        </form>
+      </div>
+
+      <div class="hesap__kart">
+        <h3>Üye değil misiniz?</h3>
+        <p>Sipariş numaranız ve telefonunuzla siparişinizi üye olmadan da takip edebilirsiniz.</p>
+        <form id="takipForm" novalidate>
+          <label class="field"><span>Sipariş no</span><input name="no" placeholder="VP260901-A1B2" required></label>
+          <label class="field"><span>Telefon</span><input name="tel" inputmode="tel" required></label>
+          <button type="submit" class="btn">Siparişi sorgula</button>
+          <p class="form__note" id="takipNot" role="status"></p>
+        </form>
+        <div id="takipSonuc"></div>
+      </div>
+    </div>
+
+    <!-- giriş yapılmış -->
+    <div class="hesap__panel" id="hesapPanel" hidden>
+      <div class="hesap__ust">
+        <div>
+          <h2 class="mid" id="hAd">—</h2>
+          <p id="hMail">—</p>
+        </div>
+        <button class="btn btn--ghost btn--sm" id="hCikis">Çıkış yap</button>
+      </div>
+      <h3 class="hesap__h3">Siparişlerim</h3>
+      <div id="hSiparisler"></div>
+      <p class="hesap__bos" id="hBos" hidden>Henüz siparişiniz yok.
+        <a href="urunler.html">Ürünlere göz atın →</a></p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__mark">VITREAPLAS</div>
+    <div class="foot__cols">
+      <div><span>Ürünler</span>
+        <a href="urunler.html">Tüm koleksiyon</a><a href="sepet.html">Sepetim</a>
+        <a href="hesap.html" class="srv-only">Siparişlerim</a></div>
+      <div><span>Kurumsal</span>
+        <a href="hakkimizda.html">Hakkımızda</a><a href="hakkimizda.html#malzeme">Malzeme</a>
+        <a href="hakkimizda.html#surec">Süreç</a><a href="hakkimizda.html#sss">S.S.S.</a></div>
+      <div><span>İletişim</span>
+        <a id="waFoot" href="#" target="_blank" rel="noopener">WhatsApp'tan yazın</a>
+        <a href="tel:+905348433188">+90 534 843 31 88</a></div>
+    </div>
+    <div class="foot__bar">
+      <p>© <span id="yil">2026</span> VITREAPLAS Ambalaj · vitreaplas.com. Tüm hakları saklıdır.</p>
+      <p>Görsellerdeki tatlılar sunum amaçlıdır.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/sepet.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/hesap.js"></script>
+</body>
+</html>
