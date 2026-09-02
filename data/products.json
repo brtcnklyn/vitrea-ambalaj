@@ -15,7 +15,11 @@
       "tag": "Oval kesit",
       "note": "Yumuşak oval kesitli dar gövde. Köşesiz hatları katmanlı tatlıyı yandan tek bir şerit gibi gösterir; dolapta yan yana dizildiğinde ferah bir vitrin kurar.",
       "active": true,
-      "mayerKod": "MAY 284"
+      "mayerKod": "MAY 284",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye"
+      ]
     },
     {
       "id": "onda",
@@ -32,7 +36,12 @@
       "tag": "Dar & uzun",
       "note": "Dar ve uzun gövde; kaşık boyunca ilerleyen katmanları yandan bir kesit gibi gösterir.",
       "active": true,
-      "mayerKod": "MAY 287"
+      "mayerKod": "MAY 287",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "faceta",
@@ -49,7 +58,12 @@
       "tag": "Elmas form · kapaklı",
       "note": "Elmas yüzeyli kapaklı kutu. Kırılan yüzeyler ışığı farklı açılarda yansıtır; vitrinde en çok dönüp bakılan formlardan biri. Kapak gövdeye entegre.",
       "active": true,
-      "mayerKod": "MAY 727"
+      "mayerKod": "MAY 727",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "kubik",
@@ -66,7 +80,12 @@
       "tag": "Küp",
       "note": "Dört yüzü de vitrin olan küp form. Katmanlı pastalarda en çarpıcı sunumu verir.",
       "active": true,
-      "mayerKod": "MAY 282"
+      "mayerKod": "MAY 282",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "sfera",
@@ -88,7 +107,10 @@
       "tag": "Bombeli kapak",
       "note": "Yüksek bombeli kapağıyla üstü süslenen tatlılar için. Fıstık, kırıntı ve meyve dekoru ezilmeden kapanır.",
       "active": true,
-      "mayerKod": "MAY 312"
+      "mayerKod": "MAY 312",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "rega",
@@ -105,7 +127,10 @@
       "tag": "Ayaklı gövde",
       "note": "Ayaklı formu tezgâhta yükseklik kazandırır. Katmanlı sunumlarda silüeti belirgin gösterir.",
       "active": true,
-      "mayerKod": "MAY 305"
+      "mayerKod": "MAY 305",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "larga",
@@ -127,7 +152,10 @@
       "tag": "Geniş ağız",
       "note": "Geniş ve alçak gövde; sosun yüzeye yayıldığı supangle ve krem karamel için ideal.",
       "active": true,
-      "mayerKod": "MAY 307"
+      "mayerKod": "MAY 307",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "vela-300",
@@ -144,7 +172,10 @@
       "tag": "Büyük porsiyon",
       "note": "VELA ailesinin büyük boyu. Aile boyu sütlaç ve fırın sütlaç için doğru hacim.",
       "active": true,
-      "mayerKod": "MAY 310"
+      "mayerKod": "MAY 310",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "vela-270",
@@ -161,7 +192,10 @@
       "tag": "Entegre kapak",
       "note": "Tek parça kilitli kapak. Paket servis ve dolap sunumunda en çok tercih edilen porsiyon.",
       "active": true,
-      "mayerKod": "MAY 309"
+      "mayerKod": "MAY 309",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "mino",
@@ -183,7 +217,10 @@
       "tag": "Tekli porsiyon",
       "note": "Küçük ve net. Panna cotta, muhallebi ve tek kişilik krem şanti sunumları için.",
       "active": true,
-      "mayerKod": "MAY 311"
+      "mayerKod": "MAY 311",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "rota",
@@ -205,7 +242,10 @@
       "tag": "Düz kapak",
       "note": "Düz kapağı üst üste istiflemeye izin verir. Yoğun sirkülasyonlu vitrinlerde düzeni korur.",
       "active": true,
-      "mayerKod": "MAY 346"
+      "mayerKod": "MAY 346",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "armonia",
@@ -222,7 +262,13 @@
       "tag": "Klasik form",
       "note": "Zamansız yuvarlak kase. Kazandibi ve fırın sütlaçta standart porsiyon ölçüsü.",
       "active": true,
-      "mayerKod": "MAY 500"
+      "mayerKod": "MAY 500",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "piatto",
@@ -239,7 +285,10 @@
       "tag": "Yayvan",
       "note": "Alçak ve geniş; kaşıkla ilk hamlede ulaşılan yüzey geniş. Puding ve jöleli tatlılar için.",
       "active": true,
-      "mayerKod": "MAY 308"
+      "mayerKod": "MAY 308",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "linea-130",
@@ -261,7 +310,10 @@
       "tag": "İnce profil",
       "note": "İnce profilli tabak formu. Tadımlık porsiyon ve ikili set sunumlarında kullanılır.",
       "active": true,
-      "mayerKod": "MAY 301"
+      "mayerKod": "MAY 301",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "linea-160",
@@ -283,7 +335,10 @@
       "tag": "Orta boy",
       "note": "LINEA ailesinin orta boyu. Cheesecake dilimi ve tart porsiyonu için ölçülü bir zemin.",
       "active": true,
-      "mayerKod": "MAY 302"
+      "mayerKod": "MAY 302",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "linea-250",
@@ -305,7 +360,10 @@
       "tag": "1000 adet koli",
       "note": "Yüksek adetli koli avantajıyla seri üretim yapan üreticiler için en ekonomik LINEA.",
       "active": true,
-      "mayerKod": "MAY 303"
+      "mayerKod": "MAY 303",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "cilindro-270",
@@ -322,7 +380,12 @@
       "tag": "Silindir",
       "note": "Düz duvarlı silindir; katmanlar dışarıdan kusursuz bir çizgi hâlinde görünür. Trileçe ve tiramisu için.",
       "active": true,
-      "mayerKod": "MAY 317"
+      "mayerKod": "MAY 317",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "cilindro-330",
@@ -339,7 +402,12 @@
       "tag": "Büyük silindir",
       "note": "Aynı formun geniş hacimlisi. Meyveli ve bisküvili kalın katmanlarda nefes payı bırakır.",
       "active": true,
-      "mayerKod": "MAY 318"
+      "mayerKod": "MAY 318",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "vero-60",
@@ -361,7 +429,10 @@
       "tag": "Shot boy",
       "note": "Tadımlık boy. Açık büfe, ikram tabağı ve mini tatlı setlerinde kullanılır.",
       "active": true,
-      "mayerKod": "MAY 352"
+      "mayerKod": "MAY 352",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "vero-150",
@@ -383,7 +454,10 @@
       "tag": "Ara boy",
       "note": "İki lokmalık ideal porsiyon; kafe menülerinde yanında kahveyle sunulan boy.",
       "active": true,
-      "mayerKod": "MAY 353"
+      "mayerKod": "MAY 353",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "vero-240",
@@ -405,7 +479,10 @@
       "tag": "Tam porsiyon",
       "note": "Konik gövde elde rahat durur. Paket servis tatlılarında dökülmeye karşı dengeli form.",
       "active": true,
-      "mayerKod": "MAY 354"
+      "mayerKod": "MAY 354",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "capri-180",
@@ -427,7 +504,12 @@
       "tag": "Alçak bardak",
       "note": "Kalın cidar hissi veren bodur form. Mousse ve krema ağırlıklı tatlılarda tercih edilir.",
       "active": true,
-      "mayerKod": "MAY 355"
+      "mayerKod": "MAY 355",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "capri-250",
@@ -449,7 +531,12 @@
       "tag": "Standart",
       "note": "CAPRI ailesinin en çok satan boyu; düz ve bombeli kapak seçenekleriyle kullanılabilir.",
       "active": true,
-      "mayerKod": "MAY 356"
+      "mayerKod": "MAY 356",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "capri-380",
@@ -471,7 +558,10 @@
       "tag": "Yüksek gövde",
       "note": "Uzun gövde katman sayısını artırır. Bombeli kapakla üst dekor için ek hacim sağlar.",
       "active": true,
-      "mayerKod": "MAY 357"
+      "mayerKod": "MAY 357",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "quadra",
@@ -488,7 +578,10 @@
       "tag": "Derin kare",
       "note": "Yumuşak köşeli derin kare. Dolapta yan yana dizildiğinde boşluksuz bir düzen kurar.",
       "active": true,
-      "mayerKod": "MAY 314"
+      "mayerKod": "MAY 314",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "plana",
@@ -505,7 +598,13 @@
       "tag": "Alçak kare",
       "note": "Alçak profili tatlıyı yukarıdan tümüyle gösterir. Kare dilim ve brownie sunumları için.",
       "active": true,
-      "mayerKod": "MAY 315"
+      "mayerKod": "MAY 315",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "terra-250",
@@ -527,7 +626,10 @@
       "tag": "Ayrı kapak",
       "note": "Gövde ve kapak ayrı; ihtiyaç kadar tamamlama imkânı verir. Vitrin ve paket servis için.",
       "active": true,
-      "mayerKod": "MAY 322"
+      "mayerKod": "MAY 322",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "terra-300",
@@ -549,7 +651,10 @@
       "tag": "Derin kare",
       "note": "TERRA ailesinin derin versiyonu; sos ve fındık dekorunun ezilmediği ekstra yükseklik.",
       "active": true,
-      "mayerKod": "MAY 323"
+      "mayerKod": "MAY 323",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "prisma-60",
@@ -571,7 +676,10 @@
       "tag": "Mini piramit",
       "note": "Piramit kesitli mini kap. İkramlık ve tadım setlerinde göz alıcı bir dizilim kurar.",
       "active": true,
-      "mayerKod": "MAY 349"
+      "mayerKod": "MAY 349",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "prisma-120",
@@ -593,7 +701,10 @@
       "tag": "1000 adet koli",
       "note": "Orta boy piramit. Yüksek adetli kolisiyle etkinlik ve catering işleri için ekonomik.",
       "active": true,
-      "mayerKod": "MAY 350"
+      "mayerKod": "MAY 350",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "prisma-200",
@@ -615,7 +726,10 @@
       "tag": "Büyük piramit",
       "note": "Ailenin en büyüğü; tek kişilik tam porsiyonu farklı bir geometriyle sunar.",
       "active": true,
-      "mayerKod": "MAY 351"
+      "mayerKod": "MAY 351",
+      "kategoriler": [
+        "sutlu"
+      ]
     },
     {
       "id": "fiore-150",
@@ -632,7 +746,10 @@
       "tag": "İnce dilim",
       "note": "Dilim tatlılar için ince gövde. Kazandibi ve baklava porsiyonlarında sık kullanılır.",
       "active": true,
-      "mayerKod": "MAY 223"
+      "mayerKod": "MAY 223",
+      "kategoriler": [
+        "lokum"
+      ]
     },
     {
       "id": "fiore-250",
@@ -649,7 +766,13 @@
       "tag": "Menteşeli kapak",
       "note": "Menteşeli kapağı tek hareketle kapanır. Tezgâh üstü satışta en pratik dilim ambalajı.",
       "active": true,
-      "mayerKod": "MAY 224"
+      "mayerKod": "MAY 224",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "fiore-470",
@@ -666,7 +789,13 @@
       "tag": "Çift porsiyon",
       "note": "İki dilim veya bir aile porsiyonu. Paket servis siparişlerinde tek kutuda çözüm.",
       "active": true,
-      "mayerKod": "MAY 228"
+      "mayerKod": "MAY 228",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "elara",
@@ -683,7 +812,12 @@
       "tag": "Renkli kapak opsiyonu",
       "note": "Şeffaf gövde, talebe göre renkli kapak. Markanızın rengini rafta görünür kılar.",
       "active": true,
-      "mayerKod": "MAY 277"
+      "mayerKod": "MAY 277",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "cuore",
@@ -700,7 +834,12 @@
       "tag": "Kalp form",
       "note": "Kalp kesitli özel form. Sevgililer günü, nişan ve özel gün setlerinde satışı yükseltir.",
       "active": true,
-      "mayerKod": "MAY 336"
+      "mayerKod": "MAY 336",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "profi",
@@ -717,7 +856,12 @@
       "tag": "Profiterol",
       "note": "Profiterol ve toplu tatlılar için geniş tabanlı kutu. Sos akıtmayan yüksek kenar.",
       "active": true,
-      "mayerKod": "MAY 360"
+      "mayerKod": "MAY 360",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal"
+      ]
     },
     {
       "id": "profi-xl",
@@ -734,7 +878,12 @@
       "tag": "Aile boyu",
       "note": "Ailenin en büyük hacmi. Aile boyu profiterol ve çikolatalı sunumlar için tasarlandı.",
       "active": true,
-      "mayerKod": "MAY 390"
+      "mayerKod": "MAY 390",
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal"
+      ]
     },
     {
       "id": "novel-250",
@@ -751,7 +900,13 @@
       "scene": "",
       "tag": "Entegre kapak",
       "note": "Yumuşak köşeli dikdörtgen gövde, üstüne oturan entegre kapak. Tekli porsiyon tatlıda en çok tercih edilen ölçü.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "novel-500",
@@ -768,7 +923,13 @@
       "scene": "",
       "tag": "Entegre kapak",
       "note": "Aynı formun büyük boyu. Çift porsiyon sütlü tatlı ve dilim pasta için derin gövde.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "novel-600",
@@ -785,7 +946,13 @@
       "scene": "",
       "tag": "Entegre kapak",
       "note": "Serinin en derini. Katmanlı tatlıyı ezmeden taşır, kapağı bastırmadan kapanır.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "honey-270",
@@ -802,7 +969,13 @@
       "scene": "",
       "tag": "Bal kabı",
       "note": "Kalın cidarlı, derin gövdeli kapaklı kap. Bal, reçel, kaymak ve kahvaltılık sunumunda cam kavanoz görünümü verir.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "honey-400",
@@ -819,7 +992,13 @@
       "scene": "",
       "tag": "Bal kabı",
       "note": "Bal kabının büyük boyu. Kahvaltı tabağında ya da market rafında tek başına durabilecek gövde.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "harmony-1500",
@@ -836,7 +1015,12 @@
       "scene": "",
       "tag": "Geniş kase",
       "note": "Alçak ve çok geniş yuvarlak kase. Bütün pasta, büyük porsiyon salata ve ikramlık sunumları için serinin en hacimlisi.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal"
+      ]
     },
     {
       "id": "glory-500",
@@ -853,7 +1037,13 @@
       "scene": "",
       "tag": "Kare kutu",
       "note": "Kare kesitli, kapaklı kutu. Kurabiye, çikolata ve kuru pastada hediye kutusu etkisi bırakır.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "glory-1000",
@@ -870,7 +1060,13 @@
       "scene": "",
       "tag": "Uzun kutu",
       "note": "Uzun dikdörtgen kutu. Baton pasta, rulo ve sıralı kurabiye sunumu için tasarlanmış oran.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "alura-400",
@@ -887,7 +1083,12 @@
       "scene": "",
       "tag": "Derin kare",
       "note": "Derin kare gövde, düz kapak. Kurabiye ve lokum gibi yığılan ürünlerde yüksekliği avantaj sağlar.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "pasterya-270",
@@ -904,7 +1105,12 @@
       "scene": "",
       "tag": "Bardak form",
       "note": "Aşağı doğru daralan bardak formu. Sütlaç, magnolia ve bardak tatlılarında elde rahat durur.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "lokum"
+      ]
     },
     {
       "id": "harmony-700",
@@ -921,7 +1127,13 @@
       "scene": "",
       "tag": "Yuvarlak kase",
       "note": "Alçak yuvarlak kase. Salata, meyve ve porsiyonluk tatlıda geniş ağzıyla ürünü tam gösterir.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "harmony-800",
@@ -938,7 +1150,13 @@
       "scene": "",
       "tag": "Yuvarlak kase",
       "note": "Aynı yuvarlak hattın bir boy derini. Sulu tatlı ve yoğurtlu sunumlar için ek hacim verir.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "glory-400",
@@ -955,7 +1173,13 @@
       "scene": "",
       "tag": "Alçak kutu",
       "note": "Alçak dikdörtgen kapaklı kutu. Kurabiye, makaron ve çikolatalı ikramlarda vitrin kabı olarak kullanılır.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "sutlu",
+        "kurabiye",
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "bowl-250",
@@ -972,7 +1196,11 @@
       "scene": "",
       "tag": "Alçak tabla",
       "note": "Sığ dikdörtgen tabla. Alçak kenarı tatlıyı yandan tam gösterir; sunum tepsisi gibi çalışır, vitrinde üst üste istiflenir.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "bowl-350",
@@ -989,7 +1217,11 @@
       "scene": "",
       "tag": "Alçak tabla",
       "note": "Aynı sığ hattın orta boyu. Dilim pasta, brownie ve kare tatlılar için rahat bir zemin verir.",
-      "active": true
+      "active": true,
+      "kategoriler": [
+        "bal",
+        "lokum"
+      ]
     },
     {
       "id": "bowl-450",
@@ -1006,6 +1238,238 @@
       "scene": "",
       "tag": "Alçak tabla",
       "note": "Serinin en genişi. İki dilim ya da porsiyonluk sunum için; kapaksız servis tablası olarak da kullanılır.",
+      "active": true,
+      "kategoriler": [
+        "bal",
+        "lokum"
+      ]
+    },
+    {
+      "id": "joy-150",
+      "code": "MAY 216",
+      "mayerKod": "MAY 216",
+      "name": "JOY",
+      "vol": 150,
+      "cat": "dikdortgen",
+      "kategoriler": [
+        "lokum"
+      ],
+      "dim": "83 × 98 × 28",
+      "box": 600,
+      "boxDim": "470 × 620 × 350",
+      "lid": null,
+      "img": "joy-150",
+      "scene": "",
+      "tag": "Alçak kutu",
+      "note": "Sığ dikdörtgen kapaklı kutu. Kurabiye, lokum ve draje sunumunda tek katmanlı, düzenli bir yerleşim sağlar.",
+      "active": true
+    },
+    {
+      "id": "trio-90",
+      "code": "MAY 326",
+      "mayerKod": "MAY 326",
+      "name": "TRIO",
+      "vol": 90,
+      "cat": "kare",
+      "kategoriler": [
+        "lokum"
+      ],
+      "dim": "45 × 45 × 27",
+      "box": 500,
+      "boxDim": "370 × 500 × 500",
+      "lid": null,
+      "img": "trio-90",
+      "scene": "",
+      "tag": "Mini kare",
+      "note": "Küçük kare gövde, kapaklı. Draje, badem şekeri ve tekli lokum ikramları için nikâh şekeri ölçüsünde bir kap.",
+      "active": true
+    },
+    {
+      "id": "cosmo-140",
+      "code": "MAY 328",
+      "mayerKod": "MAY 328",
+      "name": "COSMO",
+      "vol": 140,
+      "cat": "ozel",
+      "kategoriler": [
+        "lokum"
+      ],
+      "dim": "45 × 60 × 101",
+      "box": 300,
+      "boxDim": "375 × 500 × 500",
+      "lid": null,
+      "img": "cosmo-140",
+      "scene": "",
+      "tag": "Dik form",
+      "note": "Dar ve yüksek gövde, üstten kapaklı. Draje ve renkli şekerlemeleri dikey bir vitrin gibi gösterir.",
+      "active": true
+    },
+    {
+      "id": "melody-250",
+      "code": "MAY 409",
+      "mayerKod": "MAY 409",
+      "name": "MELODY",
+      "vol": 250,
+      "cat": "kase",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "—",
+      "box": 360,
+      "boxDim": "400 × 580 × 495",
+      "lid": null,
+      "img": "melody-250",
+      "scene": "",
+      "tag": "Altın tabanlı",
+      "note": "Altın renkli tabanı ve şeffaf kubbe kapağıyla yuvarlak sunum kabı. Lokum, çikolata ve kuru pastada hediyelik görünüm verir.",
+      "active": true
+    },
+    {
+      "id": "melody-380",
+      "code": "MAY 410",
+      "mayerKod": "MAY 410",
+      "name": "MELODY",
+      "vol": 380,
+      "cat": "kase",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "122 × 189 × 34",
+      "box": 225,
+      "boxDim": "400 × 580 × 495",
+      "lid": null,
+      "img": "melody-380",
+      "scene": "",
+      "tag": "Altın tabanlı",
+      "note": "Aynı altın tabanlı serinin büyük boyu. Karışık lokum ve kurabiye tabaklarına uygun geniş yüzey.",
+      "active": true
+    },
+    {
+      "id": "lukas-650",
+      "code": "MAY 414",
+      "mayerKod": "MAY 414",
+      "name": "LUKAS",
+      "vol": 650,
+      "cat": "ozel",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "179 × 198 × 35",
+      "box": 150,
+      "boxDim": "390 × 620 × 540",
+      "lid": null,
+      "img": "lukas-650",
+      "scene": "",
+      "tag": "Oval kapak",
+      "note": "Oval formlu, yüksek kubbe kapaklı şeffaf kutu. Hacimli kurabiye ve pasta sunumlarını ezmeden taşır.",
+      "active": true
+    },
+    {
+      "id": "sapphire-630",
+      "code": "MAY 427",
+      "mayerKod": "MAY 427",
+      "name": "SAPPHIRE",
+      "vol": 630,
+      "cat": "dikdortgen",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "122 × 262 × 35",
+      "box": 150,
+      "boxDim": "550 × 600 × 390",
+      "lid": null,
+      "img": "sapphire-630",
+      "scene": "",
+      "tag": "Uzun tabla",
+      "note": "Uzun ve alçak dikdörtgen tabla. Baklava, kurabiye ve dilim tatlıları sıralı biçimde sunmak için.",
+      "active": true
+    },
+    {
+      "id": "harmony-270",
+      "code": "MAY 433",
+      "mayerKod": "MAY 433",
+      "name": "HARMONY",
+      "vol": 270,
+      "cat": "kase",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "131 × 34",
+      "box": 300,
+      "boxDim": "425 × 565 × 420",
+      "lid": null,
+      "img": "harmony-270",
+      "scene": "",
+      "tag": "Altın tabanlı",
+      "note": "Altın tabanlı yuvarlak sunum kabı, küçük boy. Tekli lokum ve çikolata ikramlarında hediyelik bir çerçeve kurar.",
+      "active": true
+    },
+    {
+      "id": "harmony-450",
+      "code": "MAY 434",
+      "mayerKod": "MAY 434",
+      "name": "HARMONY",
+      "vol": 450,
+      "cat": "kase",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "160 × 34",
+      "box": 200,
+      "boxDim": "660 × 330 × 420",
+      "lid": null,
+      "img": "harmony-450",
+      "scene": "",
+      "tag": "Altın tabanlı",
+      "note": "Serinin orta boyu. Karışık lokum ve draje sunumları için dengeli bir hacim.",
+      "active": true
+    },
+    {
+      "id": "harmony-750",
+      "code": "MAY 435",
+      "mayerKod": "MAY 435",
+      "name": "HARMONY",
+      "vol": 750,
+      "cat": "kase",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "200 × 34",
+      "box": 175,
+      "boxDim": "610 × 430 × 480",
+      "lid": null,
+      "img": "harmony-750",
+      "scene": "",
+      "tag": "Altın tabanlı",
+      "note": "Serinin en genişi. Bayram ve özel gün ikramlıklarında tek başına tabak yerine geçer.",
+      "active": true
+    },
+    {
+      "id": "symphony-770",
+      "code": "MAY 446",
+      "mayerKod": "MAY 446",
+      "name": "SYMPHONY",
+      "vol": 770,
+      "cat": "dikdortgen",
+      "kategoriler": [
+        "kurabiye",
+        "lokum"
+      ],
+      "dim": "—",
+      "box": 120,
+      "boxDim": "560 × 410 × 400",
+      "lid": null,
+      "img": "symphony-770",
+      "scene": "",
+      "tag": "Geniş tabla",
+      "note": "Geniş dikdörtgen tabla, alçak kenar. Çok çeşitli kurabiye ve lokum sunumlarını tek kapta toplar.",
       "active": true
     }
   ],

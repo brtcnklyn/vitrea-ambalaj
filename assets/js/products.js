@@ -1,7 +1,7 @@
 /* VITREAPLAS — otomatik uretilir, elle duzenlemeyin.
    Kaynak: data/products.json  ·  Duzenleme: /admin
    Fiyatlar perakende satis fiyatidir; alis fiyati bu dosyada YOKTUR.
-   Uretim: 2026-09-02T08:05:00.019Z */
+   Uretim: 2026-09-02T08:49:12.568Z */
 window.VITREA_PRODUCTS = [
   {
     "id": "luna",
@@ -19,6 +19,10 @@ window.VITREA_PRODUCTS = [
     "note": "Yumuşak oval kesitli dar gövde. Köşesiz hatları katmanlı tatlıyı yandan tek bir şerit gibi gösterir; dolapta yan yana dizildiğinde ferah bir vitrin kurar.",
     "active": true,
     "mayerKod": "MAY 284",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": true
@@ -39,6 +43,11 @@ window.VITREA_PRODUCTS = [
     "note": "Dar ve uzun gövde; kaşık boyunca ilerleyen katmanları yandan bir kesit gibi gösterir.",
     "active": true,
     "mayerKod": "MAY 287",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -59,6 +68,11 @@ window.VITREA_PRODUCTS = [
     "note": "Elmas yüzeyli kapaklı kutu. Kırılan yüzeyler ışığı farklı açılarda yansıtır; vitrinde en çok dönüp bakılan formlardan biri. Kapak gövdeye entegre.",
     "active": true,
     "mayerKod": "MAY 727",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": true
@@ -79,6 +93,11 @@ window.VITREA_PRODUCTS = [
     "note": "Dört yüzü de vitrin olan küp form. Katmanlı pastalarda en çarpıcı sunumu verir.",
     "active": true,
     "mayerKod": "MAY 282",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 10,
     "fiyatKdv": 12,
     "populer": false
@@ -104,6 +123,9 @@ window.VITREA_PRODUCTS = [
     "note": "Yüksek bombeli kapağıyla üstü süslenen tatlılar için. Fıstık, kırıntı ve meyve dekoru ezilmeden kapanır.",
     "active": true,
     "mayerKod": "MAY 312",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 9,
     "fiyatKdv": 10.8,
     "populer": true
@@ -124,6 +146,9 @@ window.VITREA_PRODUCTS = [
     "note": "Ayaklı formu tezgâhta yükseklik kazandırır. Katmanlı sunumlarda silüeti belirgin gösterir.",
     "active": true,
     "mayerKod": "MAY 305",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -149,6 +174,9 @@ window.VITREA_PRODUCTS = [
     "note": "Geniş ve alçak gövde; sosun yüzeye yayıldığı supangle ve krem karamel için ideal.",
     "active": true,
     "mayerKod": "MAY 307",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 8,
     "fiyatKdv": 9.6,
     "populer": true
@@ -169,6 +197,9 @@ window.VITREA_PRODUCTS = [
     "note": "VELA ailesinin büyük boyu. Aile boyu sütlaç ve fırın sütlaç için doğru hacim.",
     "active": true,
     "mayerKod": "MAY 310",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 12,
     "fiyatKdv": 14.4,
     "populer": false
@@ -189,6 +220,9 @@ window.VITREA_PRODUCTS = [
     "note": "Tek parça kilitli kapak. Paket servis ve dolap sunumunda en çok tercih edilen porsiyon.",
     "active": true,
     "mayerKod": "MAY 309",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -214,6 +248,9 @@ window.VITREA_PRODUCTS = [
     "note": "Küçük ve net. Panna cotta, muhallebi ve tek kişilik krem şanti sunumları için.",
     "active": true,
     "mayerKod": "MAY 311",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 4,
     "fiyatKdv": 4.8,
     "populer": false
@@ -239,6 +276,9 @@ window.VITREA_PRODUCTS = [
     "note": "Düz kapağı üst üste istiflemeye izin verir. Yoğun sirkülasyonlu vitrinlerde düzeni korur.",
     "active": true,
     "mayerKod": "MAY 346",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 9,
     "fiyatKdv": 10.8,
     "populer": false
@@ -259,6 +299,12 @@ window.VITREA_PRODUCTS = [
     "note": "Zamansız yuvarlak kase. Kazandibi ve fırın sütlaçta standart porsiyon ölçüsü.",
     "active": true,
     "mayerKod": "MAY 500",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 13,
     "fiyatKdv": 15.6,
     "populer": false
@@ -279,6 +325,9 @@ window.VITREA_PRODUCTS = [
     "note": "Alçak ve geniş; kaşıkla ilk hamlede ulaşılan yüzey geniş. Puding ve jöleli tatlılar için.",
     "active": true,
     "mayerKod": "MAY 308",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -304,6 +353,9 @@ window.VITREA_PRODUCTS = [
     "note": "İnce profilli tabak formu. Tadımlık porsiyon ve ikili set sunumlarında kullanılır.",
     "active": true,
     "mayerKod": "MAY 301",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 3,
     "fiyatKdv": 3.6,
     "populer": false
@@ -329,6 +381,9 @@ window.VITREA_PRODUCTS = [
     "note": "LINEA ailesinin orta boyu. Cheesecake dilimi ve tart porsiyonu için ölçülü bir zemin.",
     "active": true,
     "mayerKod": "MAY 302",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 3,
     "fiyatKdv": 3.6,
     "populer": false
@@ -354,6 +409,9 @@ window.VITREA_PRODUCTS = [
     "note": "Yüksek adetli koli avantajıyla seri üretim yapan üreticiler için en ekonomik LINEA.",
     "active": true,
     "mayerKod": "MAY 303",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 8,
     "fiyatKdv": 9.6,
     "populer": false
@@ -374,6 +432,11 @@ window.VITREA_PRODUCTS = [
     "note": "Düz duvarlı silindir; katmanlar dışarıdan kusursuz bir çizgi hâlinde görünür. Trileçe ve tiramisu için.",
     "active": true,
     "mayerKod": "MAY 317",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 10,
     "fiyatKdv": 12,
     "populer": false
@@ -394,6 +457,11 @@ window.VITREA_PRODUCTS = [
     "note": "Aynı formun geniş hacimlisi. Meyveli ve bisküvili kalın katmanlarda nefes payı bırakır.",
     "active": true,
     "mayerKod": "MAY 318",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 13,
     "fiyatKdv": 15.6,
     "populer": false
@@ -419,6 +487,9 @@ window.VITREA_PRODUCTS = [
     "note": "Tadımlık boy. Açık büfe, ikram tabağı ve mini tatlı setlerinde kullanılır.",
     "active": true,
     "mayerKod": "MAY 352",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 5,
     "fiyatKdv": 6,
     "populer": false
@@ -444,6 +515,9 @@ window.VITREA_PRODUCTS = [
     "note": "İki lokmalık ideal porsiyon; kafe menülerinde yanında kahveyle sunulan boy.",
     "active": true,
     "mayerKod": "MAY 353",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 7,
     "fiyatKdv": 8.4,
     "populer": false
@@ -469,6 +543,9 @@ window.VITREA_PRODUCTS = [
     "note": "Konik gövde elde rahat durur. Paket servis tatlılarında dökülmeye karşı dengeli form.",
     "active": true,
     "mayerKod": "MAY 354",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 10,
     "fiyatKdv": 12,
     "populer": false
@@ -494,6 +571,11 @@ window.VITREA_PRODUCTS = [
     "note": "Kalın cidar hissi veren bodur form. Mousse ve krema ağırlıklı tatlılarda tercih edilir.",
     "active": true,
     "mayerKod": "MAY 355",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 5,
     "fiyatKdv": 6,
     "populer": false
@@ -519,6 +601,11 @@ window.VITREA_PRODUCTS = [
     "note": "CAPRI ailesinin en çok satan boyu; düz ve bombeli kapak seçenekleriyle kullanılabilir.",
     "active": true,
     "mayerKod": "MAY 356",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 5,
     "fiyatKdv": 6,
     "populer": false
@@ -544,6 +631,9 @@ window.VITREA_PRODUCTS = [
     "note": "Uzun gövde katman sayısını artırır. Bombeli kapakla üst dekor için ek hacim sağlar.",
     "active": true,
     "mayerKod": "MAY 357",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 8,
     "fiyatKdv": 9.6,
     "populer": false
@@ -564,6 +654,9 @@ window.VITREA_PRODUCTS = [
     "note": "Yumuşak köşeli derin kare. Dolapta yan yana dizildiğinde boşluksuz bir düzen kurar.",
     "active": true,
     "mayerKod": "MAY 314",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -584,6 +677,12 @@ window.VITREA_PRODUCTS = [
     "note": "Alçak profili tatlıyı yukarıdan tümüyle gösterir. Kare dilim ve brownie sunumları için.",
     "active": true,
     "mayerKod": "MAY 315",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -609,6 +708,9 @@ window.VITREA_PRODUCTS = [
     "note": "Gövde ve kapak ayrı; ihtiyaç kadar tamamlama imkânı verir. Vitrin ve paket servis için.",
     "active": true,
     "mayerKod": "MAY 322",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 8,
     "fiyatKdv": 9.6,
     "populer": false
@@ -634,6 +736,9 @@ window.VITREA_PRODUCTS = [
     "note": "TERRA ailesinin derin versiyonu; sos ve fındık dekorunun ezilmediği ekstra yükseklik.",
     "active": true,
     "mayerKod": "MAY 323",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 9,
     "fiyatKdv": 10.8,
     "populer": false
@@ -659,6 +764,9 @@ window.VITREA_PRODUCTS = [
     "note": "Piramit kesitli mini kap. İkramlık ve tadım setlerinde göz alıcı bir dizilim kurar.",
     "active": true,
     "mayerKod": "MAY 349",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 3,
     "fiyatKdv": 3.6,
     "populer": false
@@ -684,6 +792,9 @@ window.VITREA_PRODUCTS = [
     "note": "Orta boy piramit. Yüksek adetli kolisiyle etkinlik ve catering işleri için ekonomik.",
     "active": true,
     "mayerKod": "MAY 350",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 4,
     "fiyatKdv": 4.8,
     "populer": false
@@ -709,6 +820,9 @@ window.VITREA_PRODUCTS = [
     "note": "Ailenin en büyüğü; tek kişilik tam porsiyonu farklı bir geometriyle sunar.",
     "active": true,
     "mayerKod": "MAY 351",
+    "kategoriler": [
+      "sutlu"
+    ],
     "fiyat": 5,
     "fiyatKdv": 6,
     "populer": false
@@ -729,8 +843,11 @@ window.VITREA_PRODUCTS = [
     "note": "Dilim tatlılar için ince gövde. Kazandibi ve baklava porsiyonlarında sık kullanılır.",
     "active": true,
     "mayerKod": "MAY 223",
-    "fiyat": 0,
-    "fiyatKdv": 0,
+    "kategoriler": [
+      "lokum"
+    ],
+    "fiyat": 11,
+    "fiyatKdv": 13.2,
     "populer": false
   },
   {
@@ -749,6 +866,12 @@ window.VITREA_PRODUCTS = [
     "note": "Menteşeli kapağı tek hareketle kapanır. Tezgâh üstü satışta en pratik dilim ambalajı.",
     "active": true,
     "mayerKod": "MAY 224",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 10,
     "fiyatKdv": 12,
     "populer": false
@@ -769,6 +892,12 @@ window.VITREA_PRODUCTS = [
     "note": "İki dilim veya bir aile porsiyonu. Paket servis siparişlerinde tek kutuda çözüm.",
     "active": true,
     "mayerKod": "MAY 228",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 21,
     "fiyatKdv": 25.2,
     "populer": false
@@ -789,6 +918,11 @@ window.VITREA_PRODUCTS = [
     "note": "Şeffaf gövde, talebe göre renkli kapak. Markanızın rengini rafta görünür kılar.",
     "active": true,
     "mayerKod": "MAY 277",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -809,6 +943,11 @@ window.VITREA_PRODUCTS = [
     "note": "Kalp kesitli özel form. Sevgililer günü, nişan ve özel gün setlerinde satışı yükseltir.",
     "active": true,
     "mayerKod": "MAY 336",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 15,
     "fiyatKdv": 18,
     "populer": false
@@ -829,6 +968,11 @@ window.VITREA_PRODUCTS = [
     "note": "Profiterol ve toplu tatlılar için geniş tabanlı kutu. Sos akıtmayan yüksek kenar.",
     "active": true,
     "mayerKod": "MAY 360",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal"
+    ],
     "fiyat": 28,
     "fiyatKdv": 33.6,
     "populer": false
@@ -849,6 +993,11 @@ window.VITREA_PRODUCTS = [
     "note": "Ailenin en büyük hacmi. Aile boyu profiterol ve çikolatalı sunumlar için tasarlandı.",
     "active": true,
     "mayerKod": "MAY 390",
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal"
+    ],
     "fiyat": 35,
     "fiyatKdv": 42,
     "populer": false
@@ -869,6 +1018,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Entegre kapak",
     "note": "Yumuşak köşeli dikdörtgen gövde, üstüne oturan entegre kapak. Tekli porsiyon tatlıda en çok tercih edilen ölçü.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 13,
     "fiyatKdv": 15.6,
     "populer": false
@@ -889,6 +1044,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Entegre kapak",
     "note": "Aynı formun büyük boyu. Çift porsiyon sütlü tatlı ve dilim pasta için derin gövde.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 22,
     "fiyatKdv": 26.4,
     "populer": false
@@ -909,6 +1070,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Entegre kapak",
     "note": "Serinin en derini. Katmanlı tatlıyı ezmeden taşır, kapağı bastırmadan kapanır.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 29,
     "fiyatKdv": 34.8,
     "populer": false
@@ -929,6 +1096,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Bal kabı",
     "note": "Kalın cidarlı, derin gövdeli kapaklı kap. Bal, reçel, kaymak ve kahvaltılık sunumunda cam kavanoz görünümü verir.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 15,
     "fiyatKdv": 18,
     "populer": false
@@ -949,6 +1122,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Bal kabı",
     "note": "Bal kabının büyük boyu. Kahvaltı tabağında ya da market rafında tek başına durabilecek gövde.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 22,
     "fiyatKdv": 26.4,
     "populer": false
@@ -969,6 +1148,11 @@ window.VITREA_PRODUCTS = [
     "tag": "Geniş kase",
     "note": "Alçak ve çok geniş yuvarlak kase. Bütün pasta, büyük porsiyon salata ve ikramlık sunumları için serinin en hacimlisi.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal"
+    ],
     "fiyat": 41,
     "fiyatKdv": 49.2,
     "populer": false
@@ -989,6 +1173,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Kare kutu",
     "note": "Kare kesitli, kapaklı kutu. Kurabiye, çikolata ve kuru pastada hediye kutusu etkisi bırakır.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 22,
     "fiyatKdv": 26.4,
     "populer": false
@@ -1009,6 +1199,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Uzun kutu",
     "note": "Uzun dikdörtgen kutu. Baton pasta, rulo ve sıralı kurabiye sunumu için tasarlanmış oran.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 35,
     "fiyatKdv": 42,
     "populer": false
@@ -1029,6 +1225,11 @@ window.VITREA_PRODUCTS = [
     "tag": "Derin kare",
     "note": "Derin kare gövde, düz kapak. Kurabiye ve lokum gibi yığılan ürünlerde yüksekliği avantaj sağlar.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 16,
     "fiyatKdv": 19.2,
     "populer": false
@@ -1049,6 +1250,11 @@ window.VITREA_PRODUCTS = [
     "tag": "Bardak form",
     "note": "Aşağı doğru daralan bardak formu. Sütlaç, magnolia ve bardak tatlılarında elde rahat durur.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "lokum"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
     "populer": false
@@ -1069,6 +1275,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Yuvarlak kase",
     "note": "Alçak yuvarlak kase. Salata, meyve ve porsiyonluk tatlıda geniş ağzıyla ürünü tam gösterir.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 20,
     "fiyatKdv": 24,
     "populer": false
@@ -1089,6 +1301,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Yuvarlak kase",
     "note": "Aynı yuvarlak hattın bir boy derini. Sulu tatlı ve yoğurtlu sunumlar için ek hacim verir.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 21,
     "fiyatKdv": 25.2,
     "populer": false
@@ -1109,6 +1327,12 @@ window.VITREA_PRODUCTS = [
     "tag": "Alçak kutu",
     "note": "Alçak dikdörtgen kapaklı kutu. Kurabiye, makaron ve çikolatalı ikramlarda vitrin kabı olarak kullanılır.",
     "active": true,
+    "kategoriler": [
+      "sutlu",
+      "kurabiye",
+      "bal",
+      "lokum"
+    ],
     "fiyat": 24,
     "fiyatKdv": 28.8,
     "populer": false
@@ -1129,6 +1353,10 @@ window.VITREA_PRODUCTS = [
     "tag": "Alçak tabla",
     "note": "Sığ dikdörtgen tabla. Alçak kenarı tatlıyı yandan tam gösterir; sunum tepsisi gibi çalışır, vitrinde üst üste istiflenir.",
     "active": true,
+    "kategoriler": [
+      "bal",
+      "lokum"
+    ],
     "fiyat": 7,
     "fiyatKdv": 8.4,
     "populer": false
@@ -1149,6 +1377,10 @@ window.VITREA_PRODUCTS = [
     "tag": "Alçak tabla",
     "note": "Aynı sığ hattın orta boyu. Dilim pasta, brownie ve kare tatlılar için rahat bir zemin verir.",
     "active": true,
+    "kategoriler": [
+      "bal",
+      "lokum"
+    ],
     "fiyat": 10,
     "fiyatKdv": 12,
     "populer": false
@@ -1169,8 +1401,273 @@ window.VITREA_PRODUCTS = [
     "tag": "Alçak tabla",
     "note": "Serinin en genişi. İki dilim ya da porsiyonluk sunum için; kapaksız servis tablası olarak da kullanılır.",
     "active": true,
+    "kategoriler": [
+      "bal",
+      "lokum"
+    ],
     "fiyat": 11,
     "fiyatKdv": 13.2,
+    "populer": false
+  },
+  {
+    "id": "joy-150",
+    "code": "MAY 216",
+    "mayerKod": "MAY 216",
+    "name": "JOY",
+    "vol": 150,
+    "cat": "dikdortgen",
+    "kategoriler": [
+      "lokum"
+    ],
+    "dim": "83 × 98 × 28",
+    "box": 600,
+    "boxDim": "470 × 620 × 350",
+    "lid": null,
+    "img": "joy-150",
+    "scene": "",
+    "tag": "Alçak kutu",
+    "note": "Sığ dikdörtgen kapaklı kutu. Kurabiye, lokum ve draje sunumunda tek katmanlı, düzenli bir yerleşim sağlar.",
+    "active": true,
+    "fiyat": 10,
+    "fiyatKdv": 12,
+    "populer": false
+  },
+  {
+    "id": "trio-90",
+    "code": "MAY 326",
+    "mayerKod": "MAY 326",
+    "name": "TRIO",
+    "vol": 90,
+    "cat": "kare",
+    "kategoriler": [
+      "lokum"
+    ],
+    "dim": "45 × 45 × 27",
+    "box": 500,
+    "boxDim": "370 × 500 × 500",
+    "lid": null,
+    "img": "trio-90",
+    "scene": "",
+    "tag": "Mini kare",
+    "note": "Küçük kare gövde, kapaklı. Draje, badem şekeri ve tekli lokum ikramları için nikâh şekeri ölçüsünde bir kap.",
+    "active": true,
+    "fiyat": 11,
+    "fiyatKdv": 13.2,
+    "populer": false
+  },
+  {
+    "id": "cosmo-140",
+    "code": "MAY 328",
+    "mayerKod": "MAY 328",
+    "name": "COSMO",
+    "vol": 140,
+    "cat": "ozel",
+    "kategoriler": [
+      "lokum"
+    ],
+    "dim": "45 × 60 × 101",
+    "box": 300,
+    "boxDim": "375 × 500 × 500",
+    "lid": null,
+    "img": "cosmo-140",
+    "scene": "",
+    "tag": "Dik form",
+    "note": "Dar ve yüksek gövde, üstten kapaklı. Draje ve renkli şekerlemeleri dikey bir vitrin gibi gösterir.",
+    "active": true,
+    "fiyat": 11,
+    "fiyatKdv": 13.2,
+    "populer": false
+  },
+  {
+    "id": "melody-250",
+    "code": "MAY 409",
+    "mayerKod": "MAY 409",
+    "name": "MELODY",
+    "vol": 250,
+    "cat": "kase",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "—",
+    "box": 360,
+    "boxDim": "400 × 580 × 495",
+    "lid": null,
+    "img": "melody-250",
+    "scene": "",
+    "tag": "Altın tabanlı",
+    "note": "Altın renkli tabanı ve şeffaf kubbe kapağıyla yuvarlak sunum kabı. Lokum, çikolata ve kuru pastada hediyelik görünüm verir.",
+    "active": true,
+    "fiyat": 15,
+    "fiyatKdv": 18,
+    "populer": false
+  },
+  {
+    "id": "melody-380",
+    "code": "MAY 410",
+    "mayerKod": "MAY 410",
+    "name": "MELODY",
+    "vol": 380,
+    "cat": "kase",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "122 × 189 × 34",
+    "box": 225,
+    "boxDim": "400 × 580 × 495",
+    "lid": null,
+    "img": "melody-380",
+    "scene": "",
+    "tag": "Altın tabanlı",
+    "note": "Aynı altın tabanlı serinin büyük boyu. Karışık lokum ve kurabiye tabaklarına uygun geniş yüzey.",
+    "active": true,
+    "fiyat": 26,
+    "fiyatKdv": 31.2,
+    "populer": false
+  },
+  {
+    "id": "lukas-650",
+    "code": "MAY 414",
+    "mayerKod": "MAY 414",
+    "name": "LUKAS",
+    "vol": 650,
+    "cat": "ozel",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "179 × 198 × 35",
+    "box": 150,
+    "boxDim": "390 × 620 × 540",
+    "lid": null,
+    "img": "lukas-650",
+    "scene": "",
+    "tag": "Oval kapak",
+    "note": "Oval formlu, yüksek kubbe kapaklı şeffaf kutu. Hacimli kurabiye ve pasta sunumlarını ezmeden taşır.",
+    "active": true,
+    "fiyat": 39,
+    "fiyatKdv": 46.8,
+    "populer": false
+  },
+  {
+    "id": "sapphire-630",
+    "code": "MAY 427",
+    "mayerKod": "MAY 427",
+    "name": "SAPPHIRE",
+    "vol": 630,
+    "cat": "dikdortgen",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "122 × 262 × 35",
+    "box": 150,
+    "boxDim": "550 × 600 × 390",
+    "lid": null,
+    "img": "sapphire-630",
+    "scene": "",
+    "tag": "Uzun tabla",
+    "note": "Uzun ve alçak dikdörtgen tabla. Baklava, kurabiye ve dilim tatlıları sıralı biçimde sunmak için.",
+    "active": true,
+    "fiyat": 43,
+    "fiyatKdv": 51.6,
+    "populer": false
+  },
+  {
+    "id": "harmony-270",
+    "code": "MAY 433",
+    "mayerKod": "MAY 433",
+    "name": "HARMONY",
+    "vol": 270,
+    "cat": "kase",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "131 × 34",
+    "box": 300,
+    "boxDim": "425 × 565 × 420",
+    "lid": null,
+    "img": "harmony-270",
+    "scene": "",
+    "tag": "Altın tabanlı",
+    "note": "Altın tabanlı yuvarlak sunum kabı, küçük boy. Tekli lokum ve çikolata ikramlarında hediyelik bir çerçeve kurar.",
+    "active": true,
+    "fiyat": 15,
+    "fiyatKdv": 18,
+    "populer": false
+  },
+  {
+    "id": "harmony-450",
+    "code": "MAY 434",
+    "mayerKod": "MAY 434",
+    "name": "HARMONY",
+    "vol": 450,
+    "cat": "kase",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "160 × 34",
+    "box": 200,
+    "boxDim": "660 × 330 × 420",
+    "lid": null,
+    "img": "harmony-450",
+    "scene": "",
+    "tag": "Altın tabanlı",
+    "note": "Serinin orta boyu. Karışık lokum ve draje sunumları için dengeli bir hacim.",
+    "active": true,
+    "fiyat": 18,
+    "fiyatKdv": 21.6,
+    "populer": false
+  },
+  {
+    "id": "harmony-750",
+    "code": "MAY 435",
+    "mayerKod": "MAY 435",
+    "name": "HARMONY",
+    "vol": 750,
+    "cat": "kase",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "200 × 34",
+    "box": 175,
+    "boxDim": "610 × 430 × 480",
+    "lid": null,
+    "img": "harmony-750",
+    "scene": "",
+    "tag": "Altın tabanlı",
+    "note": "Serinin en genişi. Bayram ve özel gün ikramlıklarında tek başına tabak yerine geçer.",
+    "active": true,
+    "fiyat": 35,
+    "fiyatKdv": 42,
+    "populer": false
+  },
+  {
+    "id": "symphony-770",
+    "code": "MAY 446",
+    "mayerKod": "MAY 446",
+    "name": "SYMPHONY",
+    "vol": 770,
+    "cat": "dikdortgen",
+    "kategoriler": [
+      "kurabiye",
+      "lokum"
+    ],
+    "dim": "—",
+    "box": 120,
+    "boxDim": "560 × 410 × 400",
+    "lid": null,
+    "img": "symphony-770",
+    "scene": "",
+    "tag": "Geniş tabla",
+    "note": "Geniş dikdörtgen tabla, alçak kenar. Çok çeşitli kurabiye ve lokum sunumlarını tek kapta toplar.",
+    "active": true,
+    "fiyat": 41,
+    "fiyatKdv": 49.2,
     "populer": false
   }
 ];

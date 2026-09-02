@@ -81,6 +81,18 @@
     $('#adim3').hidden = n !== 3;
   }
 
+  /* Uye girisliyse "uye ol / uye olmadan devam et" adimini hic gostermeyiz;
+     dogrudan teslimat bilgilerine gecer ve alanlar hesaptan dolar. */
+  function baslangicAdimi() {
+    if (window.VP_SUNUCU && localStorage.getItem(TOKEN)) {
+      adim(2); dolduranUye();
+      var g = $('#geri');
+      if (g) g.hidden = true;                 // geri donecek adim yok
+    } else {
+      adim(1);
+    }
+  }
+
   $('#secMisafir').addEventListener('click', function () { adim(2); });
   $('#geri').addEventListener('click', function () { adim(1); });
 
@@ -108,9 +120,8 @@
         if (j.email && !f.elements.email.value) f.elements.email.value = j.email;
       }).catch(function () {});
   }
-  document.addEventListener('ortam:belli', function (e) {
-    if (e.detail.sunucu) dolduranUye();
-  });
+  document.addEventListener('ortam:belli', function () { baslangicAdimi(); });
+  document.addEventListener('oturum:degisti', function () { baslangicAdimi(); });
 
   /* ---------------- sipariş gönder ---------------- */
   $('#adim2').addEventListener('submit', function (e) {
@@ -173,4 +184,5 @@
   });
 
   ciz();
+  baslangicAdimi();
 })();

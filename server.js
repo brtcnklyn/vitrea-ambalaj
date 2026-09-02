@@ -80,8 +80,10 @@ function saveSiparis() { writeJSON(SIPARIS_FILE, siparis); }
 /* ---- Mayer katalogunu canli cekip ayristir ----
    Kaynak: kategori listesi. Kart yapisi:
    <div class="name"><a ...product_id=N>BASLIK</a></div> ... <div class="price">FIYAT</div> */
-/* 81 = sütlü tatlı ambalajları, 83 = kase / bal kabı / sunum kapları */
-const MAYER_PATHS = ['81', '83'];
+/* Mayer kategorileri: 81 sütlü tatlı · 82 kurabiye · 83 bal · 84 lokum & draje.
+   Bir ürün birden fazla kategoride olabilir; site filtreleri bu ayrımı kullanır. */
+const MAYER_KAT = { '81': 'sutlu', '82': 'kurabiye', '83': 'bal', '84': 'lokum' };
+const MAYER_PATHS = Object.keys(MAYER_KAT);
 const MAYER_URL = MAYER_PATHS
   .map(p => 'https://mayerplastik.com.tr/index.php?route=product/category&path=' + p + '&limit=200')
   .join(' + ');
@@ -98,18 +100,35 @@ function fiyatOku(s) {
   return m ? parseFloat(m[1].replace(/\./g, '').replace(',', '.')) : null;
 }
 
-async function mayerSayfa(path) {
+const bekle = ms => new Promise(r => setTimeout(r, ms));
+
+/* Mayer ara sira baglantiyi dusuruyor: her sayfa 3 kez denenir. */
+async function mayerSayfa(path, deneme = 0) {
   const u = 'https://mayerplastik.com.tr/index.php?route=product/category&path=' + path + '&limit=200';
-  const r = await fetch(u, {
-    headers: { 'User-Agent': MAYER_UA, 'Accept-Language': 'tr-TR,tr;q=0.9' },
-    signal: AbortSignal.timeout(30000)
-  });
-  if (!r.ok) throw new Error('Mayer sitesi ' + r.status + ' döndü (path=' + path + ').');
-  return r.text();
+  try {
+    const r = await fetch(u, {
+      headers: { 'User-Agent': MAYER_UA, 'Accept-Language': 'tr-TR,tr;q=0.9' },
+      signal: AbortSignal.timeout(30000)
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.text();
+  } catch (e) {
+    if (deneme < 2) { await bekle(1200 * (deneme + 1)); return mayerSayfa(path, deneme + 1); }
+    throw new Error('path=' + path + ': ' + e.message);
+  }
 }
 
 async function mayerCek() {
-  const sayfalar = await Promise.all(MAYER_PATHS.map(mayerSayfa));
+  /* Sirayla cekilir (es zamanli istek Mayer'i zorluyor). Bir kategori
+     alinamazsa digerleri yine islenir; hicbiri gelmezse hata verilir. */
+  const sayfalar = [];
+  const hatalar = [];
+  for (const p of MAYER_PATHS) {
+    try { sayfalar.push(await mayerSayfa(p)); }
+    catch (e) { hatalar.push(e.message); }
+    await bekle(400);
+  }
+  if (!sayfalar.length) throw new Error(hatalar.join(' · '));
   const html = sayfalar.join('\n');
 
   const kartRe = /<div class="name"><a href="[^"]*product_id=(\d+)[^"]*">([\s\S]*?)<\/a><\/div>[\s\S]*?<div class="price">([\s\S]*?)<\/div>/g;
@@ -331,6 +350,8 @@ function sanitize(p, existing) {
     id:       str(p.id, base.id) || slugify(p.name) || ('urun-' + Date.now()),
     code:     str(p.code, base.code || '—'),
     mayerKod: str(p.mayerKod, base.mayerKod || str(p.code, base.code || '')),
+    kategoriler: Array.isArray(p.kategoriler) && p.kategoriler.length
+                 ? p.kategoriler : (base.kategoriler || ['sutlu']),
     name:   str(p.name, base.name || 'İSİMSİZ'),
     vol:    num(p.vol, base.vol || 0),
     cat:    cats.indexOf(p.cat) >= 0 ? p.cat : (base.cat || 'kase'),

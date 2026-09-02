@@ -112,7 +112,9 @@
 
   /* ---------------- koleksiyon ---------------- */
   var grid = $('#grid'), empty = $('#gridEmpty');
-  var filt = { cat: 'all', vol: 'all' };
+  var filt = { kat: 'all', vol: 'all' };
+  /* Mayer'in kendi kategorileri; bir ürün birden fazlasına girebilir */
+  var KAT_AD = { sutlu:'Sütlü Tatlı', kurabiye:'Kurabiye', bal:'Bal', lokum:'Lokum & Draje' };
 
   function volBand(v) { return v < 200 ? 's' : (v < 300 ? 'm' : 'l'); }
 
@@ -157,7 +159,8 @@
   function render() {
     if (!grid) return;
     var list = P.filter(function (p) {
-      return (filt.cat === 'all' || p.cat === filt.cat) &&
+      var k = p.kategoriler || [];
+      return (filt.kat === 'all' || k.indexOf(filt.kat) >= 0) &&
              (filt.vol === 'all' || volBand(p.vol) === filt.vol);
     });
     grid.innerHTML = list.map(cardHTML).join('');

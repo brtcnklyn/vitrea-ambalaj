@@ -9,7 +9,8 @@
   if (!$('#hesapPanel')) return;
 
   var TOKEN = 'vitrea_user_token';
-  var mod = 'login';
+  /* ?mod=register ile gelinirse dogrudan "Hesap ac" sekmesi acilir */
+  var mod = /(\?|&)mod=register/.test(location.search) ? 'register' : 'login';
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -76,10 +77,26 @@
             var l = d.siparisler || [];
             $('#hBos').hidden = l.length > 0;
             $('#hSiparisler').innerHTML = l.map(siparisHTML).join('');
+            if (location.hash === '#siparisler') {
+              $('.hesap__h3').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           });
       })
       .catch(function () { goster(false); });
   }
+
+  /* acilista sekmeyi ve odagi ayarla */
+  function sekmeYaz() {
+    $$('#hTabs button').forEach(function (x) {
+      x.classList.toggle('is-on', x.dataset.htab === mod);
+    });
+    $('#hAdAlan').hidden = mod !== 'register';
+    $('#hForm').querySelector('button[type=submit]').textContent =
+      mod === 'register' ? 'Hesap aç' : 'Giriş yap';
+    var b = $('#hesapBaslik');
+    if (b && mod === 'register' && !girisliMi()) b.textContent = 'Üye ol';
+  }
+  function girisliMi() { return !!localStorage.getItem(TOKEN); }
 
   /* sekmeler */
   $('#hTabs').addEventListener('click', function (e) {
@@ -113,12 +130,14 @@
     }).then(function (j) {
       localStorage.setItem(TOKEN, j.token);
       not.textContent = '';
+      document.dispatchEvent(new CustomEvent('oturum:degisti'));
       yukle();
     }).catch(function (err) { not.textContent = err.message; });
   });
 
   $('#hCikis').addEventListener('click', function () {
     localStorage.removeItem(TOKEN);
+    document.dispatchEvent(new CustomEvent('oturum:degisti'));
     goster(false);
   });
 
@@ -143,8 +162,15 @@
   /* ---------------- ortam ---------------- */
   document.addEventListener('ortam:belli', function (e) {
     $('#hesapKapali').hidden = e.detail.sunucu;
-    if (e.detail.sunucu) { yukle(); }
+    if (e.detail.sunucu) { sekmeYaz(); yukle();
+      if (location.hash === '#takip') {
+        setTimeout(function () {
+          var t = $('#takipForm');
+          if (t) t.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 400);
+      }
+    }
     else { $('#hesapGiris').hidden = true; $('#hesapPanel').hidden = true; }
   });
-  if (window.VP_SUNUCU) { $('#hesapKapali').hidden = true; yukle(); }
+  if (window.VP_SUNUCU) { $('#hesapKapali').hidden = true; sekmeYaz(); yukle(); }
 })();

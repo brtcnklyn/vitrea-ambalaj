@@ -816,3 +816,51 @@ html:not(.srv) .srv-only{display:none !important}
   .skalem__adet{grid-column:1/2}
   .skalem__tutar{grid-column:2/3;text-align:right}
 }
+
+/* ============================================================
+   Nav simgeleri (profil + sepet), profil menüsü, WhatsApp düğmesi
+   ============================================================ */
+.navik{display:flex;align-items:center;gap:4px}
+.navik__sar{position:relative}
+.navik__b{position:relative;display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border:0;background:none;border-radius:50%;cursor:pointer;
+  color:var(--mute-d);transition:color .3s,background .3s;text-decoration:none;padding:0}
+.navik__b svg{width:21px;height:21px;display:block}
+.navik__b:hover,.navik__b.is-now{color:var(--paper);background:rgba(255,255,255,.07)}
+.navik__say{position:absolute;top:3px;right:1px;min-width:17px;height:17px;padding:0 4px;
+  border-radius:999px;background:var(--accent);color:#fff;font-size:10.5px;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.navik__nokta{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;
+  background:var(--accent);border:1.5px solid var(--ink)}
+
+.navmen{position:absolute;top:calc(100% + 10px);right:0;z-index:1100;min-width:212px;
+  background:var(--ink-2);border:1px solid var(--line-d);border-radius:12px;padding:7px;
+  box-shadow:0 26px 60px -24px rgba(0,0,0,.8)}
+.navmen__ad{display:block;padding:9px 12px 8px;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mute-d);border-bottom:1px solid var(--line-d);
+  margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.navmen a,.navmen button{display:block;width:100%;text-align:left;padding:10px 12px;
+  border:0;background:none;border-radius:8px;font-size:14px;color:var(--paper);
+  text-decoration:none;cursor:pointer;font-family:inherit;transition:background .2s,color .2s}
+.navmen a:hover,.navmen button:hover{background:rgba(255,255,255,.07);color:var(--accent)}
+.navmen__vur{color:var(--accent) !important;font-weight:500}
+
+/* sağ altta sabit WhatsApp düğmesi */
+.wafab{position:fixed;right:20px;bottom:20px;z-index:900;display:inline-flex;align-items:center;
+  gap:0;overflow:hidden;height:54px;padding:0 16px;border-radius:999px;
+  background:#25D366;color:#fff;text-decoration:none;
+  box-shadow:0 14px 34px -12px rgba(37,211,102,.65);
+  transition:gap .35s var(--ease),padding .35s var(--ease),transform .3s var(--ease)}
+.wafab svg{width:26px;height:26px;flex:none}
+.wafab span{max-width:0;opacity:0;white-space:nowrap;font-size:14.5px;font-weight:500;
+  transition:max-width .35s var(--ease),opacity .25s}
+.wafab:hover{gap:10px;transform:translateY(-2px)}
+.wafab:hover span{max-width:110px;opacity:1}
+.wafab:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* sepet sayfasında WhatsApp düğmesi özet kutusuyla çakışmasın */
+@media (max-width:620px){
+  .wafab{right:14px;bottom:14px;height:50px;padding:0 13px}
+  .wafab:hover span{max-width:0;opacity:0}
+  .navik__b{width:36px;height:36px}
+}
