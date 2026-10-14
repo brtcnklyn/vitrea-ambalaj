@@ -1,7 +1,7 @@
 /* VITREAPLAS — otomatik uretilir, elle duzenlemeyin.
    Kaynak: data/products.json  ·  Duzenleme: /admin
    Fiyatlar perakende satis fiyatidir; alis fiyati bu dosyada YOKTUR.
-   Uretim: 2026-10-13T12:00:45.338Z */
+   Uretim: 2026-10-14T07:20:10.062Z */
 window.VITREA_PRODUCTS = [
   {
     "id": "luna",
