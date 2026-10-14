@@ -7,6 +7,7 @@ const http = require('http');
 const fs   = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { execFile } = require('child_process');
 
 const ROOT      = __dirname;
 const DATA_DIR  = path.join(ROOT, 'data');
@@ -248,7 +249,12 @@ function syncSeed() {
     'window.VITREA_PRODUCTS = ' + JSON.stringify(active, null, 2) + ';\n\n' +
     'window.VITREA_USES = ' + JSON.stringify(db.uses, null, 2) + ';\n\n' +
     'window.VITREA_KDV = ' + (ayar.kdv || 20) + ';\n';
-  fs.writeFileSync(SEED_FILE, out, 'utf8');
+  /* yalnizca uretim tarihi farkliysa dosyaya dokunma: yoksa her acilista
+     "yayinlanmamis degisiklik" varmis gibi gorunur */
+  const tarihsiz = t => t.replace(/^   Uretim: .*$/m, '');
+  let eski = '';
+  try { eski = fs.readFileSync(SEED_FILE, 'utf8'); } catch (e) {}
+  if (tarihsiz(eski) !== tarihsiz(out)) fs.writeFileSync(SEED_FILE, out, 'utf8');
   syncReviewsSeed();
 }
 /* onayli yorumlar statik siteye de yazilir */
@@ -279,6 +285,42 @@ function newToken() {
   tokens.set(t, Date.now());
   return t;
 }
+/* ---------- SITEYE YAYINLA ----------
+   Panelden "Siteye yayınla": yalnizca sitede gorunmesi gereken dosyalar GitHub'a gider.
+   Alis fiyatlari, musteri ve siparis verisi bu listede YOK; ayrica .gitignore'da. */
+const YAYIN_YOLLARI = [
+  'assets/js/products.js', 'assets/js/reviews.js', 'data/products.json',
+  'assets/img/urun', 'assets/img/sahne'
+];
+function git(args) {
+  return new Promise((resolve, reject) => {
+    execFile('git', args, { cwd: ROOT, windowsHide: true, timeout: 120000 },
+      (err, stdout, stderr) => err
+        ? reject(new Error((stderr || stdout || err.message).trim()))
+        : resolve(stdout));
+  });
+}
+async function yayinBekleyen() {
+  const out = await git(['status', '--porcelain', '-uall', '--', ...YAYIN_YOLLARI]);
+  /* satir bicimi: "XY yol" -> ilk 3 karakter durum kodu */
+  return out.split('\n').filter(l => l.trim()).map(l => l.slice(3).trim());
+}
+let yayinda = false;
+async function yayinla() {
+  if (yayinda) throw new Error('Yayınlama zaten sürüyor.');
+  yayinda = true;
+  try {
+    const dosyalar = await yayinBekleyen();
+    if (!dosyalar.length) return { ok: true, dosyalar: [], mesaj: 'Site zaten güncel.' };
+    await git(['add', '--', ...YAYIN_YOLLARI]);
+    const tarih = new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' });
+    /* yalnizca bu yollari commit'le; baska bekleyen degisiklik varsa ona dokunma */
+    await git(['commit', '-m', 'Panelden yayın: ' + tarih, '--', ...YAYIN_YOLLARI]);
+    await git(['push']);
+    return { ok: true, dosyalar, mesaj: dosyalar.length + ' dosya yayına gönderildi.' };
+  } finally { yayinda = false; }
+}
+
 function authed(req) {
   const h = req.headers.authorization || '';
   const t = h.replace(/^Bearer\s+/i, '');
@@ -596,6 +638,15 @@ const server = http.createServer(async (req, res) => {
     if (!authed(req)) return send(res, 401, { error: 'Oturum geçersiz. Yeniden giriş yapın.' });
 
     try {
+      /* --- siteye yayinla --- */
+      if (url === '/api/admin/yayin-durum' && req.method === 'GET') {
+        return send(res, 200, { bekleyen: await yayinBekleyen() });
+      }
+      if (url === '/api/admin/yayinla' && req.method === 'POST') {
+        try { return send(res, 200, await yayinla()); }
+        catch (e) { return send(res, 500, { error: 'Yayınlanamadı: ' + e.message.slice(0, 300) }); }
+      }
+
       /* tum urunler (pasifler dahil) */
       if (url === '/api/admin/products' && req.method === 'GET') {
         return send(res, 200, { products: db.products });
