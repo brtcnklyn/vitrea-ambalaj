@@ -1,7 +1,7 @@
 /* VITREAPLAS — otomatik uretilir, elle duzenlemeyin.
    Kaynak: data/products.json  ·  Duzenleme: /admin
    Fiyatlar perakende satis fiyatidir; alis fiyati bu dosyada YOKTUR.
-   Uretim: 2026-09-02T09:01:55.906Z */
+   Uretim: 2026-10-13T12:00:45.338Z */
 window.VITREA_PRODUCTS = [
   {
     "id": "luna",
@@ -23,8 +23,8 @@ window.VITREA_PRODUCTS = [
       "sutlu",
       "kurabiye"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": true
   },
   {
@@ -48,9 +48,9 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
-    "populer": false
+    "fiyat": 15,
+    "fiyatKdv": 18,
+    "populer": true
   },
   {
     "id": "faceta",
@@ -73,8 +73,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": true
   },
   {
@@ -98,8 +98,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 10,
-    "fiyatKdv": 12,
+    "fiyat": 14,
+    "fiyatKdv": 16.8,
     "populer": false
   },
   {
@@ -126,8 +126,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 9,
-    "fiyatKdv": 10.8,
+    "fiyat": 12,
+    "fiyatKdv": 14.4,
     "populer": true
   },
   {
@@ -149,8 +149,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -177,8 +177,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 8,
-    "fiyatKdv": 9.6,
+    "fiyat": 10,
+    "fiyatKdv": 12,
     "populer": true
   },
   {
@@ -200,8 +200,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 12,
-    "fiyatKdv": 14.4,
+    "fiyat": 17,
+    "fiyatKdv": 20.4,
     "populer": false
   },
   {
@@ -223,8 +223,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -251,8 +251,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 4,
-    "fiyatKdv": 4.8,
+    "fiyat": 5,
+    "fiyatKdv": 6,
     "populer": false
   },
   {
@@ -279,8 +279,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 9,
-    "fiyatKdv": 10.8,
+    "fiyat": 12,
+    "fiyatKdv": 14.4,
     "populer": false
   },
   {
@@ -305,8 +305,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 13,
-    "fiyatKdv": 15.6,
+    "fiyat": 19,
+    "fiyatKdv": 22.8,
     "populer": false
   },
   {
@@ -328,8 +328,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -356,8 +356,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 3,
-    "fiyatKdv": 3.6,
+    "fiyat": 4,
+    "fiyatKdv": 4.8,
     "populer": false
   },
   {
@@ -384,8 +384,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 3,
-    "fiyatKdv": 3.6,
+    "fiyat": 5,
+    "fiyatKdv": 6,
     "populer": false
   },
   {
@@ -412,8 +412,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 8,
-    "fiyatKdv": 9.6,
+    "fiyat": 11,
+    "fiyatKdv": 13.2,
     "populer": false
   },
   {
@@ -437,8 +437,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 10,
-    "fiyatKdv": 12,
+    "fiyat": 14,
+    "fiyatKdv": 16.8,
     "populer": false
   },
   {
@@ -462,8 +462,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 13,
-    "fiyatKdv": 15.6,
+    "fiyat": 18,
+    "fiyatKdv": 21.6,
     "populer": false
   },
   {
@@ -490,8 +490,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 5,
-    "fiyatKdv": 6,
+    "fiyat": 6,
+    "fiyatKdv": 7.2,
     "populer": false
   },
   {
@@ -518,8 +518,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 7,
-    "fiyatKdv": 8.4,
+    "fiyat": 10,
+    "fiyatKdv": 12,
     "populer": false
   },
   {
@@ -546,8 +546,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 10,
-    "fiyatKdv": 12,
+    "fiyat": 14,
+    "fiyatKdv": 16.8,
     "populer": false
   },
   {
@@ -576,8 +576,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 5,
-    "fiyatKdv": 6,
+    "fiyat": 6,
+    "fiyatKdv": 7.2,
     "populer": false
   },
   {
@@ -606,8 +606,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 5,
-    "fiyatKdv": 6,
+    "fiyat": 7,
+    "fiyatKdv": 8.4,
     "populer": false
   },
   {
@@ -634,8 +634,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 8,
-    "fiyatKdv": 9.6,
+    "fiyat": 11,
+    "fiyatKdv": 13.2,
     "populer": false
   },
   {
@@ -657,8 +657,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -683,8 +683,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -711,8 +711,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 8,
-    "fiyatKdv": 9.6,
+    "fiyat": 11,
+    "fiyatKdv": 13.2,
     "populer": false
   },
   {
@@ -739,8 +739,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 9,
-    "fiyatKdv": 10.8,
+    "fiyat": 12,
+    "fiyatKdv": 14.4,
     "populer": false
   },
   {
@@ -767,8 +767,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 3,
-    "fiyatKdv": 3.6,
+    "fiyat": 4,
+    "fiyatKdv": 4.8,
     "populer": false
   },
   {
@@ -795,8 +795,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 4,
-    "fiyatKdv": 4.8,
+    "fiyat": 5,
+    "fiyatKdv": 6,
     "populer": false
   },
   {
@@ -823,8 +823,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "sutlu"
     ],
-    "fiyat": 5,
-    "fiyatKdv": 6,
+    "fiyat": 7,
+    "fiyatKdv": 8.4,
     "populer": false
   },
   {
@@ -846,8 +846,8 @@ window.VITREA_PRODUCTS = [
     "kategoriler": [
       "lokum"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -872,8 +872,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 10,
-    "fiyatKdv": 12,
+    "fiyat": 14,
+    "fiyatKdv": 16.8,
     "populer": false
   },
   {
@@ -898,8 +898,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 21,
-    "fiyatKdv": 25.2,
+    "fiyat": 29,
+    "fiyatKdv": 34.8,
     "populer": false
   },
   {
@@ -923,8 +923,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -948,8 +948,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 15,
-    "fiyatKdv": 18,
+    "fiyat": 21,
+    "fiyatKdv": 25.2,
     "populer": false
   },
   {
@@ -973,8 +973,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "bal"
     ],
-    "fiyat": 28,
-    "fiyatKdv": 33.6,
+    "fiyat": 38,
+    "fiyatKdv": 45.6,
     "populer": false
   },
   {
@@ -998,8 +998,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "bal"
     ],
-    "fiyat": 35,
-    "fiyatKdv": 42,
+    "fiyat": 49,
+    "fiyatKdv": 58.8,
     "populer": false
   },
   {
@@ -1024,8 +1024,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 13,
-    "fiyatKdv": 15.6,
+    "fiyat": 18,
+    "fiyatKdv": 21.6,
     "populer": false
   },
   {
@@ -1050,8 +1050,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 22,
-    "fiyatKdv": 26.4,
+    "fiyat": 30,
+    "fiyatKdv": 36,
     "populer": false
   },
   {
@@ -1076,8 +1076,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 29,
-    "fiyatKdv": 34.8,
+    "fiyat": 40,
+    "fiyatKdv": 48,
     "populer": false
   },
   {
@@ -1102,8 +1102,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 15,
-    "fiyatKdv": 18,
+    "fiyat": 20,
+    "fiyatKdv": 24,
     "populer": false
   },
   {
@@ -1128,8 +1128,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 22,
-    "fiyatKdv": 26.4,
+    "fiyat": 30,
+    "fiyatKdv": 36,
     "populer": false
   },
   {
@@ -1153,8 +1153,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "bal"
     ],
-    "fiyat": 41,
-    "fiyatKdv": 49.2,
+    "fiyat": 57,
+    "fiyatKdv": 68.4,
     "populer": false
   },
   {
@@ -1179,8 +1179,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 22,
-    "fiyatKdv": 26.4,
+    "fiyat": 30,
+    "fiyatKdv": 36,
     "populer": false
   },
   {
@@ -1205,8 +1205,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 35,
-    "fiyatKdv": 42,
+    "fiyat": 48,
+    "fiyatKdv": 57.6,
     "populer": false
   },
   {
@@ -1230,8 +1230,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 16,
-    "fiyatKdv": 19.2,
+    "fiyat": 21,
+    "fiyatKdv": 25.2,
     "populer": false
   },
   {
@@ -1255,8 +1255,8 @@ window.VITREA_PRODUCTS = [
       "kurabiye",
       "lokum"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -1281,8 +1281,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 20,
-    "fiyatKdv": 24,
+    "fiyat": 27,
+    "fiyatKdv": 32.4,
     "populer": false
   },
   {
@@ -1307,8 +1307,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 21,
-    "fiyatKdv": 25.2,
+    "fiyat": 28,
+    "fiyatKdv": 33.6,
     "populer": false
   },
   {
@@ -1333,8 +1333,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 24,
-    "fiyatKdv": 28.8,
+    "fiyat": 34,
+    "fiyatKdv": 40.8,
     "populer": false
   },
   {
@@ -1357,8 +1357,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 7,
-    "fiyatKdv": 8.4,
+    "fiyat": 10,
+    "fiyatKdv": 12,
     "populer": false
   },
   {
@@ -1381,8 +1381,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 10,
-    "fiyatKdv": 12,
+    "fiyat": 13,
+    "fiyatKdv": 15.6,
     "populer": false
   },
   {
@@ -1405,8 +1405,8 @@ window.VITREA_PRODUCTS = [
       "bal",
       "lokum"
     ],
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 15,
+    "fiyatKdv": 18,
     "populer": false
   },
   {
@@ -1428,8 +1428,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Alçak kutu",
     "note": "Sığ dikdörtgen kapaklı kutu. Kurabiye, lokum ve draje sunumunda tek katmanlı, düzenli bir yerleşim sağlar.",
     "active": true,
-    "fiyat": 10,
-    "fiyatKdv": 12,
+    "fiyat": 14,
+    "fiyatKdv": 16.8,
     "populer": false
   },
   {
@@ -1451,8 +1451,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Mini kare",
     "note": "Küçük kare gövde, kapaklı. Draje, badem şekeri ve tekli lokum ikramları için nikâh şekeri ölçüsünde bir kap.",
     "active": true,
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 16,
+    "fiyatKdv": 19.2,
     "populer": false
   },
   {
@@ -1474,8 +1474,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Dik form",
     "note": "Dar ve yüksek gövde, üstten kapaklı. Draje ve renkli şekerlemeleri dikey bir vitrin gibi gösterir.",
     "active": true,
-    "fiyat": 11,
-    "fiyatKdv": 13.2,
+    "fiyat": 16,
+    "fiyatKdv": 19.2,
     "populer": false
   },
   {
@@ -1498,8 +1498,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Altın tabanlı",
     "note": "Altın renkli tabanı ve şeffaf kubbe kapağıyla yuvarlak sunum kabı. Lokum, çikolata ve kuru pastada hediyelik görünüm verir.",
     "active": true,
-    "fiyat": 15,
-    "fiyatKdv": 18,
+    "fiyat": 21,
+    "fiyatKdv": 25.2,
     "populer": false
   },
   {
@@ -1522,8 +1522,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Altın tabanlı",
     "note": "Aynı altın tabanlı serinin büyük boyu. Karışık lokum ve kurabiye tabaklarına uygun geniş yüzey.",
     "active": true,
-    "fiyat": 26,
-    "fiyatKdv": 31.2,
+    "fiyat": 37,
+    "fiyatKdv": 44.4,
     "populer": false
   },
   {
@@ -1546,8 +1546,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Oval kapak",
     "note": "Oval formlu, yüksek kubbe kapaklı şeffaf kutu. Hacimli kurabiye ve pasta sunumlarını ezmeden taşır.",
     "active": true,
-    "fiyat": 39,
-    "fiyatKdv": 46.8,
+    "fiyat": 54,
+    "fiyatKdv": 64.8,
     "populer": false
   },
   {
@@ -1570,8 +1570,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Uzun tabla",
     "note": "Uzun ve alçak dikdörtgen tabla. Baklava, kurabiye ve dilim tatlıları sıralı biçimde sunmak için.",
     "active": true,
-    "fiyat": 43,
-    "fiyatKdv": 51.6,
+    "fiyat": 59,
+    "fiyatKdv": 70.8,
     "populer": false
   },
   {
@@ -1594,8 +1594,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Altın tabanlı",
     "note": "Altın tabanlı yuvarlak sunum kabı, küçük boy. Tekli lokum ve çikolata ikramlarında hediyelik bir çerçeve kurar.",
     "active": true,
-    "fiyat": 15,
-    "fiyatKdv": 18,
+    "fiyat": 20,
+    "fiyatKdv": 24,
     "populer": false
   },
   {
@@ -1618,8 +1618,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Altın tabanlı",
     "note": "Serinin orta boyu. Karışık lokum ve draje sunumları için dengeli bir hacim.",
     "active": true,
-    "fiyat": 18,
-    "fiyatKdv": 21.6,
+    "fiyat": 25,
+    "fiyatKdv": 30,
     "populer": false
   },
   {
@@ -1642,8 +1642,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Altın tabanlı",
     "note": "Serinin en genişi. Bayram ve özel gün ikramlıklarında tek başına tabak yerine geçer.",
     "active": true,
-    "fiyat": 35,
-    "fiyatKdv": 42,
+    "fiyat": 48,
+    "fiyatKdv": 57.6,
     "populer": false
   },
   {
@@ -1666,8 +1666,8 @@ window.VITREA_PRODUCTS = [
     "tag": "Geniş tabla",
     "note": "Geniş dikdörtgen tabla, alçak kenar. Çok çeşitli kurabiye ve lokum sunumlarını tek kapta toplar.",
     "active": true,
-    "fiyat": 41,
-    "fiyatKdv": 49.2,
+    "fiyat": 57,
+    "fiyatKdv": 68.4,
     "populer": false
   }
 ];
